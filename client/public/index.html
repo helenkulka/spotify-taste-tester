@@ -10,6 +10,27 @@
     -->
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
+    <link rel="font" href="https://use.typekit.net/plz7kex.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script type= "text/javascript">
+    
+      $(document).on("scroll", function () {
+        var pageTop = $(document).scrollTop()
+        var pageBottom = pageTop + $(window).height()
+        
+          if ($(".row1").position().top < pageBottom && $(this).scrollTop() > 0) {
+            $(".row1").addClass("invisible")
+          }
+          if ($(".row2").position().top < pageBottom && $(this).scrollTop() > 0) {
+            $(".row2").addClass("invisible")
+          }
+
+       if ($(this).scrollTop() > 100) {
+        $(".intro").addClass("visible")
+        $(".button").addClass("visible")
+       }
+      })    
+    </script>
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -19,13 +40,51 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Spotify Taste Tester</title>
   </head>
   <body>
     <noscript>
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root"></div>
+    <div id="header"><h1> SHOULD YOU TALK TO FRANK OCEAN ABOUT MUSIC AT A PARTY?</h1></div>
+
+    <div class="outer">
+        <div class="row1">
+            <div class="grid-container">
+                <div class="grid-item"><img src="https://i.scdn.co/image/acca2e7a1e842f02255f2f55b5a6292328f9fc07" alt=""></div>
+                <div class="grid-item"><img src="https://i.scdn.co/image/d1d05405d800e9fa63d8dbb56ab3881fc8e9c925" alt=""></div>
+                <div class="grid-item"><img src="https://i.scdn.co/image/ab67616d0000b2735d6fb1541aad6c364a7fc369" alt=""></div>
+                <div class="grid-item"><img src="https://i.scdn.co/image/a756b7e6a0c597c9972a43083830aaf4098ce32d" alt=""> </div>
+                <div class="grid-item"> <img src="https://i.scdn.co/image/ab67616d0000b273e95167b9a84913db41e9ca8b" alt=""></div>
+              </div>
+        </div>
+          
+        <div class="intro">
+            <h2> a website to compare your music taste to <br> Frank Ocean's playlist Blonded</h2>
+        </div> 
+
+          <a href="http://localhost:8888" class=button>
+              <img src="covers/white_logo.png" alt="">
+              <h3> LOGIN WITH SPOTIFY </h3>
+          </a>
+    </div>
+
+    <div class="row2">
+        <div class="grid-container">
+            <div class="grid-item"> <img src="https://i.scdn.co/image/ab67616d0000b27397e74e852b3ccf09aebc917c" alt=""></div>
+            <div class="grid-item"><img src="https://i.scdn.co/image/ab67616d0000b273a0c84892f9aca53df1a67829" alt=""></div>
+            <div class="grid-item"><img src="https://i.scdn.co/image/ab67616d0000b273d6a42152bb68f22580714f71" alt=""></div>
+            <div class="grid-item"><img src="https://i.scdn.co/image/6e260e51bb9d837de062ee994cc50e1e1aa71708" alt=""></div>
+            <div class="grid-item"><img src="https://i.scdn.co/image/ab67616d0000b2730453453e4598d335c9060c5c" alt=""></div>
+        </div>
+    </div>
+
+
+
+
+
+
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.

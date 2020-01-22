@@ -12,8 +12,8 @@ var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 
-var client_id = ''; // Your client id
-var client_secret =  '';// Your secret
+var client_id = '7c4ba681e3034fa0b7e28dfb7d5b353f';// Your client id
+var client_secret = '817ce4d9ac23463db285f6b80a0767a9';// Your secret
 var redirect_uri = 'http://localhost:8888/callback'; // Or Your redirect uri
 
 /**
@@ -107,7 +107,7 @@ app.get('/callback', function(req, res) {
             access_token: access_token,
             refresh_token: refresh_token
           }));
-      } else {
+         } else {
         res.redirect('/#' +
           querystring.stringify({
             error: 'invalid_token'

@@ -30,15 +30,12 @@ class App extends Component {
   }
 
   getNowPlaying(){
-    spotifyApi.getMyCurrentPlaybackState()
-      .then((response) => {
-        this.setState({
-          nowPlaying: { 
-              name: response.item.name, 
-              albumArt: response.item.album.images[0].url
-            }
-        });
-      })
+    spotifyApi.getAlbum('7C9MXRvkuilu5RSWDQmVGQ')
+  .then(function(data) {
+    console.log('Album information', data);
+  }, function(err) {
+    console.error(err);
+  });
   }
   render() {
     return (
@@ -56,7 +53,7 @@ class App extends Component {
           </button>
         }
       </div>
-    );
+    )
   }
 }
 
