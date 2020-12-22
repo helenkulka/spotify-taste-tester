@@ -50,7 +50,7 @@ h1 {
   padding: 12px 100px;
   top: 150px;
   left: 500px;
-  opacity: 0;
+  opacity: 1;
   background-color: #1ED761;
   border-radius: 56px;
 }
@@ -67,17 +67,18 @@ h1 {
 .button>h3{
   font-size: 11px;
   font-style: normal;
+    opacity: 1;
   font-family: acumin-pro, sans-serif;
   color: white;
   text-align: center;
   
 }
 
-.button.visible {
+/* .button.visible {
   transition: opacity 3s;
   transition-delay: 3.4s;
   opacity: 1;
-}
+} */
 
 .row1 {
   margin-top: 0px;

@@ -6,54 +6,51 @@
  * For more information, read
  * https://developer.spotify.com/web-api/authorization-guide/#authorization_code_flow
  */
-
+const path = require('path');
 var express = require('express'); // Express web server framework
 var request = require('request'); // "Request" library
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
+var testAPIRouter = require("./routes/testAPI");
+var loginRouter = require("./routes/login");
+var cors = require("cors");
 
 var client_id = '7c4ba681e3034fa0b7e28dfb7d5b353f';// Your client id
 var client_secret = '817ce4d9ac23463db285f6b80a0767a9';// Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Or Your redirect uri
+var redirect_uri = 'http://localhost:3000/callback'; // Or Your redirect uri
 
-/**
- * Generates a random string containing numbers and letters
- * @param  {number} length The length of the string
- * @return {string} The generated string
- */
-var generateRandomString = function(length) {
-  var text = '';
-  var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
-  for (var i = 0; i < length; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }
-  return text;
-};
 
 var stateKey = 'spotify_auth_state';
 
 var app = express();
 
-app.use(express.static(__dirname + '/public'))
-   .use(cookieParser());
+// let whitelist = ['http://localhost:3000'];
+// let corsOptions = {
+//     origin: (origin, callback)=>{
+//         if (whitelist.indexOf(origin) !== -1) {
+//             callback(null, true)
+//         } else {
+//             callback(new Error('Not allowed by CORS'))
+//         }
+//     },credentials: true
+//   }
+// let corsOptions = {
+//   origin: 'http://localhost:3000',
+//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204 
+// }
 
-app.get('/login', function(req, res) {
+app.use(express.static(__dirname + '/public'));
+app.use(cookieParser());
+//app.use(cors(corsOptions));
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//   next();
+// });
 
-  var state = generateRandomString(16);
-  res.cookie(stateKey, state);
+app.use("/testAPI", testAPIRouter);
+app.use("/login", loginRouter);
 
-  // your application requests authorization
-  var scope = 'user-read-private user-read-email user-read-playback-state';
-  res.redirect('https://accounts.spotify.com/authorize?' +
-    querystring.stringify({
-      response_type: 'code',
-      client_id: client_id,
-      scope: scope,
-      redirect_uri: redirect_uri,
-      state: state
-    }));
-});
 
 app.get('/callback', function(req, res) {
 
@@ -102,7 +99,7 @@ app.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('http://localhost:3000/#' +
+        res.redirect('http://localhost:8888/#' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
