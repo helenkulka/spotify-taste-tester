@@ -15,8 +15,8 @@ var testAPIRouter = require("./routes/testAPI");
 var loginRouter = require("./routes/login");
 var cors = require("cors");
 
-var client_id = '7c4ba681e3034fa0b7e28dfb7d5b353f';// Your client id
-var client_secret = '817ce4d9ac23463db285f6b80a0767a9';// Your secret
+var client_id = '123';// Your client id
+var client_secret = '456';// Your secret
 var redirect_uri = 'http://localhost:3000/callback'; // Or Your redirect uri
 
 
