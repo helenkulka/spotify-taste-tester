@@ -7,24 +7,16 @@ class App extends Component {
   constructor(){
     super();
     const params = this.getHashParams();
-    const token = params.access_token;
-    if (token) {
-      spotifyApi.setAccessToken(token);
+    var access_token = params.access_token,
+    if (access_token) {
+      spotifyApi.setAccessToken(access_token);
     }
     this.state = {
-      loggedIn: token ? true : false,
+      loggedIn: access_token ? true : false,
       apiResponse: " " 
     }
   }
 
-  callAPI() {
-    fetch("http://localhost:8888/login", {mode: 'cors'})
-    .catch(err => console.log(err))
-  }
-
-componentWillMount() {
-    this.callAPI();
-}
 
   getHashParams() {
     var hashParams = {};
@@ -47,10 +39,6 @@ componentWillMount() {
   render() {
     return (
       <div className="App">
-        <p className="App-intro">;{this.state.apiResponse}</p>
-        <a href='' > Login to Spotify </a>
-        {
-        }
       </div>
     )
   }
