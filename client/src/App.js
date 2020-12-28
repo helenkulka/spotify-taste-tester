@@ -7,7 +7,7 @@ class App extends Component {
   constructor(){
     super();
     const params = this.getHashParams();
-    var access_token = params.access_token,
+    var access_token = params.access_token;
     if (access_token) {
       spotifyApi.setAccessToken(access_token);
     }
@@ -31,10 +31,10 @@ class App extends Component {
   }
 
   getNowPlaying(){
-      spotifyApi.getPlaylistTracks(1130791520, "5FhPTMUBwGX8sU3qPD2stB", { offset: 0, limit: 100 })
-      .then((response) => {
-        console.log(response)
-      });
+      // spotifyApi.getPlaylistTracks(1130791520, "5FhPTMUBwGX8sU3qPD2stB", { offset: 0, limit: 100 })
+      // .then((response) => {
+      //   console.log(response)
+      // });
   }
   render() {
     return (

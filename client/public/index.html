@@ -3,7 +3,8 @@
   <head>
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' https://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
     <title>Example of the Authorization Code flow with Spotify</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
     </style>
   </head>
 
@@ -11,11 +12,21 @@
     <div id="root"></div>
     <div class="container">
       <div id="login">
-        <h1>This is an example of the Authorization Code flow</h1>
-        <a href="http://localhost:8888/login" class="btn">Log in with Spotify</a>
+        <h1>THE FRANK OCEAN METRIC</h1>
+        <img src="covers/frank.jpeg" id="franky" alt="">
+        <h2> a website to compare your music taste  <br>
+          to Frank Ocean's playlists Blonded</h2>
+        <a href="http://localhost:8888/login" class="button">
+          <img src="covers/white_logo.png" alt="">
+          <h3> LOGIN WITH SPOTIFY </h3>
+        </a>
+        
       </div>
       <div id="loggedin">
         <div id="user-profile">
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/spotify-web-api-js/1.5.1/spotify-web-api.js" integrity="sha512-lNAdXpUi8E6pEVDtriZ7PbNF1m9W4wYKawVkmkppB9aTBPNMmQPQmb/9LiH3qXG10DLHleRDPK4Sm2v14dIO7A==" crossorigin="anonymous"></script>
+          <script src="getUserData.js"></script>
+
         </div>
         <div id="oauth">
         </div>
@@ -24,7 +35,7 @@
     </div>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
-      <h1>Logged in as {{display_name}}</h1>
+      <h1>Hey, {{display_name}}</h1>
       <div class="media">
         <div class="pull-left">
           <img class="media-object" width="150" src="{{images.0.url}}" />
@@ -54,7 +65,8 @@
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
     <script>
-      (function() {
+      // const spotifyApi = new SpotifyWebApi();
+      (async function() {
 
         /**
          * Obtains parameters from the hash of the URL
@@ -93,6 +105,8 @@
               access_token: access_token,
               refresh_token: refresh_token
             });
+
+            var blonded_tracks = await getPlaylist(access_token);
 
             $.ajax({
                 url: 'https://api.spotify.com/v1/me',

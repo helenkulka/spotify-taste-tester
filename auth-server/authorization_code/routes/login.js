@@ -4,8 +4,8 @@ var express = require("express");
 var querystring = require('querystring');
 var router = express.Router();
 
-var client_id = '7c4ba681e3034fa0b7e28dfb7d5b353f';// Your client id
-var redirect_uri = 'http://localhost:8888/callback'; // Or Your redirect uri
+var client_id = '';// Your client id
+var redirect_uri = ''; // Or Your redirect uri
 
 var generateRandomString = function(length) {
   var text = '';
