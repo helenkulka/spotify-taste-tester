@@ -1,18 +1,38 @@
 /* @import url(//fonts.googleapis.com/css?family=Open+Sans); */
+* {
+  margin: 0;
+  padding: 0;
+  /* border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent; */
+}
 
-html{
-  min-height: 100%;
-  position:relative;
+html, body {
+  height: 100%;
+  margin: 0;
 }
 
 body {
-  height: 100%;
+  min-height: 100%;
   width: 100%;
-  background-color:#ff7e30;
+  background-color: white;
+}
+
+#login {
+  /* position:fixed; */
+  margin: 0;
+}
+
+#loggedin {
+  /* position: fixed; */
+  margin: 0;
 }
 
 h1 {
   width: 100vw;
+  color:transparent;
   font-family: 'Archivo Black', sans-serif;
   font-size: 65px;
   font-stretch: extra-expanded;
@@ -20,123 +40,113 @@ h1 {
   text-align: center;
   color:transparent;
   -webkit-text-stroke-width: 1.95px; 
-  -webkit-text-stroke-color: white;
+  -webkit-text-stroke-color: #ff7e30;
+  margin-left: 40px;
+}
+
+#franky {
+  position: relative;
+  top: -30px; 
+  left: 20px;
+  height: 350px;
+  width: 350px;
+  z-index: -1;
+}
+
+#franky2 {
+  position: relative;
+  top: -30px; 
+  left: 0px;
+  height: 350px;
+  width: 350px;
+  z-index: -1;
 }
 
 h2 {
   width: 100vw;
-  font-family: 'Archivo Black', sans-serif;
+  color:#ff7e30;
+  font-family: 'Archivo', sans-serif;
   font-size: 30px;
-  font-weight: 10;
-  text-align: center;
-  color:white;
+  font-style: bold;
+  text-align: left;
+  position: absolute; 
+  top: 90px; 
+  left: 750px;
 }
 
-.outer {
+#franky3 {
   position: relative;
-  margin-top: 10px;
+  top: -30px; 
+  left: 430px;
+  height: 350px;
+  width: 350px;
 }
 
-.intro {
-  position: absolute;
-  top: 50px;
-  left: 500px;
-  font-size: 11px;
-  font-style: normal;
-  font-family: acumin-pro, sans-serif;
-  text-align: center;
-  color: #000000;
-  opacity: 0;
+
+
+h4 {
+  width: 100vw;
+  color:#ff7e30;
+  font-family: 'Archivo', sans-serif;
+  font-size: 35px;
+  font-style: bold;
+  text-align: left;
+  position: absolute; 
+  top: 50px; 
+  left: 50px;
 }
 
-.intro.visible {
-  transition: opacity 3s;
-  transition-delay: 3s;
-  opacity: 1;
+#saved-res {
+  margin-top: 150px; 
+  margin-left: 70px;
+  font-size: 20px;
+  color:white;
+  -webkit-text-stroke-width: 1px; 
+  -webkit-text-stroke-color: black;
+
+  font-family: 'Archivo', sans-serif;
+}
+
+
+#login-btn {
+  position: relative;
+  top: 200px;
+  left: 600px;
 }
 
 .button {
-
+  white-space: nowrap;
+  text-align: center;
   text-decoration: none;
   width: 50px;
   color: initial;
   position: absolute;
-  padding: 12px 100px;
-  top: 150px;
-  left: 500px;
+  padding: 0px;
+  border-radius: 90px;
+  padding: 20px 80px;
   opacity: 1;
   background-color: #1ED761;
-  border-radius: 90px;
 }
 
 .button>img {
   object-fit: cover;
   display: flex;
   position: absolute;
-  left: 50px;
-  width: 40px;
-  height: 40px;
+  left: 15px;
+  top: 10px;
+  width: 35px;
+  height: 35px;
 }
 
 .button>h3{
-  font-size: 11px;
-  font-style: normal;
-    opacity: 1;
-  font-family: acumin-pro, sans-serif;
+  font-size: 14px;
+  opacity: 1;
+  font-family: 'Archivo', sans-serif;
   color: white;
   text-align: center;
+  margin-left: -15px;
+  margin-right: auto;
   
-}
-
-/* .button.visible {
-  transition: opacity 3s;
-  transition-delay: 3.4s;
-  opacity: 1;
-} */
-
-.row1 {
-  margin-top: 0px;
-  margin-left: -8px;
-  margin-right: -8px;
-  opacity: 1;
-}
-
-.row1.invisible {
-  transition: opacity 3s;
-  opacity: 0;
-}
-
-.row2 {
-  margin-top: -15px;
-  margin-left: -8px;
-  margin-right: -8px;
-  opacity: 1;
-}
-
-.row2.invisible {
-  transition: opacity 3s;
-  opacity: 0; 
-}
-
-
-.grid-container {
-  margin-right: -8px;
-  margin-left: -8px;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-gap: 0px;
-}
-
-
-.grid-item {
-  margin-right: -8px;
-  margin-top: -8px;
-}
-.grid-item>img {
-  object-fit: cover;
-  display: flex;
-  width: 100%;
-  height: 100%;
 }
 
 
