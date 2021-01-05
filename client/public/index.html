@@ -141,6 +141,7 @@
                 }
             });
 
+            var playlists = ''
               //presenting playlists
             $.ajax({
                 url: 'https://api.spotify.com/v1/me/playlists/',
@@ -150,14 +151,18 @@
                 },
                 success: function(response) {
                   console.log(response)
-                  playlists = []
+                  response.playlists = []
+                  response.playlist_ids = []
                   console.log(response.items)
                   for(var i = 0; i < response.items.length; i++){
                     console.log(response.items[i].name)
-                    playlists.push(response.items[i].name)
+                    response.playlists.push(response.items[i].name)
+                    response.playlist_ids.push(response.items[i].id)
                   }
-                  // console.log(playlists)
-                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+                  playlists = response.playlists.join()
+                  console.log(playlists)
+                  present.playlists = playlists
+                  userProfilePlaceholder.innerHTML = userProfileTemplate(present);
                   // $('#login').hide();
                   // $('#loggedin').show();
                 }
