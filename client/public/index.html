@@ -14,16 +14,16 @@
     <div id="root"></div>
     <div class="container">
       <div id="login">
-        <h1>THE FRANK OCEAN METRIC</h1>
+        <h1 id="title">THE FRANK OCEAN METRIC</h1>
         <img src="covers/wtff.jpg" id="franky2" alt="">
         <img src="covers/frank.jpeg" id="franky" alt="">
-        <h2> a website to compare <br>
+        <h2> A website to compare <br>
           your music taste  <br>
           to Frank Ocean's playlists<br>
            Blonded</h2>
         <img src="covers/wtff2.jpg" id="franky3" alt="">
           <div id="login-btn">
-        <a href="http://localhost:8888/login" class="button">
+        <a href="http://localhost:8888/login" class="button" style="align-items: center;justify-items: center;">
           <img src="covers/white_logo.png" alt="">
           <h3> login with spotify </h3>
         </a>
@@ -57,6 +57,7 @@
             <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
             <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
             <dt>Country</dt><dd>{{country}}</dd>
+            <dt>Playlists</dt><dd>{{playlists}}</dd>
           </dl>
         </div>
       </div>
@@ -126,6 +127,7 @@
             //presenting first name
             $.ajax({
                 url: 'https://api.spotify.com/v1/me',
+                type: 'GET',
                 headers: {
                   'Authorization': 'Bearer ' + access_token
                 },
@@ -138,6 +140,27 @@
                   $('#loggedin').show();
                 }
             });
+
+              //presenting playlists
+            $.ajax({
+                url: 'https://api.spotify.com/v1/playlists/1tiKsNlWP9mTAwKV9xCby5/tracks',
+                type: 'GET',
+                headers: {
+                  'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                  playlists = []
+                  for(song in response.items){
+                    console.log(song.name)
+                    playlists.push(song.name)
+                  }
+                  // console.log(playlists)
+                  userProfilePlaceholder.innerHTML = userProfileTemplate(response);
+                  // $('#login').hide();
+                  // $('#loggedin').show();
+                }
+            });
+
 
             //how many tracks in blonded do you have saved?
             var arr_saved = await getLikedTracks(access_token, Object.keys(blonded_ids));
