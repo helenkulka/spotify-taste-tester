@@ -143,16 +143,18 @@
 
               //presenting playlists
             $.ajax({
-                url: 'https://api.spotify.com/v1/playlists/1tiKsNlWP9mTAwKV9xCby5/tracks',
+                url: 'https://api.spotify.com/v1/me/playlists/',
                 type: 'GET',
                 headers: {
                   'Authorization': 'Bearer ' + access_token
                 },
                 success: function(response) {
+                  console.log(response)
                   playlists = []
-                  for(song in response.items){
-                    console.log(song.name)
-                    playlists.push(song.name)
+                  console.log(response.items)
+                  for(var i = 0; i < response.items.length; i++){
+                    console.log(response.items[i].name)
+                    playlists.push(response.items[i].name)
                   }
                   // console.log(playlists)
                   userProfilePlaceholder.innerHTML = userProfileTemplate(response);
