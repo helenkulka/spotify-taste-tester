@@ -21,11 +21,11 @@
     </style>
   </head>
 
-  <body>
+  <body style="background-color: black; color:white">
     <div id="root"></div>
     <div class="container">
       <div id="login">
-        <span type="button" id="mode-button" onclick=darkmode()>&#9790;</span>
+        <span type="button" id="mode-button" onclick=darkmode()>&#9788;</span>
         <h1 id="title" style="text-align:center;">THE FRANK OCEAN METRIC</h1>
         <div class="container">
           <div class="row">
@@ -43,7 +43,7 @@
                 <div id="login-btn">
                   <a href="http://localhost:8888/login" class="button" style="align-items: center;justify-items: center;">
                     <img src="covers/white_logo.png" alt="">
-                     <h3>Log In With Spotify</h3>
+                     <h3 style="font-family: var(--bs-font-sans-serif);">Log In With Spotify</h3>
                   </a>
                 </div>
               </div>
@@ -75,7 +75,7 @@
             <div class="col">
             </div>
           </div>
-          <p style="font-family: 'Archivo', sans-serif;">Made By Anahita Mohapatra and Helen Kulka</p>
+          <p style="font-family: var(--bs-font-sans-serif);">Made By Anahita Mohapatra and Helen Kulka</p>
         </div>
       </footer>
       </div>
@@ -94,14 +94,15 @@
 
 
     <script>
-      var mode = false
+      var mode = true
         function darkmode() { 
           console.log('dark mode activated');
           if (mode == false){
             document.getElementById("mode-button").innerHTML="&#9788;"
             document.getElementById("mode-button").style.color ="white"
             console.log('changed mode')
-            document.body.classList.toggle("dark-mode");
+            document.body.style="background-color:black;color:white"
+            // document.body.classList.toggle("light-mode");
             // document.getElementById("row-1-col-1").src = "covers/wtff2.jpg"
             // document.getElementById("row-1-col-2").src = "covers/frank_ocean_pic2.jpg"
             mode = true
@@ -109,7 +110,8 @@
           else{
             document.getElementById("mode-button").innerHTML="&#9790;"
             document.getElementById("mode-button").style.color ="black"
-            document.body.classList.toggle("dark-mode");
+            document.body.style="background-color:white;color:black"
+            // document.body.classList.toggle("light-mode");
             // document.getElementById("row-1-col-1").src = "covers/wtff.jpg"
             // document.getElementById("row-1-col-2").src = "covers/frank.jpeg"
             mode = false
