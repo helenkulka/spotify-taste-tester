@@ -21,30 +21,19 @@
     </style>
   </head>
 
-  <body>
+  <body style="background-color: black; color:white">
     <div id="root"></div>
     <div class="container">
       <div id="login">
-        <span type="button" id="mode-button" onclick=darkmode()>&#9790;</span>
-
-          <!-- <svg type="button" id="moon-button" onclick=darkmode() xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
-<path fill-rule="evenodd" d="M14.53 10.53a7 7 0 0 1-9.058-9.058A7.003 7.003 0 0 0 8 15a7.002 7.002 0 0 0 6.53-4.47z"></path>
-</svg>
-          <span class="visually-hidden">Button</span> -->
+        <span type="button" id="mode-button" onclick=darkmode()>&#9788;</span>
         <h1 id="title" style="text-align:center;">THE FRANK OCEAN METRIC</h1>
         <div class="container">
           <div class="row">
             <div class="col-sm">
-              <img src="covers/wtff2.jpg" alt="" style="width:100%">
-              <!-- <img src="covers/wtff.jpg" id="franky2" alt=""> -->
-              
-
+              <img src="covers/wtff2.jpg" alt="" style="width:100%" id="row-1-col-1" >              
             </div>
             <div class="col-sm">
-              <img src="covers/frank.jpeg"  alt="" style="width:100%">
-              <!-- <img src="covers/frank.jpeg" id="franky" alt=""> -->
-              
-
+              <img src="covers/frank.jpeg"  alt="" style="width:100%" id="row-1-col-2">
             </div>
             <div class="col-sm">
               <div mr-1 style="width:100%">
@@ -54,54 +43,26 @@
                 <div id="login-btn">
                   <a href="http://localhost:8888/login" class="button" style="align-items: center;justify-items: center;">
                     <img src="covers/white_logo.png" alt="">
-                     <h3>Log In With Spotify</h3>
+                     <h3 style="font-family: var(--bs-font-sans-serif);">Log In With Spotify</h3>
                   </a>
                 </div>
               </div>
               
             </div>
-            <!-- <div class="col-3">
-                <img src="covers/wtff2.jpg">
-              </div> -->
-            <!-- <div class="col-sm">
-              <img src="covers/white_logo.png" alt="">
-            </div> -->
           </div>
           <div class="row">
             <div class="col-sm">
               <iframe src="https://open.spotify.com/embed/playlist/2Nmrca90TmGJnKsGcROP2C" width="500" height="550" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
             </div>
             <div class="col-1">
-                  <p id="japanese-vertical">フランク・オーシャン</p>
-                <!-- <img src="https://imgur.com/qdFw2ER.png" style="width:100%"> -->
+                  <p id="japanese-vertical" style="-webkit-text-stroke: 1px red;
+                  -webkit-text-fill-color: black;">フランク・オーシャン</p>
             </div>
             <div class="col-md">
               <img class="media-object" src="https://imgur.com/hqZX3it.png" style="width:100%">
             </div>
           </div>
         </div>
-
-        <!-- <div class="grid-container">
-          <div class="grid-item"><img src="covers/wtff.jpg" id="franky2" alt=""></div>
-          <div class="grid-item"><img src="covers/frank.jpeg" id="franky" alt=""></div>
-          <div class="grid-item">
-            <h2> A website to compare <br>
-          your music taste  <br>
-          to Frank Ocean's playlists<br>
-           Blonded</h2>
-          </div>
-          <div >
-            <a href="http://localhost:8888/login" class="button" style="align-items: center;justify-items: center;">
-              <img src="covers/white_logo.png" alt="">
-              <h3> login with spotify </h3>
-            </a>
-          </div>
-        <div class="grid-item"><img src="covers/wtff2.jpg" id="franky3" alt="">
-        </div>
-        <div class="grid-item">
-          <img class="media-object" src="https://imgur.com/hqZX3it.png">
-      </div>
-      </div> -->
         
       <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#848dd3" fill-opacity="1" d="M0,192L48,186.7C96,181,192,171,288,186.7C384,203,480,245,576,266.7C672,288,768,288,864,272C960,256,1056,224,1152,208C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
       <footer class="footer" style="background-color: #848dd3; padding: 30px;">
@@ -114,7 +75,7 @@
             <div class="col">
             </div>
           </div>
-          <p style="font-family: 'Archivo', sans-serif;">Made With <span>&#9829;</span> By Anahita Mohapatra and Helen Kulka</p>
+          <p style="font-family: var(--bs-font-sans-serif);">Made By Anahita Mohapatra and Helen Kulka</p>
         </div>
       </footer>
       </div>
@@ -122,7 +83,6 @@
         <div id="user-profile">
           <script src="https://cdnjs.cloudflare.com/ajax/libs/spotify-web-api-js/1.5.1/spotify-web-api.js" integrity="sha512-lNAdXpUi8E6pEVDtriZ7PbNF1m9W4wYKawVkmkppB9aTBPNMmQPQmb/9LiH3qXG10DLHleRDPK4Sm2v14dIO7A==" crossorigin="anonymous"></script>
           <script src="getUserData.js"></script>
-
         </div>
         <div id="oauth">
         </div>
@@ -134,21 +94,26 @@
 
 
     <script>
-      var mode = false
+      var mode = true
         function darkmode() { 
           console.log('dark mode activated');
-          // document.body.style.background = "black";
           if (mode == false){
             document.getElementById("mode-button").innerHTML="&#9788;"
             document.getElementById("mode-button").style.color ="white"
             console.log('changed mode')
-            document.body.classList.toggle("dark-mode");
+            document.body.style="background-color:black;color:white"
+            // document.body.classList.toggle("light-mode");
+            // document.getElementById("row-1-col-1").src = "covers/wtff2.jpg"
+            // document.getElementById("row-1-col-2").src = "covers/frank_ocean_pic2.jpg"
             mode = true
           }
           else{
             document.getElementById("mode-button").innerHTML="&#9790;"
             document.getElementById("mode-button").style.color ="black"
-            document.body.classList.toggle("dark-mode");
+            document.body.style="background-color:white;color:black"
+            // document.body.classList.toggle("light-mode");
+            // document.getElementById("row-1-col-1").src = "covers/wtff.jpg"
+            // document.getElementById("row-1-col-2").src = "covers/frank.jpeg"
             mode = false
           }         
         }      
