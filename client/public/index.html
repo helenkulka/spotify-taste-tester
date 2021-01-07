@@ -1,6 +1,8 @@
 <!doctype html>
 <html>
   <head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' https://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
     <title>Frank Ocean Metric</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -14,20 +16,85 @@
     <div id="root"></div>
     <div class="container">
       <div id="login">
-        <h1 id="title">THE FRANK OCEAN METRIC</h1>
-        <img src="covers/wtff.jpg" id="franky2" alt="">
-        <img src="covers/frank.jpeg" id="franky" alt="">
-        <h2> A website to compare <br>
+        <span type="button" id="mode-button" onclick=darkmode()>&#9790;</span>
+
+          <!-- <svg type="button" id="moon-button" onclick=darkmode() xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-moon" viewBox="0 0 16 16">
+<path fill-rule="evenodd" d="M14.53 10.53a7 7 0 0 1-9.058-9.058A7.003 7.003 0 0 0 8 15a7.002 7.002 0 0 0 6.53-4.47z"></path>
+</svg>
+          <span class="visually-hidden">Button</span> -->
+        <h1 id="title" style="text-align:center;">THE FRANK OCEAN METRIC</h1>
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <img src="covers/wtff2.jpg" alt="" style="width:100%">
+              <!-- <img src="covers/wtff.jpg" id="franky2" alt=""> -->
+              
+
+            </div>
+            <div class="col-sm">
+              <img src="covers/frank.jpeg"  alt="" style="width:100%">
+              <!-- <img src="covers/frank.jpeg" id="franky" alt=""> -->
+              
+
+            </div>
+            <div class="col-sm">
+              <div mr-1 style="width:100%">
+                <p id="subtitle"> A website to compare your music taste
+                  to Frank Ocean's playlists Blonded
+                </p>
+                <div id="login-btn">
+                  <a href="http://localhost:8888/login" class="button" style="align-items: center;justify-items: center;">
+                    <img src="covers/white_logo.png" alt="">
+                     <h3>Log In With Spotify</h3>
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+            <!-- <div class="col-3">
+                <img src="covers/wtff2.jpg">
+              </div> -->
+            <!-- <div class="col-sm">
+              <img src="covers/white_logo.png" alt="">
+            </div> -->
+          </div>
+          <div class="row">
+            <div class="col-sm">
+              <iframe src="https://open.spotify.com/embed/playlist/2Nmrca90TmGJnKsGcROP2C" width="500" height="550" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+            </div>
+            <div class="col-1">
+                  <p id="japanese-vertical">フランク・オーシャン</p>
+                <!-- <img src="https://imgur.com/qdFw2ER.png" style="width:100%"> -->
+            </div>
+            <div class="col-md">
+              <img class="media-object" src="https://imgur.com/hqZX3it.png" style="width:100%">
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="grid-container">
+          <div class="grid-item"><img src="covers/wtff.jpg" id="franky2" alt=""></div>
+          <div class="grid-item"><img src="covers/frank.jpeg" id="franky" alt=""></div>
+          <div class="grid-item">
+            <h2> A website to compare <br>
           your music taste  <br>
           to Frank Ocean's playlists<br>
            Blonded</h2>
-        <img src="covers/wtff2.jpg" id="franky3" alt="">
-          <div id="login-btn">
-        <a href="http://localhost:8888/login" class="button" style="align-items: center;justify-items: center;">
-          <img src="covers/white_logo.png" alt="">
-          <h3> login with spotify </h3>
-        </a>
+          </div>
+          <div >
+            <a href="http://localhost:8888/login" class="button" style="align-items: center;justify-items: center;">
+              <img src="covers/white_logo.png" alt="">
+              <h3> login with spotify </h3>
+            </a>
+          </div>
+        <div class="grid-item"><img src="covers/wtff2.jpg" id="franky3" alt="">
+        </div>
+        <div class="grid-item">
+          <img class="media-object" src="https://imgur.com/hqZX3it.png">
       </div>
+      </div> -->
+        
+          
         
       </div>
       <div id="loggedin">
@@ -41,6 +108,30 @@
         <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
       </div>
     </div>
+
+
+
+
+    <script>
+      var mode = false
+        function darkmode() { 
+          console.log('dark mode activated');
+          // document.body.style.background = "black";
+          if (mode == false){
+            document.getElementById("mode-button").innerHTML="&#9788;"
+            document.getElementById("mode-button").style.color ="white"
+            console.log('changed mode')
+            document.body.classList.toggle("dark-mode");
+            mode = true
+          }
+          else{
+            document.getElementById("mode-button").innerHTML="&#9790;"
+            document.getElementById("mode-button").style.color ="black"
+            document.body.classList.toggle("dark-mode");
+            mode = false
+          }         
+        }      
+    </script>
 
     <script id="user-profile-template" type="text/x-handlebars-template">
       <h4> hey {{first_name}}, </h4>
@@ -72,6 +163,7 @@
 
     <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
     <script>
       // const spotifyApi = new SpotifyWebApi();
       (async function() {
@@ -123,6 +215,8 @@
             }
             console.log(Object.keys(blonded_ids));
             var present;
+            var playlists = ''
+            var playlist_ids = []
 
             //presenting first name
             $.ajax({
@@ -141,8 +235,7 @@
                 }
             });
 
-            var playlists = ''
-              //presenting playlists
+              //getting playlists
             $.ajax({
                 url: 'https://api.spotify.com/v1/me/playlists/',
                 type: 'GET',
@@ -157,7 +250,7 @@
                   for(var i = 0; i < response.items.length; i++){
                     console.log(response.items[i].name)
                     response.playlists.push(response.items[i].name)
-                    response.playlist_ids.push(response.items[i].id)
+                    playlist_ids.push(response.items[i].id)
                   }
                   playlists = response.playlists.join()
                   console.log(playlists)
@@ -168,6 +261,42 @@
                 }
             });
 
+            //getting all songs in all playlists
+            
+            for(id in playlist_ids){
+              index = 0
+              while (index % 100 == 0){
+                $.ajax({
+                url: 'https://api.spotify.com/v1/playlists/'+ id+'/tracks/?offset='+index,
+                type: 'GET',
+                headers: {
+                  'Authorization': 'Bearer ' + access_token
+                },
+                success: function(response) {
+                  console.log('success')
+                  console.log(id)
+                  console.log(response)
+                  // response.playlists = []
+                  // response.playlist_ids = []
+                  // console.log(response.items)
+                  // for(var i = 0; i < response.items.length; i++){
+                  //   console.log(response.items[i].name)
+                  //   response.playlists.push(response.items[i].name)
+                  //   response.playlist_ids.push(response.items[i].id)
+                  // }
+                  // playlists = response.playlists.join()
+                  // console.log(playlists)
+                  // present.playlists = playlists
+                  // userProfilePlaceholder.innerHTML = userProfileTemplate(present);
+                  // $('#login').hide();
+                  // $('#loggedin').show();
+                }
+            });
+
+          }
+          
+        }
+            
 
             //how many tracks in blonded do you have saved?
             var arr_saved = await getLikedTracks(access_token, Object.keys(blonded_ids));
