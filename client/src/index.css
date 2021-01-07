@@ -173,6 +173,15 @@ h4 {
     font-weight: 150%;
     margin-top: 75px;
     font-style: italic;
+    /* animation: type 4s steps(60, end); */
+    white-space: nowrap;
+    overflow: hidden; 
+    animation: animated-text 4s steps(29,end) 1s 1 normal both;
+}
+
+@keyframes animated-text{
+  from{height: 0;}
+  to{height: 472px;}
 }
 
 .dark-mode {
