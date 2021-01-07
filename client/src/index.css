@@ -178,6 +178,13 @@ h4 {
     white-space: nowrap;
     overflow: hidden; 
     animation: animated-text 4s steps(29,end) 1s 1 normal both;
+    -webkit-text-stroke: 1px red;
+  -webkit-text-fill-color: black;
+}
+
+#japanese-vertical:hover{
+  -webkit-text-stroke: 1px red;
+  -webkit-text-fill-color: red;
 }
 
 @keyframes animated-text{
