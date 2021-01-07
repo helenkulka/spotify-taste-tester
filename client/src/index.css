@@ -184,7 +184,7 @@ h4 {
 
 #japanese-vertical:hover{
   -webkit-text-stroke: 1px red;
-  -webkit-text-fill-color: red;
+  -webkit-text-fill-color: orangered;
 }
 
 @keyframes animated-text{
@@ -196,3 +196,203 @@ h4 {
   background-color: black;
   color:white;
 } */
+
+
+
+.loading {
+  display: flex;
+  margin: auto;
+  width: 50%;
+  padding: 100px;
+}
+
+.a {
+  width: 150px;
+  height: 100px;
+  -webkit-transform: skew(20deg);
+  -moz-transform: skew(20deg);
+  -o-transform: skew(20deg);
+}
+
+.b {
+  width: 150px;
+  height: 100px;
+  -webkit-transform: skew(20deg);
+  -moz-transform: skew(20deg);
+  -o-transform: skew(20deg);
+}
+.c {
+  width: 150px;
+height: 100px;
+-webkit-transform: skew(20deg);
+   -moz-transform: skew(20deg);
+     -o-transform: skew(20deg);
+}
+
+.d {
+  margin-left: 5px;
+  width: 20px;
+height: 100px;
+-webkit-transform: skew(20deg);
+   -moz-transform: skew(20deg);
+     -o-transform: skew(20deg);
+}
+
+.e {
+  margin-left: 5px;
+  width: 20px;
+height: 100px;
+-webkit-transform: skew(20deg);
+   -moz-transform: skew(20deg);
+     -o-transform: skew(20deg);
+}
+
+.f {
+  margin-left: 5px;
+  width: 15px;
+height: 100px;
+-webkit-transform: skew(20deg);
+   -moz-transform: skew(20deg);
+     -o-transform: skew(20deg);
+}
+
+.g {
+  margin-left: 7px;
+  width: 11px;
+height: 100px;
+-webkit-transform: skew(20deg);
+   -moz-transform: skew(20deg);
+     -o-transform: skew(20deg);
+}
+
+.h {
+  margin-left: 8px;
+  width: 10px;
+height: 100px;
+-webkit-transform: skew(20deg);
+   -moz-transform: skew(20deg);
+     -o-transform: skew(20deg);
+}
+
+.i {
+  margin-left: 10px;
+  width: 8px;
+height: 100px;
+-webkit-transform: skew(20deg);
+   -moz-transform: skew(20deg);
+     -o-transform: skew(20deg);
+}
+
+/*#########################################*/
+/*Section for all the animation stuff*/
+/*#########################################*/
+
+.a {
+    -webkit-animation: aniA 6s infinite; /* Safari 4.0 - 8.0 */
+    animation: aniA 6s infinite;
+}
+
+.b {
+  -webkit-animation: aniB 6s infinite; /* Safari 4.0 - 8.0 */
+  animation: aniB 6s infinite;
+    -webkit-animation-delay: 0.3s; /* Safari 4.0 - 8.0 */
+    animation-delay: 0.3s;
+}
+
+.c {
+  -webkit-animation: aniC 6s infinite; /* Safari 4.0 - 8.0 */
+  animation: aniC 6s infinite;
+    -webkit-animation-delay: 0.6s; /* Safari 4.0 - 8.0 */
+    animation-delay: 0.6s;
+}
+
+.d {
+  -webkit-animation: aniD 6s infinite; /* Safari 4.0 - 8.0 */
+  animation: aniD 6s infinite;
+    -webkit-animation-delay: 0.9s; /* Safari 4.0 - 8.0 */
+    animation-delay: 0.9s;
+}
+
+.e {
+  -webkit-animation: aniE 6s infinite; /* Safari 4.0 - 8.0 */
+  animation: aniE 6s infinite;
+    -webkit-animation-delay: 1.2s; /* Safari 4.0 - 8.0 */
+    animation-delay: 1.2s;
+}
+
+.f {
+  -webkit-animation: aniF 6s infinite; /* Safari 4.0 - 8.0 */
+  animation: aniF 6s infinite;
+    -webkit-animation-delay: 1.5s; /* Safari 4.0 - 8.0 */
+    animation-delay: 1.5s;
+}
+
+.g {
+  -webkit-animation: aniG 6s infinite; /* Safari 4.0 - 8.0 */
+  animation: aniG 6s infinite;
+    -webkit-animation-delay: 1.8s; /* Safari 4.0 - 8.0 */
+    animation-delay: 1.8s;
+}
+
+.h {
+  -webkit-animation: aniH 6s infinite; /* Safari 4.0 - 8.0 */
+  animation: aniH 6s infinite;
+    -webkit-animation-delay: 2.1s; /* Safari 4.0 - 8.0 */
+    animation-delay: 2.1s;
+}
+
+.i {
+  -webkit-animation: aniI 6s infinite; /* Safari 4.0 - 8.0 */
+  animation: aniI 6s infinite;
+    -webkit-animation-delay: 2.4s; /* Safari 4.0 - 8.0 */
+    animation-delay: 2.4s;
+}
+@-webkit-keyframes aniA {
+    0% {background-color: white;}
+    50% {background-color: #0002EC;}
+    100% {background-color: white;}
+}
+@-webkit-keyframes aniB {
+    0% {background-color: white;}
+    50% {background-color: #EA00EB;}
+    100% {background-color: white;}
+}
+@-webkit-keyframes aniC {
+    0% {background-color: white;}
+    50% {background-color: #E70000;}
+    100% {background-color: white;}
+}
+@-webkit-keyframes aniD {
+    0% {background-color: white;}
+    50% {background-color: #E70000;}
+    100% {background-color: white;}
+}
+@-webkit-keyframes aniE {
+    0% {background-color: white;}
+    50% {background-color: #ED8605;}
+    100% {background-color: white;}
+}
+
+@-webkit-keyframes aniF {
+    0% {background-color: white;}
+    50% {background-color: #ED8605;}
+    100% {background-color: white;}
+}
+
+@-webkit-keyframes aniG {
+    0% {background-color: white;}
+    50% {background-color: #ED8605;}
+    100% {background-color: white;}
+}
+
+@-webkit-keyframes aniH {
+    0% {background-color: white;}
+    50% {background-color: #ED8605;}
+    100% {background-color: white;}
+}
+
+@-webkit-keyframes aniI {
+    0% {background-color: white;}
+    50% {background-color: #ED8605;}
+    100% {background-color: white;}
+}
