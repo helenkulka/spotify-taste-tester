@@ -230,18 +230,15 @@
               var top_songs = await getTopType('tracks', access_token);
               const keys = Object.keys(blonded_ids);
               const filteredArray = keys.filter(value => top_songs.includes(value));
-              for (var i=0; i<filteredArray.length; i++) {
-                console.log(blonded_ids[filteredArray[i]]);
-              }
+              // for (var i=0; i<filteredArray.length; i++) {
+              //   console.log(blonded_ids[filteredArray[i]]);
+              // }
 
               ///////GETTING TOP ARTISTS///////////
               var top_artists = await getTopType('artists', access_token);
-              console.log(top_artists);
               const keys_artists = Object.keys(blonded_artists);
-              const filteredArray3 = keys_artists.filter(value => top_artists.includes(value));
-              for (var i=0; i<filteredArray.length; i++) {
-                console.log(blonded_artists[filteredArray3[i]]);
-              }
+              const artists_overlap = keys_artists.filter(value => top_artists.includes(value));
+
 
               ////////GETTING PLAYLIST TRACKS //////////
               var playlists = JSON.parse(await getSavedPlaylists(access_token));
@@ -266,23 +263,25 @@
                   offset = offset + 100;
                 }
               }
-              track_ids = Array.from(track_ids);
 
-              const filteredArray2 = keys.filter(value => track_ids.includes(value));
-              const num_on_playlists = filteredArray2.length;
-              for (var i=0; i<filteredArray2.length; i++) {
-                console.log(blonded_ids[filteredArray2[i]]);
+
+              const playlist_overlap = keys.filter(value => Array.from(track_ids).includes(value));
+              const num_on_playlists = playlist_overlap.length;
+              for (var i=0; i<playlist_overlap.length; i++) {
+                console.log(blonded_ids[playlist_overlap[i]]);
               }
 
 
-              ////////GETTING SAVED TRACKS //////////
+              ////////GETTING SAVED TRACKS (that aren't also in playlist tracks)//////////
               console.log(Object.keys(blonded_ids))
               var arr_saved = await getLikedTracks(access_token, Object.keys(blonded_ids));
               var num_saved = 0;
               for (i =0; i < arr_saved.length; i+=1) {
-
                 if (arr_saved[i]) {
-                  num_saved += 1;
+                  if (!playlist_overlap.includes(keys[i])) {
+                    num_saved += 1;
+                    track_ids.add(keys[i]);
+                  }
                 }
               }
             present.saved = num_saved + num_on_playlists;
