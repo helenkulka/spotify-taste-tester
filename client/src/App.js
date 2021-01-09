@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import SpotifyWebApi from 'spotify-web-api-js';
+import Footer from './components/footer';
+import Home from './components/home';
+import Wave from './components/wave';
+import Loading from './components/loading.js';
 const spotifyApi = new SpotifyWebApi();
 
 class App extends Component {

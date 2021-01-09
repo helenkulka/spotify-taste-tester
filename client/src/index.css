@@ -38,21 +38,31 @@ body {
   margin: 0;
 }
 
+.orange-back {
+  background-color: #ff7e30;
+}
+
 h1 {
   color:transparent;
   font-family: 'Archivo Black', sans-serif;
   font-size: 65px;
   font-stretch: extra-expanded;
-  font-weight: 100;
+  font-weight: 200;
   text-align: center;
-  color:transparent;
+  color:#ff7e30;
   -webkit-text-stroke-width: 1.95px; 
   -webkit-text-stroke-color: #ff7e30;
 }
 h1:hover {
-  color:#ff7e30;
+  color: transparent;
+  -webkit-text-stroke-width: 1.95px; 
+  -webkit-text-stroke-color: #ff7e30;
   /*-webkit-text-stroke-color:white*/
 
+}
+
+#first-row {
+  margin: 0 auto;
 }
 
 #franky {
@@ -81,8 +91,13 @@ h1:hover {
   color:#ff7e30;
   font-family: 'Archivo', sans-serif;
   font-size: 30px;
-  font-style: bold;
-  text-align: left;
+  margin-top: 10px;
+  margin-left:60px;
+  font-style: 
+  bold;
+  text-align: center;
+  -webkit-text-stroke-width: 1.5px; 
+  -webkit-text-stroke-color: #ff7e30;
   /* position: absolute;  */
 }
 
@@ -97,26 +112,27 @@ h1:hover {
 
 
 
-h4 {
-  width: 100vw;
+h5 {
   color:#ff7e30;
-  /* font-family: 'Archivo', sans-serif; */
-  font-family:var(--bs-font-sans-serif);
-  font-size: 35px;
+  -webkit-text-stroke-width: 1px; 
+  -webkit-text-stroke-color: #ff7e30;
+  font-family: 'Archivo-Black', sans-serif;
+  font-size: 40px;
   font-style: bold;
   text-align: left;
   position: absolute; 
-  top: 50px; 
-  left: 50px;
+  top: 130px; 
+  left: 100px;
 }
 
 #saved-res {
-  margin-top: 150px; 
-  margin-left: 70px;
-  font-size: 20px;
-  color:white;
+  margin-top: 190px; 
+  margin-left: 50px;
+  text-align: left;
+  font-size: 40px;
+  color:#ff7e30;
   -webkit-text-stroke-width: 1px; 
-  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-color: #ff7e30;
 
   font-family: 'Archivo', sans-serif;
 }
@@ -125,6 +141,8 @@ h4 {
 #login-btn {
   position: relative;
   top: 50%;
+  margin-left: 350px;
+  margin-top: -150px;
 }
 
 .button {
@@ -167,17 +185,38 @@ h4 {
   
 }
 
-#japanese-vertical{
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    font-size: 200%;
-    font-weight: 150%;
-    margin-top: 75px;
-    font-style: italic;
-    /* animation: type 4s steps(60, end); */
-    white-space: nowrap;
-    overflow: hidden; 
-    animation: animated-text 4s steps(29,end) 1s 1 normal both;
+/* .image-cropper {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  overflow: hidden;
+  border-radius: 50%;
+} */
+
+/* img {
+  width: 50px;
+
+} */
+.rounded {
+  clip-path: circle();
+  width: 50px;
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 0px;
+
+}
+
+#top-msg {
+  color:#ff7e30;
+  -webkit-text-stroke-width: 1px; 
+  -webkit-text-stroke-color: #ff7e30;
+  font-family: 'Archivo-Black', sans-serif;
+  font-size: 40px;
+  font-style: bold;
+  text-align: left;
+  position: absolute; 
+  margin-top: 250px; 
+  left: 100px;
 }
 
 @keyframes animated-text{

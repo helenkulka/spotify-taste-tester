@@ -1,6 +1,6 @@
 const spotifyApi = new SpotifyWebApi();
-
-async function getFirstName(access_token) {
+var i=j=0;
+function getFirstName(access_token) {
   var res = $.ajax({
     url: 'https://api.spotify.com/v1/me',
     type: 'GET',
@@ -21,9 +21,11 @@ async function getPlaylist(access_token) {
     spotifyApi.setAccessToken(access_token);
     playlist =  new Array();
     offsets = [0, 100, 200, 300, 400];
-    for (var i =0; i < offsets.length; i++) {
+    var l = offsets.length;
+    for (i =0; i < l; i++) {
         var response = await spotifyApi.getPlaylistTracks("4ZRBmBrAFTAfwxtkBApvzv", {offset: offsets[i], limit: 100});
-        for (j =0; j < response.items.length; j++) {
+        var l2 = response.items.length;
+        for (j =0; j < l2; j++) {
             playlist.push(response.items[j].track);
         }
       }
@@ -32,14 +34,15 @@ async function getPlaylist(access_token) {
 async function getLikedTracks(access_token, blonded_ids) {
   spotifyApi.setAccessToken(access_token);
   var contains = [];
-  for (var i =0; i < 385; i+=50) {
+  for (i =0; i < 385; i+=50) {
     var ids = blonded_ids.slice(i,i+50);
     var index = ids.indexOf("null");
     if (index > -1) {
       ids.splice(index, 1);
     }
     var res = await spotifyApi.containsMySavedTracks(ids);
-    for (j =0; j < res.length; j++) {
+    var l = res.length;
+    for (j =0; j < l; j++) {
       contains.push(res[j]);
     }
   }

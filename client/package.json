@@ -9,6 +9,7 @@
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-scripts": "1.0.17",
+    "requirejs": "^2.3.6",
     "spotify-playlist": "0.0.4",
     "spotify-web-api-js": "^0.22.1"
   },
