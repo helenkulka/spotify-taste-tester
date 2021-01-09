@@ -1,0 +1,25 @@
+.globe {
+    backface-visibility: visible;
+    transform-style: preserve-3d;
+    bottom: 8.5rem;
+    position: absolute;
+    right: 1.5rem;
+    max-width: 8rem;
+  }
+  @media screen and (min-width: 480px) {
+    .globe {
+      bottom: 6vw;
+      max-width: 23vw;
+      right: 40vw;
+    }
+  }
+  .globe circle, .globe ellipse {
+    fill: none;
+    stroke: #e6e6e6;
+    stroke-width: 5;
+  }
+  .globe .stur {
+    fill: none;
+    stroke: #e6e6e6;
+    stroke-width: 5;
+  }

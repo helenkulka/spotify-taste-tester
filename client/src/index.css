@@ -1,44 +1,4 @@
-/* @import url(//fonts.googleapis.com/css?family=Open+Sans); */
-* {
-  margin: 0;
-  padding: 0;
-  /* border: 0;
-  outline: 0;
-  font-size: 100%;
-  vertical-align: baseline;
-  background: transparent; */
-}
-
-html, body {
-  width: 100%;
-  /* height: 100%; */
-  margin: 0px;
-  padding: 0px;
-  overflow-x: hidden; 
-}
-
-.grid-container {
-  display: grid;
-  grid-column-gap: 50px;
-}
-
-body {
-  min-height: 100%;
-  width: 100%;
-  /* background-color: white; */
-}
-
-#login {
-  /* position:fixed; */
-  margin: 0;
-}
-
-#loggedin {
-  /* position: fixed; */
-  margin: 0;
-}
-
-h1 {
+/* #title {
   color:transparent;
   font-family: 'Archivo Black', sans-serif;
   font-size: 65px;
@@ -49,92 +9,35 @@ h1 {
   -webkit-text-stroke-width: 1.95px; 
   -webkit-text-stroke-color: #ff7e30;
 }
-h1:hover {
+#title:hover {
   color:#ff7e30;
-  /*-webkit-text-stroke-color:white*/
-
 }
 
-
-#subtitle {
-  /* width: 100vw; */
+#subtitle{
+  word-wrap: break-word;
   color:#ff7e30;
-  font-family: 'Archivo', sans-serif;
-  font-size: 30px;
-  font-style: bold;
-  text-align: left;
-  /* position: absolute;  */
-}
-
-
-h4 {
-  width: 100vw;
-  color:#ff7e30;
-  /* font-family: 'Archivo', sans-serif; */
-  font-family:var(--bs-font-sans-serif);
-  font-size: 35px;
-  font-style: bold;
-  text-align: left;
-  position: absolute; 
-  top: 50px; 
-  left: 50px;
-}
-
-#saved-res {
-  margin-top: 150px; 
-  margin-left: 70px;
-  font-size: 20px;
-  color:white;
-  -webkit-text-stroke-width: 1px; 
-  -webkit-text-stroke-color: black;
-
-  font-family: 'Archivo', sans-serif;
-}
-
-
-#login-btn {
-  position: relative;
-  top: 50%;
-}
-
-.button {
-  white-space: nowrap;
-  text-align: center;
-  text-decoration: none;
-  /* width: 50px; */
-  color: initial;
-  position: absolute;
-  padding: 0px;
-  border-radius: 90px;
-  padding: 20px 80px;
-  opacity: 1;
-  background-color: #1ED761;
-}
-
-.button:hover{
-  background-color: #17b04e;
-}
-
-.button>img {
-  object-fit: cover;
-  display: flex;
-  position: absolute;
-  left: 25px;
-  top: 15px;
-  width: 35px;
-  height: 35px;
-}
-
-.button>h3{
-  font-size: 15px;
-  margin-top: 5px;
-  opacity: 1;
   font-family: var(--bs-font-sans-serif);
-  color: white;
+  font-size: 22px;
+  font-style: bold;
   text-align: center;
-  margin-left: 15px;
-  margin-right: auto;
-  
+}
+
+.row{
+    margin-top: 1.5em; 
+    margin-bottom: 1.5em;
+}
+
+.row .col{
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+#login-btn{
+  border-radius: 20px;
+  background-color: #1DB954;
+  color:white;
+  font-family: var(--bs-font-sans-serif);
+  font-size: 15px;
 }
 
 #japanese-vertical{
@@ -144,240 +47,34 @@ h4 {
     font-weight: 150%;
     margin-top: 75px;
     font-style: italic;
-    /* animation: type 4s steps(60, end); */
     white-space: nowrap;
     overflow: hidden; 
     animation: animated-text 4s steps(29,end) 1s 1 normal both;
-    -webkit-text-stroke: 1px red;
+    -webkit-text-stroke: 1px #b1ed58;
   -webkit-text-fill-color: black;
 }
 
 #japanese-vertical:hover{
-  -webkit-text-stroke: 1px red;
-  -webkit-text-fill-color: orangered;
+  -webkit-text-stroke: 1px #b1ed58;
+  -webkit-text-fill-color: #b1ed58;
 }
 
 @keyframes animated-text{
   from{height: 0;}
   to{height: 472px;}
-}
+} */
 
 
 
 
-.loading {
-  display: flex;
-  /* margin: auto; */
-  width: 50%;
-  margin-top: 25%;
-  margin-bottom: 25%;
-  margin-left: auto;
-  margin-right: auto;
-}
 
-.a {
-  width: 150px;
-  height: 100px;
-  -webkit-transform: skew(20deg);
-  -moz-transform: skew(20deg);
-  -o-transform: skew(20deg);
-  margin-left: 0px;
-  margin-right: 0px;
-}
 
-.b {
-  width: 150px;
-  height: 100px;
-  -webkit-transform: skew(20deg);
-  -moz-transform: skew(20deg);
-  -o-transform: skew(20deg);
-  margin-left: 0px;
-  margin-right: 0px;
-}
-.c {
-  width: 150px;
-height: 100px;
--webkit-transform: skew(20deg);
-   -moz-transform: skew(20deg);
-     -o-transform: skew(20deg);
-     margin-left: 0px;
-     margin-right: 0px;
-}
 
-.d {
-  margin-left: 5px;
-  width: 20px;
-height: 100px;
--webkit-transform: skew(20deg);
-   -moz-transform: skew(20deg);
-     -o-transform: skew(20deg);
-     margin-right: 0px;
-}
 
-.e {
-  margin-left: 5px;
-  width: 20px;
-height: 100px;
--webkit-transform: skew(20deg);
-   -moz-transform: skew(20deg);
-     -o-transform: skew(20deg);
-     margin-right: 0px;
-}
 
-.f {
-  margin-left: 5px;
-  width: 15px;
-height: 100px;
--webkit-transform: skew(20deg);
-   -moz-transform: skew(20deg);
-     -o-transform: skew(20deg);
-     margin-right: 0px;
-}
 
-.g {
-  margin-left: 7px;
-  width: 11px;
-height: 100px;
--webkit-transform: skew(20deg);
-   -moz-transform: skew(20deg);
-     -o-transform: skew(20deg);
-     margin-right: 0px;
-}
 
-.h {
-  margin-left: 8px;
-  width: 10px;
-height: 100px;
--webkit-transform: skew(20deg);
-   -moz-transform: skew(20deg);
-     -o-transform: skew(20deg);
-     margin-right: 0px;
-}
 
-.i {
-  margin-left: 10px;
-  width: 8px;
-height: 100px;
--webkit-transform: skew(20deg);
-   -moz-transform: skew(20deg);
-     -o-transform: skew(20deg);
-     margin-right: 0px;
-}
 
-/*#########################################*/
-/*Section for all the animation stuff*/
-/*#########################################*/
 
-.a {
-    -webkit-animation: aniA 6s infinite; /* Safari 4.0 - 8.0 */
-    animation: aniA 6s infinite;
-}
 
-.b {
-  -webkit-animation: aniB 6s infinite; /* Safari 4.0 - 8.0 */
-  animation: aniB 6s infinite;
-    -webkit-animation-delay: 0.3s; /* Safari 4.0 - 8.0 */
-    animation-delay: 0.3s;
-}
-
-.c {
-  -webkit-animation: aniC 6s infinite; /* Safari 4.0 - 8.0 */
-  animation: aniC 6s infinite;
-    -webkit-animation-delay: 0.6s; /* Safari 4.0 - 8.0 */
-    animation-delay: 0.6s;
-}
-
-.d {
-  -webkit-animation: aniD 6s infinite; /* Safari 4.0 - 8.0 */
-  animation: aniD 6s infinite;
-    -webkit-animation-delay: 0.9s; /* Safari 4.0 - 8.0 */
-    animation-delay: 0.9s;
-}
-
-.e {
-  -webkit-animation: aniE 6s infinite; /* Safari 4.0 - 8.0 */
-  animation: aniE 6s infinite;
-    -webkit-animation-delay: 1.2s; /* Safari 4.0 - 8.0 */
-    animation-delay: 1.2s;
-}
-
-.f {
-  -webkit-animation: aniF 6s infinite; /* Safari 4.0 - 8.0 */
-  animation: aniF 6s infinite;
-    -webkit-animation-delay: 1.5s; /* Safari 4.0 - 8.0 */
-    animation-delay: 1.5s;
-}
-
-.g {
-  -webkit-animation: aniG 6s infinite; /* Safari 4.0 - 8.0 */
-  animation: aniG 6s infinite;
-    -webkit-animation-delay: 1.8s; /* Safari 4.0 - 8.0 */
-    animation-delay: 1.8s;
-}
-
-.h {
-  -webkit-animation: aniH 6s infinite; /* Safari 4.0 - 8.0 */
-  animation: aniH 6s infinite;
-    -webkit-animation-delay: 2.1s; /* Safari 4.0 - 8.0 */
-    animation-delay: 2.1s;
-}
-
-.i {
-  -webkit-animation: aniI 6s infinite; /* Safari 4.0 - 8.0 */
-  animation: aniI 6s infinite;
-    -webkit-animation-delay: 2.4s; /* Safari 4.0 - 8.0 */
-    animation-delay: 2.4s;
-}
-@keyframes aniA {
-    0% {background-color: white;}
-    50% {background-color: #0002EC;}
-    100% {background-color: white;}
-}
-@keyframes aniB {
-    0% {background-color: white;}
-    50% {background-color: #EA00EB;}
-    100% {background-color: white;}
-}
-@keyframes aniC {
-    0% {background-color: white;}
-    50% {background-color: #E70000;}
-    100% {background-color: white;}
-}
-@keyframes aniD {
-    0% {background-color: white;}
-    50% {background-color: #E70000;}
-    100% {background-color: white;}
-}
-@keyframes aniE {
-    0% {background-color: white;}
-    50% {background-color: #ED8605;}
-    100% {background-color: white;}
-}
-
-@keyframes aniF {
-    0% {background-color: white;}
-    50% {background-color: #ED8605;}
-    100% {background-color: white;}
-}
-
-@keyframes aniG {
-    0% {background-color: white;}
-    50% {background-color: #ED8605;}
-    100% {background-color: white;}
-}
-
-@keyframes aniH {
-    0% {background-color: white;}
-    50% {background-color: #ED8605;}
-    100% {background-color: white;}
-}
-
-@keyframes aniI {
-    0% {background-color: white;}
-    50% {background-color: #ED8605;}
-    100% {background-color: white;}
-}
-
-#loading{
-  max-width: 600px;
-}

@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import SpotifyWebApi from 'spotify-web-api-js';
+import Footer from './components/footer';
+import Home from './components/home';
+import Wave from './components/wave';
+import Loading from './components/loading.js';
+
+
+
 const spotifyApi = new SpotifyWebApi();
 
 class App extends Component {
@@ -15,7 +22,26 @@ class App extends Component {
       loggedIn: access_token ? true : false,
       apiResponse: " " 
     }
+    // console.log(this.state.loggedIn)
+
   }
+
+
+  // function UserGreeting(props) {
+  //   return <h1>Welcome back!</h1>;
+  // }
+  
+  // function GuestGreeting(props) {
+  //   return <h1>Please sign up.</h1>;
+  // }
+  // function Greeting(props) {
+  //   const isLoggedIn = props.loggedIn;
+  //   if (isLoggedIn) {
+  //     return <UserGreeting />;
+  //   }
+  //   return <GuestGreeting />;
+  // }
+
 
 
   getHashParams() {
@@ -30,15 +56,17 @@ class App extends Component {
     return hashParams;
   }
 
-  getNowPlaying(){
-      // spotifyApi.getPlaylistTracks(1130791520, "5FhPTMUBwGX8sU3qPD2stB", { offset: 0, limit: 100 })
-      // .then((response) => {
-      //   console.log(response)
-      // });
-  }
   render() {
     return (
       <div className="App">
+        {/* <Greeting isLoggedIn={this.state.loggedIn} />, */}
+        <div className="HomePage">
+          <Home></Home>
+          <Wave></Wave>
+          <Footer></Footer>
+          {/* <p>Logged In: str({this.state.loggedIn})</p> */}
+          {/* <Loading></Loading> */}
+        </div>
       </div>
     )
   }
