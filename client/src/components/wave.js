@@ -2,7 +2,7 @@ import * as React from "react"
 
 function SvgComponent(props) {
   return (
-    <svg height="auto" viewBox="0 0 290 30" {...props}>
+    <svg viewBox="0 0 290 30" {...props}>
       <path
         className="wave"
         fill="none"

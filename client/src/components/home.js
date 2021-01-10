@@ -1,8 +1,5 @@
 import React, { useRef, Component } from 'react';
-import Crying from './crying.js';
 import Loading from './loading.js';
-import Disco from './disco.js';
-import DiscoBall from './discoball.js';
 
 
 export default class Home extends Component {
@@ -18,18 +15,10 @@ export default class Home extends Component {
   render() {
     return (
         <div className="container">
-  <span style={{marginTop: 10}} type="button" id="mode-button" onClick="darkmode()">☼</span>
   <div className="d-flex justify-content-center">
-    {/* <div className="section-first"> */}
-      <h1  id="title">THE FRANK OCEAN METRIC</h1>
-      {/* <Disco></Disco> */}
-    {/* </div> */}
-    
-    {/* <button onClick={this.executeScroll} onMouseDown={this.executeScroll}>&#8595;
-    </button> */}
+      <h1  id="title">FRANK OCEAN METRIC</h1>
   </div>
   <div id="home-page" ref={this.homepage}>
-  {/* <h1  id="title">THE FRANK OCEAN METRIC</h1> */}
   <div className="row">
     <div className="col col-6 col-sm-6 col-md-4" id="row-1-col-1">
       <div id="carousel1" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="false">
@@ -82,12 +71,6 @@ export default class Home extends Component {
   <div className="row">
     <div className="col col-12 col-sm-6 col-md-5">
       <iframe src="https://open.spotify.com/embed/playlist/4ZRBmBrAFTAfwxtkBApvzv" width="100%" height="400px" frameBorder={0} allow="encrypted-media" />
-    </div>
-    <div className="d-none d-md-block col-md-2">
-      <p id="japanese-vertical">フランク・オーシャン</p>
-    </div>
-    <div className="col col-12 col-sm-6 col-md-5">
-      <img className="media-object" src="https://imgur.com/hqZX3it.png" style={{width: '100%'}} />
     </div>
   </div> {/* end of row 2 */}
   </div> {/* section end */}
