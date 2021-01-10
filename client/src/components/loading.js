@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import {App,spotifyApi} from '../App';
 import './loading.css';
+// import spotifyApi from App.js;
 
 export default class Loading extends Component {
+
+
+
   render() {
     return (
         // style={{display: 'none'}}
@@ -14,7 +19,8 @@ export default class Loading extends Component {
             <div className="f" />
             <div className="g" />
             <div className="h" />
-            <div className="i" />    
+            <div className="i" />   
+            <div></div> 
         </div>
     )
   }

@@ -13,7 +13,8 @@
     "react-gsap": "^2.2.1",
     "react-scripts": "1.0.17",
     "spotify-playlist": "0.0.4",
-    "spotify-web-api-js": "^0.22.1"
+    "spotify-web-api-js": "^0.22.1",
+    "spotify-web-api-node": "^5.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

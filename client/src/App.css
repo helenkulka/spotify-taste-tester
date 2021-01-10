@@ -8,8 +8,11 @@
   color:transparent;
   -webkit-text-stroke-width: 1.95px; 
   -webkit-text-stroke-color: #ff7e30;
+  -webkit-text-size-adjust: 100%;
+
   /* margin-top: 20vh; */
-  margin-top: 10vh;
+  padding-top: 2%;
+  padding-bottom:0%;
 
 }
 #title:hover {

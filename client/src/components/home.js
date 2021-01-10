@@ -20,10 +20,16 @@ export default class Home extends Component {
         <div className="container">
   <span style={{marginTop: 10}} type="button" id="mode-button" onClick="darkmode()">☼</span>
   <div className="d-flex justify-content-center">
-    {/* <div className="section-first"> */}
-      <h1  id="title">THE FRANK OCEAN METRIC</h1>
-      {/* <Disco></Disco> */}
-    {/* </div> */}
+    <div >
+      <div className="row">
+        <div className="col">
+        <h1  id="title">THE FRANK OCEAN METRIC</h1>
+        </div>
+      </div>
+      {/* <div className="row">
+        <DiscoBall></DiscoBall>
+      </div> */}
+    </div>
     
     {/* <button onClick={this.executeScroll} onMouseDown={this.executeScroll}>&#8595;
     </button> */}

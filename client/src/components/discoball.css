@@ -1,0 +1,30 @@
+.globe {
+    backface-visibility: visible;
+    transform-style: preserve-3d;
+    /* bottom: 8.5rem; */
+    /* position: absolute; */
+    /* right: 1.5rem; */
+    /* max-width: 8rem; */
+    /* height: calc(50vh - 1.6rem); */
+  /* // height: 100vh; */
+  overflow: hidden;
+  /* width: calc(50vw - 1.6rem); */
+  width:50%;
+  }
+  @media screen and (min-width: 480px) {
+    .globe {
+      /* bottom: 15vw;
+      max-width: 23vw;
+      right: 40vw; */
+    }
+  }
+  .globe circle, .globe ellipse {
+    fill: none;
+    stroke: #e6e6e6;
+    stroke-width: 4;
+  }
+  .globe .stur {
+    fill: none;
+    stroke: #e6e6e6;
+    stroke-width: ;
+  }
