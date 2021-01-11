@@ -3,25 +3,35 @@
   font-family: 'Archivo Black', sans-serif;
   font-size: 65px;
   font-stretch: extra-expanded;
-  font-weight: 200;
+  font-weight: 100;
   text-align: center;
-  color:#ff7e30;
+  color:transparent;
   -webkit-text-stroke-width: 1.95px; 
   -webkit-text-stroke-color: #ff7e30;
+  -webkit-text-size-adjust: 100%;
+
+  /* margin-top: 20vh; */
+  padding-top: 2%;
+  padding-bottom:0%;
+
 }
 #title:hover {
-    color: transparent;
-    -webkit-text-stroke-width: 1.95px; 
-    -webkit-text-stroke-color: #ff7e30;
+  color:#ff7e30;
 }
 
+/* .HomePage{
+  background-color:"black"
+} */
+
+/* .App{
+  background-color: black;
+  color:white
+} */
 
 #subtitle{
   word-wrap: break-word;
   color:#ff7e30;
-  font-family: 'Archivo', sans-serif;
-  -webkit-text-stroke-width: 1.5px; 
-  -webkit-text-stroke-color: #ff7e30;
+  font-family: var(--bs-font-sans-serif);
   font-size: 22px;
   font-style: bold;
   text-align: center;
@@ -43,6 +53,25 @@
   color:white;
   font-family: var(--bs-font-sans-serif);
   font-size: 15px;
+}
+
+#japanese-vertical{
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 200%;
+    font-weight: 150%;
+    margin-top: 75px;
+    font-style: italic;
+    white-space: nowrap;
+    overflow: hidden; 
+    animation: animated-text 4s steps(29,end) 1s 1 normal both;
+    -webkit-text-stroke: 1px #b1ed58;
+  -webkit-text-fill-color: black;
+}
+
+#japanese-vertical:hover{
+  -webkit-text-stroke: 1px #b1ed58;
+  -webkit-text-fill-color: #b1ed58;
 }
 
 @keyframes animated-text{

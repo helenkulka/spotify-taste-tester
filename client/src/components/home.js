@@ -7,18 +7,47 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.homepage = React.createRef()
+    this.state = {darkMode:true}
+    this.darkMode = this.darkMode.bind(this);
+    this.lightMode = this.lightMode.bind(this);
   }
 
   executeScroll = () => this.homepage.current.scrollIntoView()
 
+  darkMode = () => this.setState({darkMode: true},
+                  this.props.onChangeParentStyle('black','white'));
+
+  lightMode = () => this.setState({darkMode: false}, 
+                    this.props.onChangeParentStyle('#ffd86b','black'));
+
+
 
   render() {
+    const darkModeOn = this.state.darkMode
     return (
-        <div className="container">
+  <div className="container">
+    {darkModeOn ? (
+      <span style={{marginTop: 10}} type="button" id="mode-button" onClick={this.lightMode}>☼</span>
+      ) : (
+        <span style={{marginTop: 10}} type="button" id="mode-button" onClick={this.darkMode}>☾</span>
+      )}
   <div className="d-flex justify-content-center">
-      <h1  id="title">FRANK OCEAN METRIC</h1>
+    <div >
+      <div className="row">
+        <div className="col">
+        <h1  id="title">THE FRANK OCEAN METRIC</h1>
+        </div>
+      </div>
+      {/* <div className="row">
+        <DiscoBall></DiscoBall>
+      </div> */}
+    </div>
+    
+    {/* <button onClick={this.executeScroll} onMouseDown={this.executeScroll}>&#8595;
+    </button> */}
   </div>
   <div id="home-page" ref={this.homepage}>
+  {/* <h1  id="title">THE FRANK OCEAN METRIC</h1> */}
   <div className="row">
     <div className="col col-6 col-sm-6 col-md-4" id="row-1-col-1">
       <div id="carousel1" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="false">
@@ -71,6 +100,12 @@ export default class Home extends Component {
   <div className="row">
     <div className="col col-12 col-sm-6 col-md-5">
       <iframe src="https://open.spotify.com/embed/playlist/4ZRBmBrAFTAfwxtkBApvzv" width="100%" height="400px" frameBorder={0} allow="encrypted-media" />
+    </div>
+    <div className="d-none d-md-block col-md-2">
+      <p id="japanese-vertical">フランク・オーシャン</p>
+    </div>
+    <div className="col col-12 col-sm-6 col-md-5">
+      <img className="media-object" src="https://imgur.com/hqZX3it.png" style={{width: '100%'}} />
     </div>
   </div> {/* end of row 2 */}
   </div> {/* section end */}

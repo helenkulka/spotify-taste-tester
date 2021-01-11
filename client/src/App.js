@@ -10,8 +10,8 @@ import { getUserData } from './components/getUserData';
 const spotifyApi = new SpotifyWebApi();
 
 class App extends Component {
-  constructor(){
-    super();
+  constructor(props,context){
+    super(props,context);
     const params = this.getHashParams();
     var access_token = params.access_token;
     if (access_token) {
@@ -20,10 +20,18 @@ class App extends Component {
     this.state = {
       loggedIn: access_token ? true : false,
       accessToken: access_token ? access_token : "",
-      userData: {}
+      userData: {},
+      backgroundColor:"black",
+      color:"white"
     }
   }
 
+  onChangeStyle(backgroundColor,color) {
+    this.setState({
+        backgroundColor: backgroundColor,
+        color: color
+    })
+}
 
   getHashParams() {
     var hashParams = {};
@@ -52,16 +60,18 @@ class App extends Component {
       )
     }
     return (
-      <div className="App">
-        <div className="HomePage">
-          <Home></Home>
-          <Wave></Wave>
-          <Footer></Footer>
-          <script></script>
-          {/* <p>Logged In: str({this.state.loggedIn})</p> */}
-          {/* <Loading></Loading> */}
+      <body>
+        <div className="App" style={{backgroundColor:this.state.backgroundColor, color:this.state.color}}>
+          <div className="HomePage">
+            <Home onChangeParentStyle={this.onChangeStyle.bind(this)} ></Home>
+            <Wave></Wave>
+            <Footer></Footer>
+            <script></script>
+            {/* <p>Logged In: str({this.state.loggedIn})</p> */}
+            {/* <Loading></Loading> */}
+          </div>
         </div>
-      </div>
+      </body>
     )
   }
 }
