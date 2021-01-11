@@ -92,7 +92,7 @@ export async function getTracksFromPlaylist(access_token, tracks_url, offset) {
 export async function fetchTop(type, access_token, offset, time_range) {
   var top_songs =  [];
   var res = $.ajax({
-    url: 'https://api.spotify.com/v1/me/top/' + type + '?limit=20&offset=' + offset + '&time_range=' + time_range,
+    url: 'https://api.spotify.com/v1/me/top/' + type + '?limit=50&offset=' + offset + '&time_range=' + time_range,
     headers: {
       'Authorization': 'Bearer ' + access_token
     },
@@ -111,7 +111,7 @@ export async function fetchTop(type, access_token, offset, time_range) {
 export async function getTopType(type, access_token) {
   var offsets = [];
   var total_songs = []
-  for (var i = 0; i <= 60; i+=20) {
+  for (var i = 0; i <= 100; i+=50) {
     offsets.push(i);
   }
   for (var j=0; j<offsets.length; j++) {

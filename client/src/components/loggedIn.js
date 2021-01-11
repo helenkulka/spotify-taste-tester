@@ -120,7 +120,7 @@ export default class LoggedIn extends Component {
           }
           var tracks_url = playlists[i].tracks.href;
           var offset = 0;
-          while (offset < 300) {
+          while (offset < 1000) {
             var tracks = await getTracksFromPlaylist(this.props.accessToken, tracks_url, offset);
             tracks = tracks.items;
             for (j in tracks) {
@@ -128,6 +128,10 @@ export default class LoggedIn extends Component {
                 for (z in tracks[j].track.artists) {
                     user_artist_ids.add(tracks[j].track.artists[z].id);
                 }
+            }
+
+            if(tracks.length < 100){
+                break
             }
             offset = offset + 100;
           }
