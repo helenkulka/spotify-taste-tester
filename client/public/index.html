@@ -1,9 +1,15 @@
 <!doctype html>
 <html>
   <head>
+    <link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous"
+/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' https://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' https://* 'unsafe-inline'; img-src 'self' https://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon_package_v0.16/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon_package_v0.16/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon_package_v0.16/favicon-16x16.png">
@@ -43,20 +49,13 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-sm">
-              <h4 id="subtitle"> a website to compare your music taste <br>
-                to Frank Ocean's favorite songs
-              </h4>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm">
+            <!-- <div class="col-sm">
               <div id="login-btn">
                 <a href="http://localhost:8888/login" class="button" style="align-items: center;justify-items: center;">
                   <img src="covers/white_logo.png" alt="">
                    <h3 style="font-family: var(--bs-font-sans-serif);">Log In With Spotify</h3>
                 </a>
-              </div>
+              </div> -->
 
               <div mr-1 style="width:100%; margin-top: 300px;">
                 <iframe src="https://open.spotify.com/embed/playlist/2Nmrca90TmGJnKsGcROP2C" width="350" height="350" frameborder="" style="margin-top: 50px; margin-left:150px;" allowtransparency="true" allow="encrypted-media"></iframe>
@@ -66,31 +65,6 @@
           </div>
         </div>
         
-      <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#ff7e30" fill-opacity="1" d="M0,192L48,186.7C96,181,192,171,288,186.7C384,203,480,245,576,266.7C672,288,768,288,864,272C960,256,1056,224,1152,208C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-      <footer class="footer" style="background-color:#ff7e30; padding: 30px;">
-        <div class="container" style="text-align: center;">
-          <div class="row" style="margin-left: 10%;">
-            <div class="col" style="text-align: left;">
-              <p style="font-size: 24px;font-weight: 800;">Explore</p>
-              <p>Compare Spotify Music</p>
-              <p>Compare Movies</p>
-            </div>
-            <!-- <div class="col" style="text-align: left;">
-              <p>About</p>
-            </div> -->
-            <div class="col" style="text-align: left;">
-              <p>anahita.mohapatra@mail.mcgill.ca</p>
-              <p>helen.kulka@mail.mcgill.ca</p>
-            </div>
-            <div class="col" style="text-align: left;">
-              <p style="font-size: 24px; font-weight: 800;">Spotify</p>
-              <iframe src=https://open.spotify.com/follow/1/?uri=spotify:artist:2h93pZq0e7k5yf4dywlkpM&size=detail&theme=light" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
-            </div>
-          </div>
-          <p style="font-family: var(--bs-font-sans-serif);">Made By Anahita Mohapatra and Helen Kulka</p>
-        </div>
-      </footer>
-      </div>
       <div id="loggedin">
         <script>document.body.style="background-color:#FFD17C;"</script>
         <div id="user-profile">
@@ -188,10 +162,10 @@
             // });
 
             //presenting first name
-            var res = JSON.parse(await getFirstName(access_token));
-            var present = res;
-            res.first_name = res.display_name.split(" ")[0].toLowerCase();
-            userProfilePlaceholder.innerHTML = userProfileTemplate(res);
+            // var res = JSON.parse(await getFirstName(access_token));
+            // var present = res;
+            // res.first_name = res.display_name.split(" ")[0].toLowerCase();
+            // userProfilePlaceholder.innerHTML = userProfileTemplate(res);
             $('#login').hide();
             $('#loggedin').show();
 
@@ -204,72 +178,70 @@
            
             var blonded_ids =  await $.getJSON("./blonded_info/track_id_name_map.json");
             var blonded_artists = await $.getJSON("./blonded_info/artist_id_name_map.json");
-            blonded_artists = {};
 
             
             //get Blonded tracks and artists
-            // var blonded_tracks = await getPlaylist(access_token);
-            // l = blonded_tracks.length;
-            // for (i =0; i < l; i++) {
-            //   track = blonded_tracks[i];
-            //   console.log(track);
-            //   l2 = track.artists.length;
-            //   blonded_ids[track.id]= { "name": track.name, "artwork": track.album.images[0].url, "popularity": track.popularity};
-            //   for (j=0;j<l2; j++) {
-            //     blonded_artists[track.artists[j].id] = { "name": track.artists[j].name, "artwork": track.album.images[0].url};
-            //   }
-            // }
-            // for(var key in blonded_ids) {
-            //   console.log('"'+ key + '"' + " : " + '{ "name": ' +  '"' + blonded_ids[key].name + '"' + ', ' + '"artwork": ' + '"' + blonded_ids[key].artwork + '"' + ', ' + '"popularity": ' + blonded_ids[key].popularity + '}' + ',');
+            var blonded_tracks = await getPlaylist(access_token);
+            l = blonded_tracks.length;
+            for (i =0; i < l; i++) {
+              track = blonded_tracks[i];
+              //blonded_ids[track.id]= { "name": track.name, "artwork": track.album.images[0].url, "popularity": track.popularity, "artist": track.artists[0].name};
+              blonded_artists[track.artists[0].id] = { "name": track.artists[0].name };
+              // for (j=0;j<l2; j++) {
+              //   blonded_artists[track.artists[j].id] = { "name": track.artists[j].name, "artwork": track.album.images[0].url};
+              // }
+            }
+            // for(var key in blonded_artists) {
+            //   console.log('"'+ key + '"' + " : " + '{ "name": ' +  '"' + blonded_artists[key].name + '"' + '}' + ',');
             // }
 
             const keys = Object.keys(blonded_ids);
 
             //   /////////GETTING TOP SONGS/////////////
-              var top_songs = await getTopType('tracks', access_token);
-              var top_songs_overlap = keys.filter(value => top_songs.includes(value));
+              // var top_songs = await getTopType('tracks', access_token);
+              // var top_songs_overlap = keys.filter(value => top_songs.includes(value));
 
 
               ////////GETTING PLAYLIST TRACKS //////////
-              var playlists = JSON.parse(await getSavedPlaylists(access_token));
-              playlists = playlists.items;
+              // var playlists = JSON.parse(await getSavedPlaylists(access_token));
+              // playlists = playlists.items;
 
-              for (i=0; i<playlists.length; i++) {
-                if (playlists[i].id === "6HEegfWHhUcytwQFAm1QbK") {
-                    continue;
-                }
-                var tracks_url = playlists[i].tracks.href;
-                var offset = 0;
-                while (offset < 200) {
-                  var tracks = JSON.parse(await getTracksFromPlaylist(access_token, tracks_url, offset));
-                  tracks = tracks.items;
-                  l = tracks.length;
-                  for (j=0; j<l; j++) {
-                    track_ids.add(tracks[j].track.id);
-                    var l2 = tracks[j].track.artists.length;
-                    for (z=0; z<l2; z++) {
-                      track_artists.add(tracks[j].track.artists[z].id);
-                    }
-                  }
-                  offset = offset + 100;
-                }
-              }
+              // for (i=0; i<playlists.length; i++) {
+              //   if (playlists[i].id === "6HEegfWHhUcytwQFAm1QbK") {
+              //       continue;
+              //   }
+              //   var tracks_url = playlists[i].tracks.href;
+              //   var offset = 0;
+              //   while (offset < 200) {
+              //     var tracks = JSON.parse(await getTracksFromPlaylist(access_token, tracks_url, offset));
+              //     tracks = tracks.items;
+              //     l = tracks.length;
+              //     for (j=0; j<l; j++) {
+              //       track_ids.add(tracks[j].track.id);
+              //       var l2 = tracks[j].track.artists.length;
+              //       for (z=0; z<l2; z++) {
+              //         track_artists.add(tracks[j].track.artists[z].id);
+              //       }
+              //     }
+              //     offset = offset + 100;
+              //   }
+              // }
 
-              var track_overlap = keys.filter(value => Array.from(track_ids).includes(value));
-              const num_on_playlists = Array.from(track_overlap).length;
+              // var track_overlap = keys.filter(value => Array.from(track_ids).includes(value));
+              // const num_on_playlists = Array.from(track_overlap).length;
 
               ////////GETTING SAVED TRACKS (that aren't also in playlist tracks)//////////
-              var arr_saved = await getLikedTracks(access_token, Object.keys(blonded_ids));
-              var num_saved = 0;
-              var l = arr_saved.length;
-              for (i =0; i < l; i+=1) {
-                if (arr_saved[i]) {
-                  if (!track_overlap.includes(keys[i])) {
-                    num_saved += 1;
-                    track_overlap.push(keys[i]);
-                  }
-                }
-              }
+              // var arr_saved = await getLikedTracks(access_token, Object.keys(blonded_ids));
+              // var num_saved = 0;
+              // var l = arr_saved.length;
+              // for (i =0; i < l; i+=1) {
+              //   if (arr_saved[i]) {
+              //     if (!track_overlap.includes(keys[i])) {
+              //       num_saved += 1;
+              //       track_overlap.push(keys[i]);
+              //     }
+              //   }
+              // }
 
               // console.log("ALL SONGS OVERLAP:")
               // for (var i=0; i<track_overlap.length; i++) {

@@ -5,6 +5,8 @@ import Footer from './components/footer';
 import Home from './components/home';
 import Wave from './components/wave';
 import Loading from './components/loading.js';
+import LoggedIn from './components/loggedIn';
+import { getUserData } from './components/getUserData';
 const spotifyApi = new SpotifyWebApi();
 
 class App extends Component {
@@ -17,7 +19,8 @@ class App extends Component {
     }
     this.state = {
       loggedIn: access_token ? true : false,
-      apiResponse: " " 
+      accessToken: access_token ? access_token : "",
+      userData: {}
     }
   }
 
@@ -34,15 +37,30 @@ class App extends Component {
     return hashParams;
   }
 
-  getNowPlaying(){
-      // spotifyApi.getPlaylistTracks(1130791520, "5FhPTMUBwGX8sU3qPD2stB", { offset: 0, limit: 100 })
-      // .then((response) => {
-      //   console.log(response)
-      // });
+  async componentDidMount() {
+    if (this.state.loggedIn) {
+     var userData = await getUserData(this.state.accessToken);
+      this.setState({userData: userData});
+    }
   }
   render() {
+    if (!(Object.keys(this.state.userData).length === 0)) {
+      return(
+        <div className="App">
+        <LoggedIn {...this.state}></LoggedIn>
+        </div>
+      )
+    }
     return (
       <div className="App">
+        <div className="HomePage">
+          <Home></Home>
+          <Wave></Wave>
+          <Footer></Footer>
+          <script></script>
+          {/* <p>Logged In: str({this.state.loggedIn})</p> */}
+          {/* <Loading></Loading> */}
+        </div>
       </div>
     )
   }
