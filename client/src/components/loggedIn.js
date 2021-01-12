@@ -1,6 +1,7 @@
 import React, { useRef, Component } from 'react';
 import './loggedin.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Loading from './loading.js'
 import { Container, Row, Col, Fragment } from 'react-bootstrap';
 import blonded_artist_id_map from './artist_id_name_map.json';
 import blonded_track_id_map from './track_id_name_map.json';
@@ -29,7 +30,8 @@ export default class LoggedIn extends Component {
             firstName : "",
             overlapTracksMsg: "",
             overlapTopTracks: [],
-            overlapTracks: []
+            overlapTracks: [],
+            itemsLoaded: false
         };
     }
 
@@ -155,15 +157,19 @@ export default class LoggedIn extends Component {
         this.setOverlapTracksMsg(Array.from(overlap_all_track_ids).length);
         this.setTopTracks(Array.from(overlap_top_track_ids));
         this.calculateUserPopularity(blonded_track_id_map, overlap_all_track_ids);
-
         this.setState({overlapTracks: overlap_all_track_ids});
+        this.setState({itemsLoaded:true})
 
 
     }
 
     render() {
+        const dataLoaded = this.state.itemsLoaded
         return(
-            <div id="logged-in">
+            <div>
+            {dataLoaded ? (
+                
+                <div id="logged-in">
                 <Container id="tracks">
                     <h2 id="first-name"> hey { this.state.firstName },  </h2>
                     <p id="overlap-tracks-msg"> { this.state.overlapTracksMsg } </p>
@@ -183,6 +189,15 @@ export default class LoggedIn extends Component {
                     </Row>
                 </Container>
             </div>
+                
+                ) : (
+
+                    // null
+                    <Loading></Loading>
+
+
+            )}
+        </div>
         )
     }
 }

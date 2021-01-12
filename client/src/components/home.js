@@ -59,9 +59,6 @@ export default class Home extends Component {
           <button id="discobutton" onClick={this.enterSite} style={{color:"#ffd86b"}}>
         <DiscoBall></DiscoBall>
         </button>      )}
-
-
-      
       </div>
     </div>
     
