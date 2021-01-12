@@ -74,7 +74,6 @@ class App extends Component {
       )
     }
     return (
-      <body>
         <div className="App" style={{backgroundColor:this.state.backgroundColor, color:this.state.color}}>
           <div className="HomePage">
             <Home onChangeParentStyle={this.onChangeStyle.bind(this)} ></Home>
@@ -95,7 +94,6 @@ class App extends Component {
             {/* <Loading></Loading> */}
           </div>
         </div>
-      </body>
     )
   }
 }
