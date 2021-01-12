@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {FaTwitter} from 'react-icons/fa'
 
 export default class Footer extends Component {
   render() {
@@ -13,9 +14,23 @@ export default class Footer extends Component {
             </div>
             <div className="col" style={{textAlign: 'left'}}>
               <p style={{fontSize: '16px', fontWeight: 600}}>Contact</p>
-              <p style={{fontSize: '12px'}}>anahita.mohapatra@mail.mcgill.ca</p>
-              <p style={{fontSize: '12px'}}>helen.kulka@mail.mcgill.ca</p>
-              <p style={{fontSize: '12px'}}>Montreal, QC</p>
+              <p style={{fontSize: '12px',marginBottom:0}}>anahita.mohapatra@mail.mcgill.ca</p> 
+              <ul class="social-network social-circle">
+                <li><a href="https://www.facebook.com/" target="_blank" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://www.linkedin.com/" target="_blank"class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://twitter.com/" target="_blank" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.instagram.com/" target="_blank" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="https://github.com/anahita-m" target="_blank" class="icoGithub" title="Github"><i class="fa fa-github"></i></a></li>
+            </ul>
+              <p style={{fontSize: '12px',marginTop:"1rem",marginBottom:0}}>helen.kulka@mail.mcgill.ca</p>
+              <ul class="social-network social-circle" style={{marginBottom:1}}>
+                <li><a href="https://www.facebook.com/ " target="_blank" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://www.linkedin.com/" target="_blank"class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://twitter.com/" target="_blank" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.instagram.com/" target="_blank" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="https://github.com/helenkulka" target="_blank" class="icoGithub" title="Github"><i class="fa fa-github"></i></a></li>
+            </ul>
+              <p style={{fontSize: '12px',marginTop:"1rem"}}>Montreal, QC</p>
             </div>
             <div className="col" style={{textAlign: 'left'}}>
               <p style={{fontSize: '16px', fontWeight: 600}}>Spotify</p>

@@ -169,7 +169,7 @@ export default class LoggedIn extends Component {
         return(
             <div>
             {dataLoaded ? (
-                <div id="logged-in">
+                <div id="logged-in" className="fadeIn">
                 <Container id="tracks">
                     <h2 id="first-name"> Hey { this.state.firstName },  </h2>
                     <p id="overlap-tracks-msg"> { this.state.overlapTracksMsg } </p>
