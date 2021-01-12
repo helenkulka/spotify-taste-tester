@@ -1,6 +1,7 @@
 import React, { useRef, Component } from 'react';
 import Loading from './loading.js';
 import DiscoBall from './discoball.js'
+import {Carousel} from 'react-bootstrap'
 
 
 export default class Home extends Component {
@@ -70,44 +71,40 @@ export default class Home extends Component {
   <h1  className="title" id="title2">THE FRANK OCEAN METRIC</h1>
   <div className="row">
     <div className="col col-6 col-sm-6 col-md-4" id="row-1-col-1">
-      <div id="carousel1" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="false">
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img className="d-block w-100" src="https://imgur.com/MDIeLFM.png" alt="Car 1" />   
-          </div>
-          <div className="carousel-item">
-            <img className="d-block w-100" src="https://imgur.com/EeHRnx7.png" alt="Car 2" />   
-          </div>
-          <a className="carousel-control-prev" href="#carousel1" role="button" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true" />
-            <span className="visually-hidden">Previous</span>
-          </a>
-          <a className="carousel-control-next" href="#carousel1" role="button" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true" />
-            <span className="visually-hidden">Next</span>
-          </a>
-        </div>
-      </div>    
+      <Carousel  fade="true" interval="15000">
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://imgur.com/MDIeLFM.png"
+            alt="First slide"
+          />
+        </Carousel.Item>
+        <Carousel.Item>
+          <img
+            className="d-block w-100"
+            src="https://imgur.com/EeHRnx7.png"
+            alt="First slide"
+          />
+        </Carousel.Item>
+      </Carousel>
     </div>
     <div className="col col-6 col-sm-6 col-md-4" id="row-1-col-2">
-      <div id="carousel2" className="carouselslide carousel-fade" data-bs-ride="carousel" data-bs-interval="false">
-        <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img className="d-block w-100" src="https://imgur.com/GFBYR2Y.png" alt="Frank Ocean 1" />
-          </div>
-          <div className="carousel-item">
-            <img className="d-block w-100" src="https://imgur.com/oZ3TTPy.png" alt="Frank Ocean 2" />   
-          </div>
-          <a className="carousel-control-prev" href="#carousel2" role="button" data-bs-slide="prev">
-            <span className="carousel-control-prev-icon" aria-hidden="true" />
-            <span className="visually-hidden">Previous</span>
-          </a>
-          <a className="carousel-control-next" href="#carousel2" role="button" data-bs-slide="next">
-            <span className="carousel-control-next-icon" aria-hidden="true" />
-            <span className="visually-hidden">Next</span>
-          </a>
-        </div>
-      </div>     
+      <Carousel fade="true" interval="15000">
+        <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="https://imgur.com/GFBYR2Y.png"
+              alt="First slide"
+            />
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="d-block w-100"
+              src="https://imgur.com/oZ3TTPy.png"
+              alt="First slide"
+            />
+          </Carousel.Item>
+      </Carousel>  
     </div>
     <div className="col col-12 col-sm-12 col-md-4 text-center" id="row-1-col-3">
       <p id="subtitle"> A website to compare your music taste to Frank Ocean's playlists Blonded</p>

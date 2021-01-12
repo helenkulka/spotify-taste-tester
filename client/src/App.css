@@ -63,6 +63,7 @@
   color:white;
   font-family: var(--bs-font-sans-serif);
   font-size: 15px;
+  padding-right: 25px;
 }
 
 #discobutton{
