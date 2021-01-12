@@ -1,6 +1,6 @@
 import React, { useRef, useEffect,Component } from 'react';
 import './discoball.css';
-import { TweenMax, Power0, SteppedEase } from "gsap";
+import { TweenMax, Power0, SteppedEase } from 'gsap';
 
 
 
