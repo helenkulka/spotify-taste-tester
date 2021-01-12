@@ -15,7 +15,11 @@
   /* padding: bottom 10vh;; */
 
 }
-.title:hover {
+
+#title1{
+  color:#ff7e30;
+}
+#title2:hover {
   color:#ff7e30;
 }
 

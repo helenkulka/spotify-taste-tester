@@ -18,15 +18,14 @@ export default class Home extends Component {
 
   // executeScroll = () => this.homepage.current.scrollIntoView()
 
-  enterSite = () => this.setState({homepageDisplay:"block", splashscreenDisplay:"none"}, this.props.onChangeParentStyle(),{enterSite:true});
+  enterSite = () => this.setState({homepageDisplay:"block", splashscreenDisplay:"none",enterSite:true}, this.props.onChangeParentStyle(this.state.darkMode,true));
 
 
   darkMode = () => this.setState({darkMode: true},
-                  this.props.onChangeParentStyle('black','white'));
+                  this.props.onChangeParentStyle(true,this.state.enterSite));
 
   lightMode = () => this.setState({darkMode: false}, 
-                    this.props.onChangeParentStyle('#ffd86b','black'));
-
+                    this.props.onChangeParentStyle(false,this.state.enterSite));
 
 
   render() {
@@ -44,7 +43,7 @@ export default class Home extends Component {
     <div className="section" id="splashscreen" style={{display:this.state.splashscreenDisplay}}>
       <div className="row">
         <div className="col">
-        <h1  className="title">THE FRANK OCEAN METRIC</h1>
+        <h1  className="title" id='title1'>THE FRANK OCEAN METRIC</h1>
         </div>
       </div>
       {/* <div className="row">
@@ -71,7 +70,7 @@ export default class Home extends Component {
   </div>
   <div ref={this.homepage}>
   <div id="home-page"  style={{display:this.state.homepageDisplay}}>
-  <h1  className="title">THE FRANK OCEAN METRIC</h1>
+  <h1  className="title" id="title2">THE FRANK OCEAN METRIC</h1>
   <div className="row">
     <div className="col col-6 col-sm-6 col-md-4" id="row-1-col-1">
       <div id="carousel1" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="false">
