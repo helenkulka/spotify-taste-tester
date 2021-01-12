@@ -27,17 +27,24 @@ class App extends Component {
     }
   }
 
-  onChangeStyle(backgroundColor,color) {
-    this.setState({
-        backgroundColor: backgroundColor,
-        color: color
-    })
-}
+  onChangeStyle(darkModeStatus,enterSiteStatus) {
 
-enterSiteApp() {
-  this.setState({
-    enteredSite:true
-  })
+    if(darkModeStatus == true){
+      this.setState({
+        backgroundColor: "black",
+        color: "white",
+        enteredSite: enterSiteStatus
+    })
+    }
+    else{
+      this.setState({
+        backgroundColor: "#ffd86b",
+        color: "black",
+        enteredSite: enterSiteStatus
+    })
+      
+    }
+    
 }
   getHashParams() {
     var hashParams = {};
@@ -61,16 +68,16 @@ enterSiteApp() {
     const enteredSite = this.state.enteredSite
     if (!(Object.keys(this.state.userData).length === 0)) {
       return(
-        <div className="App">
-        <LoggedIn {...this.state}></LoggedIn>
+        <div className="App" style={{backgroundColor:this.state.backgroundColor, color:this.state.color}}>
+          <LoggedIn {...this.state}></LoggedIn>
         </div>
       )
     }
     return (
-      <body>
+
         <div className="App" style={{backgroundColor:this.state.backgroundColor, color:this.state.color}}>
           <div className="HomePage">
-            <Home onChangeParentStyle={this.onChangeStyle.bind(this),this.enterSiteApp.bind(this)} ></Home>
+            <Home onChangeParentStyle={this.onChangeStyle.bind(this)} ></Home>
 
 
             {enteredSite ? (
@@ -88,7 +95,6 @@ enterSiteApp() {
             {/* <Loading></Loading> */}
           </div>
         </div>
-      </body>
     )
   }
 }

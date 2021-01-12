@@ -1,6 +1,7 @@
 import React, { useRef, Component } from 'react';
 import './loggedin.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Loading from './loading.js'
 import { Container, Row, Col, Fragment } from 'react-bootstrap';
 import blonded_artist_id_map from './artist_id_name_map.json';
 import blonded_track_id_map from './track_id_name_map.json';
@@ -29,7 +30,8 @@ export default class LoggedIn extends Component {
             firstName : "",
             overlapTracksMsg: "",
             overlapTopTracks: [],
-            overlapTracks: []
+            overlapTracks: [],
+            itemsLoaded: false
         };
     }
 
@@ -67,6 +69,7 @@ export default class LoggedIn extends Component {
         for (i in track_overlap) {
             track_info.push(blonded_track_id_map[track_overlap[i]])
         }
+        console.log(track_info)
         this.setState({overlapTopTracks: track_info});
     }
 
@@ -151,29 +154,35 @@ export default class LoggedIn extends Component {
         this.setState({firstName: this.props.userData.display_name.split(" ")[0].toLowerCase()});
         var overlap_top_track_ids = await this.getUserTopTracks();
         var overlap_playlist_track_ids = await this.getUserPlaylistTracks();
-        var overlap_all_track_ids = await this.getUserSavedTracks(Array.from(overlap_playlist_track_ids));
+        var overlap_all_track_ids = await this.getUserSavedTracks(overlap_playlist_track_ids);
         this.setOverlapTracksMsg(Array.from(overlap_all_track_ids).length);
         this.setTopTracks(Array.from(overlap_top_track_ids));
         this.calculateUserPopularity(blonded_track_id_map, overlap_all_track_ids);
-
         this.setState({overlapTracks: overlap_all_track_ids});
+        this.setState({itemsLoaded:true})
 
 
     }
 
     render() {
+        const dataLoaded = this.state.itemsLoaded
         return(
-            <div id="logged-in">
+            <div>
+            {dataLoaded ? (
+                <div id="logged-in">
                 <Container id="tracks">
-                    <h2 id="first-name"> hey { this.state.firstName },  </h2>
+                    <h2 id="first-name"> Hey { this.state.firstName },  </h2>
                     <p id="overlap-tracks-msg"> { this.state.overlapTracksMsg } </p>
                     <Row>
-                        <Col fluid id="top-tracks">
-                                {this.state.overlapTopTracks.map(p => {
-                                    return  <div>
+                        <Col id="top-tracks"> 
+                        <h2>Top Tracks</h2>
+
+                                {this.state.overlapTracks.map(p => {
+                                      <div>
                                         <img id="track-artwork" key={p.id} src={p.artwork} alt="can't show image" />
-                                        <p id="track-name" key={p.id}> {p.name} </p> 
+                                        <h2 id="track-name" key={p.id}> {p.name} </h2>
                                         <p id="track-artist" key={p.id}> {p.artist} </p>
+                                        <p>Anahita</p>
                                     </div>
                                 })}
                         </Col>
@@ -183,6 +192,20 @@ export default class LoggedIn extends Component {
                     </Row>
                 </Container>
             </div>
+                
+                ) : (
+
+                    // null
+                    <Loading></Loading>
+
+
+            )}
+        </div>
         )
     }
 }
+
+// ReactDOM.render(
+//     <Loading />,
+//     document.getElementById('root')
+//   );
