@@ -68,12 +68,13 @@ class App extends Component {
     const enteredSite = this.state.enteredSite
     if (!(Object.keys(this.state.userData).length === 0)) {
       return(
-        <div className="App">
-        <LoggedIn {...this.state}></LoggedIn>
+        <div className="App" style={{backgroundColor:this.state.backgroundColor, color:this.state.color}}>
+          <LoggedIn {...this.state}></LoggedIn>
         </div>
       )
     }
     return (
+
         <div className="App" style={{backgroundColor:this.state.backgroundColor, color:this.state.color}}>
           <div className="HomePage">
             <Home onChangeParentStyle={this.onChangeStyle.bind(this)} ></Home>

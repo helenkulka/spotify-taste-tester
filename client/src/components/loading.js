@@ -4,8 +4,8 @@ import './loading.css';
 export default class Loading extends Component {
   render() {
     return (
-        // style={{display: 'none'}}
-        <div className="loading" id="loading">
+      <div className="container">
+        <div className="loading section" id="loading">
             <div className="a" />
             <div className="b" />
             <div className="c" />
@@ -16,6 +16,8 @@ export default class Loading extends Component {
             <div className="h" />
             <div className="i" />    
         </div>
+      </div>
+        
     )
   }
 }

@@ -168,7 +168,7 @@ export default class LoggedIn extends Component {
         return(
             <div>
             {dataLoaded ? (
-                
+                //  <Loading></Loading>
                 <div id="logged-in">
                 <Container id="tracks">
                     <h2 id="first-name"> hey { this.state.firstName },  </h2>
@@ -192,8 +192,8 @@ export default class LoggedIn extends Component {
                 
                 ) : (
 
-                    // null
-                    <Loading></Loading>
+                    null
+                    // <Loading></Loading>
 
 
             )}
