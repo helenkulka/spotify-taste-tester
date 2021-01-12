@@ -1,0 +1,43 @@
+// #body-disco{
+//     -webkit-text-size-adjust: 100%;
+//   -ms-text-size-adjust: 100%;
+//   text-rendering: optimizeLegibility;
+//   background: black;
+// 	background-size: cover;
+// 	height: calc(100vh - 1.6rem);
+// 	overflow: hidden;
+// 	overflow: hidden;
+// 	width: calc(100vw - 1.6rem);
+
+// }
+
+
+.globe {
+	backface-visibility: visible;
+	transform-style: preserve-3d;
+	bottom: 15vh;
+	position: absolute;
+    right: 25vh;
+    top: 25vh;
+	max-width: auto;
+	
+	// @media screen and (min-width: 480px) {
+	// 	bottom: 6vw;
+	// 	max-width: 23vw;
+	// 	right: 40vw;
+	// }
+	
+	circle,
+	ellipse {
+		fill: none;
+		stroke: $white;
+		stroke-width: 5;
+	}
+	
+	.stur {
+		fill: none;
+		stroke: $white;
+		stroke-width: 5;
+	}
+	
+}

@@ -1,5 +1,6 @@
 import React, { useRef, Component } from 'react';
 import Loading from './loading.js';
+import DiscoBall from './discoball.js'
 
 
 export default class Home extends Component {
@@ -7,12 +8,18 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.homepage = React.createRef()
-    this.state = {darkMode:true}
+    this.state = {darkMode:true, enterSite:false, homepageDisplay:"none",splashscreenDisplay:"block"}
     this.darkMode = this.darkMode.bind(this);
     this.lightMode = this.lightMode.bind(this);
+    this.enterSite = this.enterSite.bind(this)
+    // this.executeScroll = this.executeScroll(this)
+   
   }
 
-  executeScroll = () => this.homepage.current.scrollIntoView()
+  // executeScroll = () => this.homepage.current.scrollIntoView()
+
+  enterSite = () => this.setState({homepageDisplay:"block", splashscreenDisplay:"none"}, this.props.onChangeParentStyle(),{enterSite:true});
+
 
   darkMode = () => this.setState({darkMode: true},
                   this.props.onChangeParentStyle('black','white'));
@@ -31,23 +38,40 @@ export default class Home extends Component {
       ) : (
         <span style={{marginTop: 10}} type="button" id="mode-button" onClick={this.darkMode}>☾</span>
       )}
+
   <div className="d-flex justify-content-center">
-    <div >
+    
+    <div className="section" id="splashscreen" style={{display:this.state.splashscreenDisplay}}>
       <div className="row">
         <div className="col">
-        <h1  id="title">THE FRANK OCEAN METRIC</h1>
+        <h1  className="title">THE FRANK OCEAN METRIC</h1>
         </div>
       </div>
       {/* <div className="row">
-        <DiscoBall></DiscoBall>
+        <button id="welcome">
+          Enter Site
+        </button>
       </div> */}
+      <div className="row">
+      {darkModeOn ? (
+        <button id="discobutton" onClick={this.enterSite} style={{color:"black"}}>
+        <DiscoBall></DiscoBall>
+        </button>      ) : (
+          <button id="discobutton" onClick={this.enterSite} style={{color:"#ffd86b"}}>
+        <DiscoBall></DiscoBall>
+        </button>      )}
+
+
+      
+      </div>
     </div>
     
     {/* <button onClick={this.executeScroll} onMouseDown={this.executeScroll}>&#8595;
     </button> */}
   </div>
-  <div id="home-page" ref={this.homepage}>
-  {/* <h1  id="title">THE FRANK OCEAN METRIC</h1> */}
+  <div ref={this.homepage}>
+  <div id="home-page"  style={{display:this.state.homepageDisplay}}>
+  <h1  className="title">THE FRANK OCEAN METRIC</h1>
   <div className="row">
     <div className="col col-6 col-sm-6 col-md-4" id="row-1-col-1">
       <div id="carousel1" className="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="false">
@@ -109,6 +133,7 @@ export default class Home extends Component {
     </div>
   </div> {/* end of row 2 */}
   </div> {/* section end */}
+</div>
 </div>
 
 

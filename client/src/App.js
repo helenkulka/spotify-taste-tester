@@ -22,7 +22,8 @@ class App extends Component {
       accessToken: access_token ? access_token : "",
       userData: {},
       backgroundColor:"black",
-      color:"white"
+      color:"white",
+      enteredSite: false
     }
   }
 
@@ -33,6 +34,11 @@ class App extends Component {
     })
 }
 
+enterSiteApp() {
+  this.setState({
+    enteredSite:true
+  })
+}
   getHashParams() {
     var hashParams = {};
     var e, r = /([^&;=]+)=?([^&;]*)/g,
@@ -52,6 +58,7 @@ class App extends Component {
     }
   }
   render() {
+    const enteredSite = this.state.enteredSite
     if (!(Object.keys(this.state.userData).length === 0)) {
       return(
         <div className="App">
@@ -63,9 +70,19 @@ class App extends Component {
       <body>
         <div className="App" style={{backgroundColor:this.state.backgroundColor, color:this.state.color}}>
           <div className="HomePage">
-            <Home onChangeParentStyle={this.onChangeStyle.bind(this)} ></Home>
-            <Wave></Wave>
-            <Footer></Footer>
+            <Home onChangeParentStyle={this.onChangeStyle.bind(this),this.enterSiteApp.bind(this)} ></Home>
+
+
+            {enteredSite ? (
+      <div>
+      <Wave></Wave>
+      <Footer></Footer>
+      </div>
+      ) : ( <div></div>
+      )}
+
+  
+            
             <script></script>
             {/* <p>Logged In: str({this.state.loggedIn})</p> */}
             {/* <Loading></Loading> */}
