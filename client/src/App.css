@@ -216,3 +216,7 @@ ul.social-network li {
 .social-network a {
   background-color: #F9F9F9;
 }
+
+.footer-titles p:hover{
+  color:blue
+}
