@@ -9,18 +9,27 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.homepage = React.createRef()
-    this.state = {darkMode:true, enterSite:false, homepageDisplay:"none",splashscreenDisplay:"block"}
+    this.state = {visiblesplash:true, visiblehome:false,darkMode:true, enterSite:false, homepageDisplay:"none",splashscreenDisplay:"block"}
     this.darkMode = this.darkMode.bind(this);
     this.lightMode = this.lightMode.bind(this);
-    this.enterSite = this.enterSite.bind(this)
-    // this.executeScroll = this.executeScroll(this)
-   
+    this.enterSite = this.enterSite.bind(this);
+    this.scrollHome = this.scrollHome.bind(this);
+    this.removeSplash = this.removeSplash.bind(this);
+    // this.homeVisible = this.homeVisible.bind.call(this);
+    this.enterSiteInstructions = this.enterSiteInstructions.bind(this);
+    this.timeout = this.timeout.bind(this);
   }
 
-  // executeScroll = () => this.homepage.current.scrollIntoView()
 
-  enterSite = () => this.setState({homepageDisplay:"block", splashscreenDisplay:"none",enterSite:true}, this.props.onChangeParentStyle(this.state.darkMode,true));
+ async timeout(delay) {
+    return new Promise( res => setTimeout(res, delay) );
+}
 
+  enterSite = () => this.setState({visiblesplash:false, enterSite:true}, this.props.onChangeParentStyle(this.state.darkMode,true));
+  scrollHome = () => this.homepage.current.scrollIntoView()
+  removeSplash = () => this.setState({splashscreenDisplay:"none"});
+  homeVisible = () => this.setState({homepageDisplay:"block"});
+  fadeInHome = () => this.setState({visiblehome:true});
 
   darkMode = () => this.setState({darkMode: true},
                   this.props.onChangeParentStyle(true,this.state.enterSite));
@@ -28,6 +37,15 @@ export default class Home extends Component {
   lightMode = () => this.setState({darkMode: false}, 
                     this.props.onChangeParentStyle(false,this.state.enterSite));
 
+
+  async enterSiteInstructions(){
+    await this.enterSite()
+    await this.timeout(200);
+    await this.removeSplash()
+    await this.homeVisible()
+    await this.timeout(200);
+    await this.fadeInHome()
+  }
 
   render() {
     const darkModeOn = this.state.darkMode
@@ -40,8 +58,10 @@ export default class Home extends Component {
       )}
 
   <div className="d-flex justify-content-center">
+  {/* style={{display:this.state.splashscreenDisplay}} */}
     
-    <div className="section" id="splashscreen" style={{display:this.state.splashscreenDisplay}}>
+    <div className="section" style={{display:this.state.splashscreenDisplay}}>
+    <div className={this.state.visiblesplash?'fadeIn':'fadeOut'} id="splashscreen" >
       <div className="row">
         <div className="col">
         <h1  className="title" id='title1'>THE FRANK OCEAN METRIC</h1>
@@ -54,20 +74,22 @@ export default class Home extends Component {
       </div> */}
       <div className="row">
       {darkModeOn ? (
-        <button id="discobutton" onClick={this.enterSite} style={{color:"black"}}>
+        <button id="discobutton" onClick={this.enterSiteInstructions} style={{color:"black"}}>
         <DiscoBall></DiscoBall>
         </button>      ) : (
-          <button id="discobutton" onClick={this.enterSite} style={{color:"#ffd86b"}}>
+          <button id="discobutton" onClick={this.enterSiteInstructions} style={{color:"#ffd86b"}}>
         <DiscoBall></DiscoBall>
         </button>      )}
       </div>
+    </div>
     </div>
     
     {/* <button onClick={this.executeScroll} onMouseDown={this.executeScroll}>&#8595;
     </button> */}
   </div>
-  <div ref={this.homepage}>
-  <div id="home-page"  style={{display:this.state.homepageDisplay}}>
+  {/*  */}
+  <div ref={this.homepage} className={this.state.visiblehome?'fadeIn':'fadeOut'} style={{display:this.state.homepageDisplay}}>
+  <div id="homepage"  >
   <h1  className="title" id="title2">THE FRANK OCEAN METRIC</h1>
   <div className="row">
     <div className="col col-6 col-sm-6 col-md-4" id="row-1-col-1">
