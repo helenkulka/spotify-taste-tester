@@ -117,8 +117,8 @@ export default class LoggedIn extends Component {
         playlists = playlists.items;
 
         for (i in playlists) {
-            //ignore blonded
-          if (playlists[i].id === "6HEegfWHhUcytwQFAm1QbK") {
+            //ignore playlists not owned by user
+          if (this.props.userData.display_name !== playlists[i].owner.display_name) {
               continue;
           }
           var tracks_url = playlists[i].tracks.href;
@@ -204,8 +204,3 @@ export default class LoggedIn extends Component {
         )
     }
 }
-
-// ReactDOM.render(
-//     <Loading />,
-//     document.getElementById('root')
-//   );

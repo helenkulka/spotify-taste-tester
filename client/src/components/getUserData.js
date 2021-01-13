@@ -18,7 +18,6 @@ export function getUserData(access_token) {
         console.log(err);
     }
   }).responseJSON;
-
   return res;
 }
 
