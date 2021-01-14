@@ -1,0 +1,24 @@
+
+.globe {
+	backface-visibility: visible;
+	transform-style: preserve-3d;
+	bottom: 15vh;
+	position: absolute;
+    right: 25vh;
+    top: 25vh;
+	max-width: auto;
+	
+	circle,
+	ellipse {
+		fill: none;
+		stroke: $white;
+		stroke-width: 5;
+	}
+	
+	.stur {
+		fill: none;
+		stroke: $white;
+		stroke-width: 5;
+	}
+	
+}

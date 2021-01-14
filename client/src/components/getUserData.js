@@ -1,7 +1,10 @@
 
+import SpotifyWebApi from 'spotify-web-api-js';
+import $ from 'jquery';
 const spotifyApi = new SpotifyWebApi();
-var i=j=0;
-function getFirstName(access_token) {
+var i, j = 0;
+
+export function getUserData(access_token) {
   var res = $.ajax({
     url: 'https://api.spotify.com/v1/me',
     type: 'GET',
@@ -14,14 +17,14 @@ function getFirstName(access_token) {
     error: function (err) {
         console.log(err);
     }
-  }).responseText;
+  }).responseJSON;
   return res;
 }
 
-async function getPlaylist(access_token) {
+export async function getPlaylist(access_token) {
     spotifyApi.setAccessToken(access_token);
-    playlist =  new Array();
-    offsets = [0, 100, 200, 300, 400];
+    var playlist =  new Array();
+    var offsets = [0, 100, 200, 300, 400];
     var l = offsets.length;
     for (i =0; i < l; i++) {
         var response = await spotifyApi.getPlaylistTracks("4ZRBmBrAFTAfwxtkBApvzv", {offset: offsets[i], limit: 100});
@@ -32,7 +35,7 @@ async function getPlaylist(access_token) {
       }
      return await playlist;
 }
-async function getLikedTracks(access_token, blonded_ids) {
+export async function getLikedTracks(access_token, blonded_ids) {
   spotifyApi.setAccessToken(access_token);
   var contains = [];
   for (i =0; i < 385; i+=50) {
@@ -51,7 +54,7 @@ async function getLikedTracks(access_token, blonded_ids) {
 
 }
 
-async function getSavedPlaylists(access_token) {
+export async function getSavedPlaylists(access_token) {
 
   var res = $.ajax({
     url: 'https://api.spotify.com/v1/me/playlists/',
@@ -65,12 +68,12 @@ async function getSavedPlaylists(access_token) {
     error: function (err) {
         console.log(err);
     }
-  }).responseText;
+  }).responseJSON;
   return res;
 
 }
 
-async function getTracksFromPlaylist(access_token, tracks_url, offset) {
+export async function getTracksFromPlaylist(access_token, tracks_url, offset) {
   var res = $.ajax({
    url: tracks_url +'?offset='+offset,
    type: 'GET',
@@ -81,14 +84,14 @@ async function getTracksFromPlaylist(access_token, tracks_url, offset) {
    error: function (err) {
        console.log(err);
    }
- }).responseText;
+ }).responseJSON;
  return res;
 }
 
-async function fetchTop(type, access_token, offset, time_range) {
-  top_songs =  [];
+export async function fetchTop(type, access_token, offset, time_range) {
+  var top_songs =  [];
   var res = $.ajax({
-    url: 'https://api.spotify.com/v1/me/top/' + type + '?limit=20&offset=' + offset + '&time_range=' + time_range,
+    url: 'https://api.spotify.com/v1/me/top/' + type + '?limit=50&offset=' + offset + '&time_range=' + time_range,
     headers: {
       'Authorization': 'Bearer ' + access_token
     },
@@ -104,10 +107,10 @@ async function fetchTop(type, access_token, offset, time_range) {
   return top_songs;
 }
 
-async function getTopType(type, access_token) {
+export async function getTopType(type, access_token) {
   var offsets = [];
   var total_songs = []
-  for (var i = 0; i <= 60; i+=20) {
+  for (var i = 0; i <= 100; i+=50) {
     offsets.push(i);
   }
   for (var j=0; j<offsets.length; j++) {
@@ -119,19 +122,17 @@ async function getTopType(type, access_token) {
     total_songs.push(top_songs);
   }
   var merged = [].concat.apply([], total_songs);
-  uniq = [...new Set(merged)];
+  var uniq = [...new Set(merged)];
   return uniq;
 
 }
 
-
-function getSavedArtists() {
-  var offsets = [];
-  var total_songs = []
-  for (var i = 0; i <= 60; i+=20) {
-    offsets.push(i);
+export async function blondedPopularity(blonded_track_id_map) {
+  var popularities = [];
+  for (var track_id in blonded_track_id_map) {
+    popularities.push(blonded_track_id_map[track_id].popularity);
   }
-
+  return popularities.sort(); 
 }
 
 function getSavedAlbums() {

@@ -1,9 +1,15 @@
 <!doctype html>
 <html>
   <head>
+    <link
+  rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+  crossorigin="anonymous"
+/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' https://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' https://* 'unsafe-inline'; img-src 'self' https://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon_package_v0.16/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon_package_v0.16/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon_package_v0.16/favicon-16x16.png">
@@ -15,300 +21,38 @@
     
     <title>Frank Ocean Metric</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.gstatic.com">
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://code.iconify.design/1/1.0.7/iconify.min.js"></script>
     </style>
   </head>
 
-  <body style="background-color: black; color:white">
-    <div id="root"></div>
-    <div class="container">
-      <div id="login">
-        <span type="button" id="mode-button" onclick=darkmode()>&#9788;</span>
-        <h1 id="title" style="text-align:center;">THE FRANK OCEAN METRIC</h1>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm">
-              <img src="covers/wtff2.jpg" alt="" style="width:100%" id="row-1-col-1" >              
-            </div>
-            <div class="col-sm">
-              <img src="covers/frank.jpeg"  alt="" style="width:100%" id="row-1-col-2">
-            </div>
-            <div class="col-sm">
-              <div mr-1 style="width:100%">
-                <p id="subtitle"> A website to compare your music taste
-                  to Frank Ocean's playlists Blonded
-                </p>
-                <div id="login-btn">
-                  <a href="http://localhost:8888/login" class="button" style="align-items: center;justify-items: center;">
-                    <img src="covers/white_logo.png" alt="">
-                     <h3 style="font-family: var(--bs-font-sans-serif);">Log In With Spotify</h3>
-                  </a>
-                </div>
-              </div>
-              
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-sm">
-              <iframe src="https://open.spotify.com/embed/playlist/2Nmrca90TmGJnKsGcROP2C" width="500" height="550" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-            </div>
-            <div class="col-1">
-                  <p id="japanese-vertical" style="-webkit-text-stroke: 1px red;
-                  -webkit-text-fill-color: black;">フランク・オーシャン</p>
-            </div>
-            <div class="col-md">
-              <img class="media-object" src="https://imgur.com/hqZX3it.png" style="width:100%">
-            </div>
-          </div>
-        </div>
-        
-      <svg class="wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="#848dd3" fill-opacity="1" d="M0,192L48,186.7C96,181,192,171,288,186.7C384,203,480,245,576,266.7C672,288,768,288,864,272C960,256,1056,224,1152,208C1248,192,1344,192,1392,192L1440,192L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>
-      <footer class="footer" style="background-color: #848dd3; padding: 30px;">
-        <div class="container" style="text-align: center;">
-          <div class="row" style="margin-left: 10%;">
-            <div class="col" style="text-align: left;">
-              <p style="font-size: 24px;font-weight: 800;">Explore</p>
-              <p>Compare Spotify Music</p>
-              <p>Compare Movies</p>
-            </div>
-            <!-- <div class="col" style="text-align: left;">
-              <p>About</p>
-            </div> -->
-            <div class="col" style="text-align: left;">
-              <p style="font-size: 24px; font-weight: 800;">Contact</p>
-              <p>anahita.mohapatra@mail.mcgill.ca</p>
-              <p>helen.kulka@mail.mcgill.ca</p>
-            </div>
-            <div class="col" style="text-align: left;">
-              <p style="font-size: 24px; font-weight: 800;">Spotify</p>
-              <iframe src=https://open.spotify.com/follow/1/?uri=spotify:artist:2h93pZq0e7k5yf4dywlkpM&size=detail&theme=light" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
-            </div>
-          </div>
-          <p style="font-family: var(--bs-font-sans-serif);">Made By Anahita Mohapatra and Helen Kulka</p>
-        </div>
-      </footer>
-      </div>
-      <div id="loggedin">
-        <div id="user-profile">
-          <script src="https://cdnjs.cloudflare.com/ajax/libs/spotify-web-api-js/1.5.1/spotify-web-api.js" integrity="sha512-lNAdXpUi8E6pEVDtriZ7PbNF1m9W4wYKawVkmkppB9aTBPNMmQPQmb/9LiH3qXG10DLHleRDPK4Sm2v14dIO7A==" crossorigin="anonymous"></script>
-          <script src="getUserData.js"></script>
-        </div>
-        <div id="oauth">
-        </div>
-        <button class="btn btn-default" id="obtain-new-token">Obtain new token using the refresh token</button>
-      </div>
-    </div>
-
-
-
-
-    <script>
-      var mode = true
-        function darkmode() { 
-          //console.log('dark mode activated');
-          if (mode == false){
-            document.getElementById("mode-button").innerHTML="&#9788;"
-            document.getElementById("mode-button").style.color ="white"
-            //console.log('changed mode')
-            document.body.style="background-color:black;color:white"
-            // document.body.classList.toggle("light-mode");
-            // document.getElementById("row-1-col-1").src = "covers/wtff2.jpg"
-            // document.getElementById("row-1-col-2").src = "covers/frank_ocean_pic2.jpg"
-            mode = true
-          }
-          else{
-            document.getElementById("mode-button").innerHTML="&#9790;"
-            document.getElementById("mode-button").style.color ="black"
-            document.body.style="background-color:white;color:black"
-            // document.body.classList.toggle("light-mode");
-            // document.getElementById("row-1-col-1").src = "covers/wtff.jpg"
-            // document.getElementById("row-1-col-2").src = "covers/frank.jpeg"
-            mode = false
-          }         
-        }      
-    </script>
-
-    <script id="user-profile-template" type="text/x-handlebars-template">
-      <h4> hey {{first_name}}, </h4>
-      <p id="saved-res">ur a star :) you have {{ saved }} liked songs featured on Blonded. </p>
-      <div class="media">
-        <div class="pull-left">
-          <img class="media-object" width="150" src="{{images.0.url}}" />
-        </div>
-        <div class="media-body">
-          <dl class="dl-horizontal">
-            <dt>Id</dt><dd>{{id}}</dd>
-            <dt>Email</dt><dd>{{email}}</dd>
-            <dt>Spotify URI</dt><dd><a href="{{external_urls.spotify}}">{{external_urls.spotify}}</a></dd>
-            <dt>Link</dt><dd><a href="{{href}}">{{href}}</a></dd>
-            <dt>Profile Image</dt><dd class="clearfix"><a href="{{images.0.url}}">{{images.0.url}}</a></dd>
-            <dt>Country</dt><dd>{{country}}</dd>
-            <dt>Playlists</dt><dd>{{playlists}}</dd>
-          </dl>
-        </div>
-      </div>
-    </script>
-
-    <script id="oauth-template" type="text/x-handlebars-template">
-      <dl class="dl-horizontal">
-        <dt>Access token</dt><dd class="text-overflow">{{access_token}}</dd>
-        <dt>Refresh token</dt><dd class="text-overflow">{{refresh_token}}></dd>
-      </dl>
-    </script>
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
-    <script>
-      // const spotifyApi = new SpotifyWebApi();
-      (async function() {
-
-        /**
-         * Obtains parameters from the hash of the URL
-         * @return Object
-         */
-        function getHashParams() {
-          var hashParams = {};
-          var e, r = /([^&;=]+)=?([^&;]*)/g,
-              q = window.location.hash.substring(1);
-          while ( e = r.exec(q)) {
-             hashParams[e[1]] = decodeURIComponent(e[2]);
-          }
-          return hashParams;
-        }
-
-        var userProfileSource = document.getElementById('user-profile-template').innerHTML,
-            userProfileTemplate = Handlebars.compile(userProfileSource),
-            userProfilePlaceholder = document.getElementById('user-profile');
-
-        var oauthSource = document.getElementById('oauth-template').innerHTML,
-            oauthTemplate = Handlebars.compile(oauthSource),
-            oauthPlaceholder = document.getElementById('oauth');
-
-        var params = getHashParams();
-
-        var access_token = params.access_token,
-            refresh_token = params.refresh_token,
-            error = params.error;
-
-        if (error) {
-          alert('There was an error during the authentication');
-        } else {
-          if (access_token) {
-            // render oauth info
-            oauthPlaceholder.innerHTML = oauthTemplate({
-              access_token: access_token,
-              refresh_token: refresh_token
-            });
-
-            //presenting first name
-            var res = JSON.parse(await getFirstName(access_token));
-            var present = res;
-            res.first_name = res.display_name.split(" ")[0].toLowerCase();
-            userProfilePlaceholder.innerHTML = userProfileTemplate(res);
-            $('#login').hide();
-            $('#loggedin').show();
-
-            //global storage for user's saved tracks and blonded tracks
-            var track_ids = track_artists = top_songs = top_artists = new Set();
-            var blonded_ids = blonded_artists = {};
-            
-            //get Blonded tracks and artists
-            var blonded_tracks = await getPlaylist(access_token);
-            blonded_ids = {};
-            for (i =0; i < blonded_tracks.length; i++) {
-              track = blonded_tracks[i];
-              blonded_ids[track.id] = track.name;
-              for (j=0;j<track.artists.length; j++) {
-                blonded_artists[track.artists[j].id] = track.artists[j].name;
-              }
-            }
-
-              /////////GETTING TOP SONGS/////////////
-              var top_songs = await getTopType('tracks', access_token);
-              const keys = Object.keys(blonded_ids);
-              const filteredArray = keys.filter(value => top_songs.includes(value));
-              // for (var i=0; i<filteredArray.length; i++) {
-              //   console.log(blonded_ids[filteredArray[i]]);
-              // }
-
-              ///////GETTING TOP ARTISTS///////////
-              var top_artists = await getTopType('artists', access_token);
-              const keys_artists = Object.keys(blonded_artists);
-              const artists_overlap = keys_artists.filter(value => top_artists.includes(value));
-
-
-              ////////GETTING PLAYLIST TRACKS //////////
-              var playlists = JSON.parse(await getSavedPlaylists(access_token));
-              playlists = playlists.items;
-
-              for (i=0; i<playlists.length; i++) {
-                if (playlists[i].id === "6HEegfWHhUcytwQFAm1QbK") {
-                    continue;
-                }
-                var tracks_url = playlists[i].tracks.href;
-                var offset = 0;
-                while (offset < 300) {
-                  var res = await getTracksFromPlaylist(access_token, tracks_url, offset);
-                  var tracks = JSON.parse(res);
-                  tracks = tracks.items;
-                  for (var j=0; j<tracks.length; j++) {
-                    track_ids.add(tracks[j].track.id);
-                    for (var z=0; z<tracks[j].track.artists.length; z++) {
-                      track_artists.add(tracks[j].track.artists[z].id);
-                    }
-                  }
-                  offset = offset + 100;
-                }
-              }
-
-
-              const playlist_overlap = keys.filter(value => Array.from(track_ids).includes(value));
-              const num_on_playlists = playlist_overlap.length;
-              for (var i=0; i<playlist_overlap.length; i++) {
-                console.log(blonded_ids[playlist_overlap[i]]);
-              }
-
-
-              ////////GETTING SAVED TRACKS (that aren't also in playlist tracks)//////////
-              console.log(Object.keys(blonded_ids))
-              var arr_saved = await getLikedTracks(access_token, Object.keys(blonded_ids));
-              var num_saved = 0;
-              for (i =0; i < arr_saved.length; i+=1) {
-                if (arr_saved[i]) {
-                  if (!playlist_overlap.includes(keys[i])) {
-                    num_saved += 1;
-                    track_ids.add(keys[i]);
-                  }
-                }
-              }
-            present.saved = num_saved + num_on_playlists;
-            userProfilePlaceholder.innerHTML = userProfileTemplate(present);
-
-          } else {  
-              // render initial screen
-              $('#login').show();
-              $('#loggedin').hide();
-          }
-
-          document.getElementById('obtain-new-token').addEventListener('click', function() {
-            $.ajax({
-              url: '/refresh_token',
-              data: {
-                'refresh_token': refresh_token
-              }
-            }).done(function(data) {
-              access_token = data.access_token;
-              oauthPlaceholder.innerHTML = oauthTemplate({
-                access_token: access_token,
-                refresh_token: refresh_token
-              });
-            });
-          }, false);
-        }
-      })();
-    </script>
+  <body>
+     <div id="root"></div>
+     <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Frank Ocean</title>
+    <link rel="stylesheet" href="loading.css">
+  </head>
+  <body style="background-color: black">
+    <!-- <div class="loading" id="loading">
+      <div class="a"></div>
+      <div class="b"></div>
+      <div class="c"></div>
+      <div class="d"></div>
+      <div class="e"></div>
+      <div class="f"></div>
+      <div class="g"></div>
+      <div class="h"></div>
+      <div class="i"></div>
+    </div> -->
   </body>
+</html>
+  </body>
+  
 </html>

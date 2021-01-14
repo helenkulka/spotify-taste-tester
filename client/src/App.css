@@ -1,33 +1,209 @@
-.App {
+.title {
+  color:transparent;
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 65px;
+  font-stretch: extra-expanded;
+  font-weight: 100;
+  text-align: center;
+  color:transparent;
+  -webkit-text-stroke-width: 1.95px; 
+  -webkit-text-stroke-color: #ff7e30;
+  -webkit-text-size-adjust: 100%;
+
+  /* margin-top: 20vh; */
+  padding-top: 2%;
+  /* padding: bottom 10vh;; */
+
+}
+
+#title1{
+  color:#ff7e30;
+}
+#title2:hover {
+  color:#ff7e30;
+}
+
+#subtitle{
+  word-wrap: break-word;
+  color:#ff7e30;
+  font-family: var(--bs-font-sans-serif);
+  font-size: 22px;
+  font-style: bold;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+.row{
+    margin-top: 1.5em; 
+    margin-bottom: 1.5em;
+    padding: bottom 10vh;;
+
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
+.fadeOut{
+  opacity:0;
+  transition: width 0.5s 0.5s, height 0.5s 0.5s, opacity 0.5s;
 
-.App-title {
-  font-size: 1.5em;
 }
+.fadeIn{
+  opacity:1;
+  transition: width 0.5s, height 0.5s, opacity 0.5s 0.5s;
 
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 
-div, button {
-  margin: 10px;
+
+
+.row .col{
+  margin-top: 1.5em;
+  margin-bottom: 1.5em;
+}
+
+#login-btn{
+  border-radius: 20px;
+  background-color: #1DB954;
+  color:white;
+  font-family: var(--bs-font-sans-serif);
+  font-size: 15px;
+  padding-right: 25px;
+}
+
+#discobutton{
+  padding-left: 0; padding-right: 0;
+     border-left-width: 0; border-right-width: 0;
+     white-space: nowrap;
+     overflow: hidden;
+     width:0px;
+}
+
+#japanese-vertical{
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    font-size: 200%;
+    font-weight: 150%;
+    margin-top: 75px;
+    font-style: italic;
+    white-space: nowrap;
+    overflow: hidden; 
+    animation: animated-text 4s steps(29,end) 1s 1 normal both;
+    -webkit-text-stroke: 1px #b1ed58;
+  -webkit-text-fill-color: black;
+}
+
+#japanese-vertical:hover{
+  -webkit-text-stroke: 1px #b1ed58;
+  -webkit-text-fill-color: #b1ed58;
+}
+
+@keyframes animated-text{
+  from{height: 0;}
+  to{height: 472px;}
+}
+
+.section{
+  height: 100vh;
+}
+.section-first{
+  height: 90vh;
+}
+
+/*SOCİAL İCONS*/
+
+/* footer social icons */
+
+ul.social-network {
+  list-style: none;
+  display: inline;
+  margin-left: 0 !important;
+  padding: 0;
+}
+
+ul.social-network li {
+  display: inline;
+  margin: 0 5px;
+}
+
+
+/* footer social icons */
+
+.social-network a.icoFacebook:hover {
+  background-color: #3B5998;
+}
+
+.social-network a.icoLinkedin:hover {
+  background-color: #007bb7;
+}
+
+.social-network a.icoTwitter:hover {
+  background-color: #1DA1F2;
+}
+
+.social-network a.icoInstagram:hover {
+  background-color: #C13584;
+}
+
+.social-network a.icoGithub:hover {
+  background-color: #6f42c1;
+}
+
+.social-network a.icoFacebook:hover i,
+.social-network a.icoLinkedin:hover i,
+.social-network a.icoTwitter:hover i,
+.social-network a.icoInstagram:hover i,
+.social-network a.icoGithub:hover i
+ {
+  color: #fff;
+}
+
+.social-network a.socialIcon:hover,
+.socialHoverClass {
+  color: #44BCDD;
+}
+
+.social-circle li a {
+  display: inline-block;
+  position: relative;
+  margin: 5px auto 0 auto;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+}
+
+.social-circle li i {
+  margin: 0;
+  line-height: 30px;
+  text-align: center;
+}
+
+.social-circle li a:hover i,
+.triggeredHover {
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -ms--transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.social-circle i {
+  color: #595959;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+.social-network a {
+  background-color: #F9F9F9;
+}
+
+.footer-titles p:hover{
+  color:blue
 }
