@@ -47,6 +47,8 @@ export default class Home extends Component {
     await this.fadeInHome()
   }
 
+
+
   render() {
     const darkModeOn = this.state.darkMode
     return (
@@ -77,7 +79,7 @@ export default class Home extends Component {
         <button id="discobutton" onClick={this.enterSiteInstructions} style={{color:"black"}}>
         <DiscoBall></DiscoBall>
         </button>      ) : (
-          <button id="discobutton" onClick={this.enterSiteInstructions} style={{color:"#ffd86b"}}>
+          <button id="discobutton" onClick={this.enterSiteInstructions} style={{color:"rgb(255 233 207)"}}>
         <DiscoBall></DiscoBall>
         </button>      )}
       </div>

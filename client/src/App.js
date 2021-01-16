@@ -23,7 +23,9 @@ class App extends Component {
       userData: {},
       backgroundColor:"black",
       color:"white",
-      enteredSite: false
+      enteredSite: false,
+      itemsLoaded: false
+
     }
   }
 
@@ -38,7 +40,7 @@ class App extends Component {
     }
     else{
       this.setState({
-        backgroundColor: "#ffd86b",
+        backgroundColor: "rgb(255 233 207)",
         color: "black",
         enteredSite: enterSiteStatus
     })
@@ -59,6 +61,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    this.setState({itemsLoaded:true})
     if (this.state.loggedIn) {
      var userData = await getUserData(this.state.accessToken);
       this.setState({userData: userData});
@@ -66,6 +69,8 @@ class App extends Component {
   }
   render() {
     const enteredSite = this.state.enteredSite
+    const dataLoaded = this.state.itemsLoaded
+
     if (!(Object.keys(this.state.userData).length === 0)) {
       return(
         <div className="App" style={{backgroundColor:this.state.backgroundColor, color:this.state.color}}>
@@ -74,28 +79,24 @@ class App extends Component {
       )
     }
     return (
-
         <div className="App" style={{backgroundColor:this.state.backgroundColor, color:this.state.color}}>
+        {dataLoaded ? (
           <div className="HomePage">
             <Home onChangeParentStyle={this.onChangeStyle.bind(this)} ></Home>
-
-
             {enteredSite ? (
-      <div>
-      <Wave></Wave>
-      <Footer></Footer>
-      </div>
-      ) : ( <div></div>
-      )}
-
-  
-            
-            <script></script>
-            {/* <p>Logged In: str({this.state.loggedIn})</p> */}
-            {/* <Loading></Loading> */}
-          </div>
+              <div>
+                <Wave></Wave>
+                <Footer></Footer>
+              </div>
+              ) : ( <div></div>)}
         </div>
-    )
+          ) : (
+            <div>
+            <Loading></Loading>
+            </div>
+          )}
+        </div>
+      )
   }
 }
 
