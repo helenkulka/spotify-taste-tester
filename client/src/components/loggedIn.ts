@@ -1,13 +1,13 @@
-import React, { useRef, Component} from 'react';
+import React, { useRef, Component, HTMLDivElement} from 'react';
 import './loggedin.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Loading from './loading.js'
+import useVisibility from "./useVisibility";
 import Popularity from './popularity.js'
 import { Container, Row, Col, Fragment } from 'react-bootstrap';
 import blonded_artist_id_map from './artist_id_name_map.json';
 import blonded_track_id_map from './track_id_name_map.json';
 import { getTopType, getSavedPlaylists, getTracksFromPlaylist, getLikedTracks, blondedPopularity } from './getUserData';
-import { Waypoint } from 'react-waypoint';
 
 const blonded_track_ids = Object.keys(blonded_track_id_map);
 
@@ -24,7 +24,8 @@ var overlap_tracks_msgs = [
     "you and frank were switched at birth, probably. or you should just get outside more."
 ]
 export default class LoggedIn extends Component {
-
+    var [isFirstVisible, firstRef] = useVisibility<HTMLDivElement>(-100);
+    var [isSecondVisible, secondRef] = useVisibility<HTMLDivElement>(100);
 
     constructor(props) {
         super(props);
@@ -38,10 +39,6 @@ export default class LoggedIn extends Component {
             tracksToPresent: [],
             itemsLoaded: false
         };
- 
-        this.backgroundColor1 = this.backgroundColor1.bind(this);
-        this.backgroundColor2 = this.backgroundColor2.bind(this);
-        this.backgroundColor3 = this.backgroundColor3.bind(this);
     }
 
     async calculateUserPopularity(blonded_track_id_map, track_overlap) {
@@ -202,13 +199,9 @@ export default class LoggedIn extends Component {
         this.setOverlapTracksMsg(Array.from(overlap_all_track_ids).length);
         this.setOverlapTracks(overlap_top_track_ids, overlap_all_track_ids);
         this.calculateUserPopularity(blonded_track_id_map, overlap_all_track_ids);
-        this.setState({itemsLoaded:true},this.props.onChangeParentStyle(true,true,1));
+        this.setState({itemsLoaded:true},this.props.onChangeParentStyle(false,true));
     }
 
-    backgroundColor1 = () => this.setState(this.props.onChangeParentStyle(true,true,1));
-    backgroundColor2 = () => this.setState(this.props.onChangeParentStyle(true,true,2));
-    backgroundColor3 = () => this.setState(this.props.onChangeParentStyle(true,true,3));
-    
 
 
 
@@ -219,26 +212,9 @@ export default class LoggedIn extends Component {
             {dataLoaded ? (
                 <div id="logged-in" className="fadeIn">
                 <Container id="tracks">
-                    <div>
-                    <Waypoint topOffset='100px' bottomOffset='150px' onEnter={this.backgroundColor1} onLeave={this.backgroundColor2} >
-                        <h2 className="section-first" id="first-name"> hey { this.state.firstName },  
-                        <h2>hello</h2>
-                        <h2>hello</h2>
-                        <h2>hello</h2>
-                        <h2>hello</h2>
-                        </h2>
-                    </Waypoint>
-                    </div>
-
-                    <div >
-                    <Waypoint topOffset='100px' bottomOffset='150px' >
-                        <p className="section-first" id="overlap-tracks-msg"> { this.state.overlapTracksMsg } </p>
-                    </Waypoint>
-                    </div>
-
-                    <div>
-                    <Waypoint topOffset='100px' bottomOffset='150px' onEnter={this.backgroundColor3} onLeave={this.backgroundColor2}>
-                        <Row className="section-first">
+                    <h2 ref={firstRef} className="section" id="first-name"> hey { this.state.firstName },  </h2>
+                    <p className="section"id="overlap-tracks-msg"> { this.state.overlapTracksMsg } </p>
+                    <Row ref={secondRef} className="section">
                         <Col id="top-tracks"> 
                         <h3 id="top-tracks-msg"> { this.state.overlapTopTracksMsg }</h3>
                                 {
@@ -251,9 +227,6 @@ export default class LoggedIn extends Component {
                                 })}
                         </Col>
                     </Row>
-                    </Waypoint>
-                    </div>
-                    
                 </Container>
             </div>
                 
