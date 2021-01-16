@@ -1,0 +1,35 @@
+#top-tracks {
+    background-color: #D0FFD4;
+    height: 800px;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+#top-tracks-msg {
+    color:#312E50;
+    -webkit-text-stroke-width: 1.4px; 
+    -webkit-text-stroke-color: #312E50;
+    font-family: 'Archivo', sans-serif;
+    font-size: 40px;
+    font-style: bold;
+    text-align: left;
+    margin-top: 70px;
+    margin-left: 40px;
+    margin-right: 40px;
+}
+
+#track-artwork {
+    width: 150px;
+}
+#track-name {
+    font-size: 20px;
+}
+
+#track-artist {
+    font-size: 15px;
+}
+
+#one-track {
+    /* display: inline-flex; */
+    flex-direction: row;
+}

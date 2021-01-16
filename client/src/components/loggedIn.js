@@ -1,6 +1,9 @@
 import React, { useRef, Component} from 'react';
 import './loggedin.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import $ from 'jquery';
+import './jquery.pagepiling.js';
+import './jquery.pagepiling.css';
 import Loading from './loading.js'
 import Popularity from './popularity.js'
 import { Container, Row, Col, Fragment } from 'react-bootstrap';
@@ -8,6 +11,9 @@ import blonded_artist_id_map from './artist_id_name_map.json';
 import blonded_track_id_map from './track_id_name_map.json';
 import { getTopType, getSavedPlaylists, getTracksFromPlaylist, getLikedTracks, blondedPopularity } from './getUserData';
 import { Waypoint } from 'react-waypoint';
+import Tracks from './tracks';
+import TopTracks from './topTracks';
+import { disableBodyScroll } from 'body-scroll-lock';
 
 const blonded_track_ids = Object.keys(blonded_track_id_map);
 
@@ -17,11 +23,11 @@ var i,j,z = 0;
 
 var overlap_tracks_msgs = [
     "we didn't find any shared songs :(",
-    "u made the cut ur OK",
-    "not bad kid.",
-    "WOW! cool man, you like a lot of music!",
-    "wait what? Frank - is that you?",
-    "you and frank were switched at birth, probably. or you should just get outside more."
+    "u made the cut ur OK. we found some similarities between your music tastes.",
+    "not bad kid. you and Frank Ocean might have a bit in common.",
+    "WOW! cool man, you like a lot of music! it looks like you and Frank Ocean have a lot in common.",
+    "wait what? Frank - is that you? we found a lot in common between you and Frank Ocean's music taste.",
+    "you and frank were switched at birth, probably. or you should just get outside more. we found ...too much in common between your music tastes."
 ]
 export default class LoggedIn extends Component {
 
@@ -31,12 +37,15 @@ export default class LoggedIn extends Component {
 
         this.state = {
             firstName : "",
+            overlapIntroMsg: "",
             overlapTracksMsg: "",
             overlapTopTracksMsg: "",
             overlapTopTracks: [],
             overlapTracks: [],
-            tracksToPresent: [],
-            itemsLoaded: false
+            overlapTracksIds: [],
+            numTracksOverlap: 0,
+            itemsLoaded: false,
+            ref1: React.createRef()
         };
  
         this.backgroundColor1 = this.backgroundColor1.bind(this);
@@ -44,85 +53,50 @@ export default class LoggedIn extends Component {
         this.backgroundColor3 = this.backgroundColor3.bind(this);
     }
 
-    async calculateUserPopularity(blonded_track_id_map, track_overlap) {
-        var popularity_set = await blondedPopularity(blonded_track_id_map);
-        var popularity_length = Array.from(popularity_set).length;
-        var minimum_popularity_tracks = [];
-        var user_avg = 0;
-        var user_min = 999;
-        for (i in track_overlap) {
-            var track_popularity = blonded_track_id_map[track_overlap[i]].popularity;
-            user_avg += track_popularity;
-            if (track_popularity < user_min) {
-                user_min = track_popularity;
-            }
-        }
-        user_avg = Math.floor(user_avg/Array.from(track_overlap).length);
-        popularity_set = popularity_set.filter(value => value !== user_avg);
-        popularity_set.push(user_avg);
-        popularity_set.sort();
-        var length_prior = popularity_set.length;
-        var user_stat = 1 - popularity_set.slice(popularity_set.indexOf(user_avg) + 1, popularity_set.length + 1).length/length_prior;
-        for (i in track_overlap) {
-           if (blonded_track_id_map[track_overlap[i]].popularity === user_min) {
-               minimum_popularity_tracks.push(blonded_track_id_map[track_overlap[i]]);
-           }
-        }
-        console.log("USER NICHENESS:", user_stat);
-        console.log("MINIMUM POP LIST:", minimum_popularity_tracks);
+    handleNavigate() {
+        let el = this.state.ref1;
+        console.log(el);
 
+        el.current.scrollIntoView({ behavior: 'smooth' })
     }
 
-    setOverlapTracks(top_track_overlap, all_track_overlap) {
+
+    setOverlapTopTracks(top_track_overlap) {
         var top_track_info = [];
+        var msg = "";
+        if (top_track_overlap.length > 0) {
+            msg =  top_track_overlap.length + " top songs. WOW! " + top_track_overlap.length +  " of your most listened to songs of all time overlap with Frank Ocean's favorites.";
+            for (i in top_track_overlap) {
+                top_track_info.push(blonded_track_id_map[top_track_overlap[i]]);
+            }
+            if (top_track_info.length > 3) {
+                msg = msg + " check out your top 3";
+                top_track_info = top_track_info.slice(0,3);
+            }
+        } 
+        this.setState({overlapTopTracksMsg: msg, overlapTopTracks: top_track_info});
+    }
+
+    setOverlapTracks(all_track_overlap, top_track_overlap) {
         var all_track_info = [];
-        var present_track_info = [];
         var msg = "";
 
-        if (top_track_overlap.length > 0) {
-            if (top_track_overlap.length == 1) {
-                msg = "RARE! " + top_track_overlap.length + " of your top songs is featured on Blonded. ";
-            } else {
-                msg = "RARE! " + top_track_overlap.length + " of your top songs are featured on Blonded. ";
-            }
-            for (i in top_track_overlap) {
-                present_track_info.push(blonded_track_id_map[top_track_overlap[i]]);
-            }
-            top_track_info = present_track_info;
-            if (present_track_info.length >= 5) {
-                msg = msg + "check out your favorites";
-            } else if (present_track_info.length < 5) {
-                msg = msg + "check out some more of your favorites";
-                for (i in all_track_overlap) {
-                    if (present_track_info.length == 5) {
-                        break;
-                    } else {
-                        if (!present_track_info.includes(blonded_track_id_map[all_track_overlap[i]])) {
-                            present_track_info.push(blonded_track_id_map[all_track_overlap[i]]);
-                        }
-                    }
+        if (all_track_overlap.length > 0) {
+            msg =  all_track_overlap.length + " liked songs. we found " + all_track_overlap.length + " songs saved in your library that appeared on Frank ocean’s playlists.";
+            for (i in all_track_overlap) {
+                if (!top_track_overlap.includes(all_track_overlap[i])) {
+                    all_track_info.push(blonded_track_id_map[all_track_overlap[i]]);
                 }
             }
-            this.setState({tracksToPresent: present_track_info, overlapTopTracksMsg: msg, overlapTopTracks: top_track_info});
-            return;
-        } else {
-            if (all_track_info.length >= 5) {
-                msg = "check out some songs you have in common";
-                while (i < 5) {
-                    present_track_info.push(blonded_track_id_map[all_track_overlap[i]]);
-                    i++;
-                }
-            } else {
-                msg = "check out the songs you have in common"
-                for (i in all_track_overlap) {
-                    present_track_info.push(blonded_track_id_map[all_track_overlap[i]]);
-                }
+            if (all_track_info.length > 3) {
+                msg = msg + " check out your favorites";
+                all_track_info = all_track_info.slice(0,3);
             }
-            this.setState({tracksToPresent: present_track_info, overlapTopTracksMsg: msg})
         }
+        this.setState({overlapTracks: all_track_info, overlapTracksMsg: msg})
     }
 
-    setOverlapTracksMsg(num_tracks_overlap) {
+    setOverlapIntroMsg(num_tracks_overlap) {
         var msg = "";
         if (num_tracks_overlap === 0) {
             msg = overlap_tracks_msgs[0];
@@ -137,8 +111,12 @@ export default class LoggedIn extends Component {
           } else if (num_tracks_overlap >= 100) {
             msg = overlap_tracks_msgs[5];
           }
-          msg = msg + " you have " + num_tracks_overlap + " liked songs in common with Frank Ocean";
-          this.setState({overlapTracksMsg: msg});
+          if (num_tracks_overlap === 0) {
+            msg = msg + " check out our recommendations below."
+          } else {
+            msg = msg + " check out your results below."
+          }
+          this.setState({overlapIntroMsg: msg, numTracksOverlap: num_tracks_overlap});
     }
 
     async getUserSavedTracks(track_overlap) {
@@ -150,6 +128,7 @@ export default class LoggedIn extends Component {
             }
           }
         }
+        this.setState({overlapTracksIds: track_overlap});
         return track_overlap;
     }
 
@@ -195,14 +174,31 @@ export default class LoggedIn extends Component {
 
 
     async componentDidMount() {
+        disableBodyScroll(this.state.ref1.current);
         this.setState({firstName: this.props.userData.display_name.split(" ")[0].toLowerCase()});
         var overlap_top_track_ids = await this.getUserTopTracks();
         var overlap_playlist_track_ids = await this.getUserPlaylistTracks();
         var overlap_all_track_ids = await this.getUserSavedTracks(overlap_playlist_track_ids);
-        this.setOverlapTracksMsg(Array.from(overlap_all_track_ids).length);
-        this.setOverlapTracks(overlap_top_track_ids, overlap_all_track_ids);
-        this.calculateUserPopularity(blonded_track_id_map, overlap_all_track_ids);
+        //setting intro message for first page
+        this.setOverlapIntroMsg(Array.from(overlap_all_track_ids).length);
+
+        //setting overlap track messages for all tracks and top tracks
+        //will be rendered in respective components
+        this.setOverlapTracks(overlap_all_track_ids, overlap_top_track_ids);
+        this.setOverlapTopTracks(overlap_top_track_ids);
+        // this.calculateUserPopularity(blonded_track_id_map, overlap_all_track_ids);
         this.setState({itemsLoaded:true},this.props.onChangeParentStyle(true,true,1));
+
+        $(document).ready(function() {
+            $('#pagepiling').pagepiling({
+                navigation: {
+                    'textColor': '#fff',
+                    'bulletsColor': '#fff',
+                    'position': 'right',
+                    'tooltips': ['sec1', 'sec2','sec3', 'sec4']
+                }
+            })
+        });
     }
 
     backgroundColor1 = () => this.setState(this.props.onChangeParentStyle(true,true,1));
@@ -213,35 +209,59 @@ export default class LoggedIn extends Component {
 
 
     render() {
-        const dataLoaded = this.state.itemsLoaded
-        return(
-            <div>
-            {dataLoaded ? (
+        const dataLoaded = this.state.itemsLoaded;
+        if (!dataLoaded) {
+            return  (<Loading></Loading>)
+        } else if (this.state.numTracksOverlap > 0) {
+            if (this.state.overlapTopTracks.length > 0) {
+                return (
+                    <div id="pagepiling">
+                        <div class="section sec1">
+                            <Container id="intro">
+                                <h2 id="first-name"> hey { this.state.firstName },  </h2>
+                                <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
+                            </Container>
+                        </div>
+                        <div class="section sec2">
+                            <Tracks {...this.state}> </Tracks>
+                        </div>
+                        <div class="section sec3">
+                            <TopTracks {...this.state}></TopTracks>
+                        </div>
+                        {/*
+
+                        <div class="section sec4">
+                            <Popularity {...this.state}></Popularity>
+                        </div> */}
+                    </div>
+                    
+                // <div id="logged-in" className="fadeIn">
+                // <Container id="intro">
+                //     <h2 id="first-name"> hey { this.state.firstName },  </h2>
+                //     <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
+                //     <button onClick={() => this.handleNavigate()}>
+                //         {"beep"}
+                // </button>
+                // </Container>
+
+                // <Tracks {...this.state}> </Tracks>
+                // <TopTracks {...this.state}></TopTracks>
+                // <Popularity {...this.state}> </Popularity>
+                // </div>
+                )
+            } else {
+                return (                
                 <div id="logged-in" className="fadeIn">
-                <Container id="tracks">
-                <h2 id="first-name"> hey { this.state.firstName },  </h2>
-                    <p id="overlap-tracks-msg"> { this.state.overlapTracksMsg } </p>
-                    <Container>
-                            {this.state.tracksToPresent.map(p => (
-                                <Col xs="4" id="one-track">
-                                                                            <img id="track-artwork" key={p.id} src={p.artwork} alt="can't show image" />
-                                        <h2 id="track-name" key={p.id}> {p.name} </h2>
-                                        <p id="track-artist" key={p.id}> {p.artist} </p>
-                                                    </Col>
-                        ))}
-                         </Container>
-                        <h3 id="top-tracks-msg"> { this.state.overlapTopTracksMsg }</h3>
+                <Container id="intro">
+                    <h2 id="first-name"> hey { this.state.firstName },  </h2>
+                    <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
                 </Container>
-            </div>
-                
-                ) : (
 
-                    // null
-                    <Loading></Loading>
-
-
-            )}
-        </div>
-        )
+                <Tracks {...this.state}> </Tracks>
+                <Popularity {...this.state}> </Popularity>
+                </div>
+                )
+            }
+        }
     }
 }

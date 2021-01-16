@@ -50,7 +50,7 @@ async calculateUserPopularity(blonded_track_id_map, track_overlap) {
            minimum_popularity_tracks.push(blonded_track_id_map[track_overlap[i]]);
        }
     }
-    this.state.set({popularity: user_stat,
+    this.setState({popularity: user_stat,
         popularTracks: minimum_popularity_tracks});
     console.log("USER NICHENESS:", user_stat);
     console.log("MINIMUM POP LIST:", minimum_popularity_tracks);
@@ -58,7 +58,7 @@ async calculateUserPopularity(blonded_track_id_map, track_overlap) {
 }
 
 componentDidMount() {
-    this.calculateUserPopularity(blonded_track_id_map, this.props.overlapTrack);
+    this.calculateUserPopularity(blonded_track_id_map, this.props.overlapTracksIds);
 
 }
 
@@ -66,19 +66,8 @@ render() {
     return(
         <div>
             <Container id="tracks">
-                <p id="overlap-tracks-msg"> { this.state.overlapTracksMsg } </p>
                 <Row>
-                    <Col fluid id="top-tracks">
-                            {this.state.overlapTopTracks.map(p => {
-                                return  <div>
-                                    <img id="track-artwork" key={p.id} src={p.artwork} alt="can't show image" />
-                                    <p id="track-name" key={p.id}> {p.name} </p> 
-                                    <p id="track-artist" key={p.id}> {p.artist} </p>
-                                </div>
-                            })}
-                    </Col>
                     <Col fluid id="niche-tracks"> 
-                        niche songs 
                     </Col>
                 </Row>
             </Container>

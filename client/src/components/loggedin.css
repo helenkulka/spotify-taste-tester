@@ -1,43 +1,73 @@
-#logged-in {
+/* #logged-in {
     background-color:#F3FF9A;
     height: 800px;
+    width: 100%;
+    overflow-y: scroll;
+} */
+
+#intro {
+    height: 100%;
+    width: 100%;
+    background-color:#F3FF9A;
     overflow-y: scroll;
 }
 
 #first-name {
-    color:#ff7e30;
-    -webkit-text-stroke-width: 1.4px; 
-    -webkit-text-stroke-color: #ff7e30;
-    font-family: 'Archivo-Black', sans-serif;
+    color:#312E50;
+    -webkit-text-stroke-width: 1.6px; 
+    -webkit-text-stroke-color: #312E50;
+    font-family: 'Archivo', sans-serif;
     font-size: 60px;
     font-style: bold;
     text-align: left;
+    margin-left: 40px;
     margin-top: 100px;
 }
 
-#overlap-tracks-msg {
-    color:#ff7e30;
-    -webkit-text-stroke-width: 1px; 
-    -webkit-text-stroke-color: #ff7e30;
-    font-family: 'Archivo-Black', sans-serif;
-    font-size: 30px;
+#overlap-intro-msg {
+    color:#312E50;
+    -webkit-text-stroke-width: 1.4px; 
+    -webkit-text-stroke-color: #312E50;
+    font-family: 'Archivo', sans-serif;
+    font-size: 40px;
     font-style: bold;
     text-align: left;
     margin-top: 70px;
+    margin-left: 40px;
+    margin-right: 40px;
 }
 
-#track-artwork {
-    width: 150px;
-}
-#track-name {
-    font-size: 20px;
-}
+* {
+    margin: 0;
+    padding: 0;
+  }
+  #pagepiling {
+    text-align: center;
+  }
 
-#track-artist {
-    font-size: 15px;
-}
-
-#one-track {
-    display: inline-flex;
-    flex-direction: row;
-}
+  #pp-nav li .active span,
+  .pp-slidesNav .active span {
+    background: rgb(255, 255, 255) !important; /*To change the active navigation bullets inner color*/
+  }
+  .sec1 {
+    background-color:#F3FF9A;
+    height: 100%;
+    width: 100%;
+    overflow-y: scroll;
+  }
+  .sec2 {
+    background-color: #C7CAFF;
+    height: 800px;
+    width: 100%;
+    overflow-y: scroll;
+  }
+  .sec3 {
+    background-color: #D0FFD4;
+    height: 800px;
+    width: 100%;
+    overflow-y: scroll;
+  }
+  .sec4 {
+    background: url("https://images.pexels.com/photos/822474/pexels-photo-822474.jpeg?cs=srgb&dl=pexels-bianca-marolla-822474.jpg&fm=jpg");
+    background-size: cover;
+  }
