@@ -1,14 +1,15 @@
 #logged-in {
+    background-color:#F3FF9A;
     height: 800px;
     overflow-y: scroll;
 }
 
 #first-name {
     color:#ff7e30;
-    -webkit-text-stroke-width: 1px; 
+    -webkit-text-stroke-width: 1.4px; 
     -webkit-text-stroke-color: #ff7e30;
     font-family: 'Archivo-Black', sans-serif;
-    font-size: 40px;
+    font-size: 60px;
     font-style: bold;
     text-align: left;
     margin-top: 100px;
@@ -27,4 +28,16 @@
 
 #track-artwork {
     width: 150px;
+}
+#track-name {
+    font-size: 20px;
+}
+
+#track-artist {
+    font-size: 15px;
+}
+
+#one-track {
+    display: inline-flex;
+    flex-direction: row;
 }

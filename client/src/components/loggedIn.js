@@ -219,41 +219,18 @@ export default class LoggedIn extends Component {
             {dataLoaded ? (
                 <div id="logged-in" className="fadeIn">
                 <Container id="tracks">
-                    <div>
-                    <Waypoint topOffset='100px' bottomOffset='150px' onEnter={this.backgroundColor1} onLeave={this.backgroundColor2} >
-                        <h2 className="section-first" id="first-name"> hey { this.state.firstName },  
-                        <h2>hello</h2>
-                        <h2>hello</h2>
-                        <h2>hello</h2>
-                        <h2>hello</h2>
-                        </h2>
-                    </Waypoint>
-                    </div>
-
-                    <div >
-                    <Waypoint topOffset='100px' bottomOffset='150px' >
-                        <p className="section-first" id="overlap-tracks-msg"> { this.state.overlapTracksMsg } </p>
-                    </Waypoint>
-                    </div>
-
-                    <div>
-                    <Waypoint topOffset='100px' bottomOffset='150px' onEnter={this.backgroundColor3} onLeave={this.backgroundColor2}>
-                        <Row className="section-first">
-                        <Col id="top-tracks"> 
-                        <h3 id="top-tracks-msg"> { this.state.overlapTopTracksMsg }</h3>
-                                {
-                                this.state.tracksToPresent.map(p => {
-                                      return (<div>
-                                        <img id="track-artwork" key={p.id} src={p.artwork} alt="can't show image" />
+                <h2 id="first-name"> hey { this.state.firstName },  </h2>
+                    <p id="overlap-tracks-msg"> { this.state.overlapTracksMsg } </p>
+                    <Container>
+                            {this.state.tracksToPresent.map(p => (
+                                <Col xs="4" id="one-track">
+                                                                            <img id="track-artwork" key={p.id} src={p.artwork} alt="can't show image" />
                                         <h2 id="track-name" key={p.id}> {p.name} </h2>
                                         <p id="track-artist" key={p.id}> {p.artist} </p>
-                                    </div>)
-                                })}
-                        </Col>
-                    </Row>
-                    </Waypoint>
-                    </div>
-                    
+                                                    </Col>
+                        ))}
+                         </Container>
+                        <h3 id="top-tracks-msg"> { this.state.overlapTopTracksMsg }</h3>
                 </Container>
             </div>
                 
