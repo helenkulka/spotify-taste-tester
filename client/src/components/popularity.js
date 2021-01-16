@@ -5,6 +5,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { blondedPopularity } from './getUserData';
 import blonded_track_id_map from './track_id_name_map.json';
 
+var i,j=0;
 var popularity_msgs = [
     "we didn't find any shared songs :(",
     "u made the cut ur OK",
@@ -22,7 +23,7 @@ export default class Popularity extends Component {
         this.state = {
             popularity: 0,
             popularTracks: [],
-            popularityMsg = "",
+            popularityMsg: ""
         };
     }
 
