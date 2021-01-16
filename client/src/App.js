@@ -23,27 +23,71 @@ class App extends Component {
       userData: {},
       backgroundColor:"black",
       color:"white",
-      enteredSite: false
+      enteredSite: false,
+      itemsLoaded: false
+
     }
   }
 
-  onChangeStyle(darkModeStatus,enterSiteStatus) {
+  onChangeStyle(darkModeStatus,enterSiteStatus,slideNumber) {
 
-    if(darkModeStatus == true){
+    if (darkModeStatus === true && this.state.loggedIn === true && slideNumber === 1){
       this.setState({
-        backgroundColor: "black",
-        color: "white",
+        backgroundColor: "#e8f693",
+        color: "#302d4e",
         enteredSite: enterSiteStatus
-    })
+      })  
     }
-    else{
+
+    else if (darkModeStatus === true && this.state.loggedIn === true && slideNumber === 2){
       this.setState({
-        backgroundColor: "#ffd86b",
+        backgroundColor: "#c1c3f9",
+        color: "#322f4f",
+        enteredSite: enterSiteStatus
+      })  
+    }
+
+    else if (darkModeStatus === true && this.state.loggedIn === true && slideNumber === 3){
+      this.setState({
+        backgroundColor: "#fccd97",
+        color: "#2c2c52",
+        enteredSite: enterSiteStatus
+      })  
+    }
+
+    else if (darkModeStatus === true && this.state.loggedIn === true && slideNumber === 4){
+      this.setState({
+        backgroundColor: "#c0f8ca",
+        color: "#332c53",
+        enteredSite: enterSiteStatus
+      })  
+    }
+
+
+
+
+    else if (darkModeStatus == false && this.state.loggedIn == true){
+      this.setState({
+        backgroundColor: "green",
         color: "black",
         enteredSite: enterSiteStatus
-    })
-      
+      })  
     }
+    else if(darkModeStatus === true && this.state.loggedIn === false){
+      this.setState({
+        backgroundColor: "linear-gradient(0deg,black,#112130)",
+        color: "white",
+        enteredSite: enterSiteStatus
+      })
+    }
+    else if (darkModeStatus === false && this.state.loggedIn === false){
+      this.setState({
+        backgroundColor: "linear-gradient(0deg,#d4a68e,#ffcdb3,#ffedd6)",
+        color: "black",
+        enteredSite: enterSiteStatus
+      })  
+    }
+    
     
 }
   getHashParams() {
@@ -59,6 +103,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    this.setState({itemsLoaded:true})
     if (this.state.loggedIn) {
      var userData = await getUserData(this.state.accessToken);
       this.setState({userData: userData});
@@ -66,36 +111,34 @@ class App extends Component {
   }
   render() {
     const enteredSite = this.state.enteredSite
+    const dataLoaded = this.state.itemsLoaded
+
     if (!(Object.keys(this.state.userData).length === 0)) {
       return(
-        <div className="App" style={{backgroundColor:this.state.backgroundColor, color:this.state.color}}>
-          <LoggedIn {...this.state}></LoggedIn>
+        <div className="App" style={{background:this.state.backgroundColor, color:this.state.color}}>
+          <LoggedIn onChangeParentStyle={this.onChangeStyle.bind(this)} {...this.state}></LoggedIn>
         </div>
       )
     }
     return (
-
-        <div className="App" style={{backgroundColor:this.state.backgroundColor, color:this.state.color}}>
+        <div className="App" style={{background:this.state.backgroundColor, color:this.state.color}}>
+        {dataLoaded ? (
           <div className="HomePage">
             <Home onChangeParentStyle={this.onChangeStyle.bind(this)} ></Home>
-
-
             {enteredSite ? (
-      <div>
-      <Wave></Wave>
-      <Footer></Footer>
-      </div>
-      ) : ( <div></div>
-      )}
-
-  
-            
-            <script></script>
-            {/* <p>Logged In: str({this.state.loggedIn})</p> */}
-            {/* <Loading></Loading> */}
-          </div>
+              <div>
+                <Wave></Wave>
+                <Footer></Footer>
+              </div>
+              ) : ( <div></div>)}
         </div>
-    )
+          ) : (
+            <div>
+            <Loading></Loading>
+            </div>
+          )}
+        </div>
+      )
   }
 }
 

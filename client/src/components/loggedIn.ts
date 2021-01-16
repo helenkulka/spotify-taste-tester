@@ -1,13 +1,13 @@
-import React, { useRef, Component} from 'react';
+import React, { useRef, Component, HTMLDivElement} from 'react';
 import './loggedin.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Loading from './loading.js'
+import useVisibility from "./useVisibility";
 import Popularity from './popularity.js'
 import { Container, Row, Col, Fragment } from 'react-bootstrap';
 import blonded_artist_id_map from './artist_id_name_map.json';
 import blonded_track_id_map from './track_id_name_map.json';
 import { getTopType, getSavedPlaylists, getTracksFromPlaylist, getLikedTracks, blondedPopularity } from './getUserData';
-import { Waypoint } from 'react-waypoint';
 
 const blonded_track_ids = Object.keys(blonded_track_id_map);
 
@@ -24,7 +24,8 @@ var overlap_tracks_msgs = [
     "you and frank were switched at birth, probably. or you should just get outside more."
 ]
 export default class LoggedIn extends Component {
-
+    var [isFirstVisible, firstRef] = useVisibility<HTMLDivElement>(-100);
+    var [isSecondVisible, secondRef] = useVisibility<HTMLDivElement>(100);
 
     constructor(props) {
         super(props);
@@ -38,10 +39,6 @@ export default class LoggedIn extends Component {
             tracksToPresent: [],
             itemsLoaded: false
         };
- 
-        this.backgroundColor1 = this.backgroundColor1.bind(this);
-        this.backgroundColor2 = this.backgroundColor2.bind(this);
-        this.backgroundColor3 = this.backgroundColor3.bind(this);
     }
 
     async calculateUserPopularity(blonded_track_id_map, track_overlap) {
@@ -81,20 +78,20 @@ export default class LoggedIn extends Component {
 
         if (top_track_overlap.length > 0) {
             if (top_track_overlap.length == 1) {
-                msg = "RARE! " + top_track_overlap.length + " of your most listened to songs appears on Blonded. ";
+                msg = "RARE! " + top_track_overlap.length + " of your top songs is featured on Blonded. ";
             } else {
-                msg = "RARE! " + top_track_overlap.length + " of your most listened to songs appear on Blonded. ";
+                msg = "RARE! " + top_track_overlap.length + " of your top songs are featured on Blonded. ";
             }
             for (i in top_track_overlap) {
                 present_track_info.push(blonded_track_id_map[top_track_overlap[i]]);
             }
             top_track_info = present_track_info;
-            if (present_track_info.length >= 6) {
+            if (present_track_info.length >= 5) {
                 msg = msg + "check out your favorites";
-            } else if (present_track_info.length < 6) {
+            } else if (present_track_info.length < 5) {
                 msg = msg + "check out some more of your favorites";
                 for (i in all_track_overlap) {
-                    if (present_track_info.length == 6) {
+                    if (present_track_info.length == 5) {
                         break;
                     } else {
                         if (!present_track_info.includes(blonded_track_id_map[all_track_overlap[i]])) {
@@ -106,9 +103,9 @@ export default class LoggedIn extends Component {
             this.setState({tracksToPresent: present_track_info, overlapTopTracksMsg: msg, overlapTopTracks: top_track_info});
             return;
         } else {
-            if (all_track_info.length >= 6) {
+            if (all_track_info.length >= 5) {
                 msg = "check out some songs you have in common";
-                while (i < 6) {
+                while (i < 5) {
                     present_track_info.push(blonded_track_id_map[all_track_overlap[i]]);
                     i++;
                 }
@@ -137,7 +134,7 @@ export default class LoggedIn extends Component {
           } else if (num_tracks_overlap >= 100) {
             msg = overlap_tracks_msgs[5];
           }
-          msg = msg + " you have " + num_tracks_overlap + " liked songs in common with Frank Ocean. check out your favorites below";
+          msg = msg + " you have " + num_tracks_overlap + " liked songs in common with Frank Ocean";
           this.setState({overlapTracksMsg: msg});
     }
 
@@ -202,13 +199,9 @@ export default class LoggedIn extends Component {
         this.setOverlapTracksMsg(Array.from(overlap_all_track_ids).length);
         this.setOverlapTracks(overlap_top_track_ids, overlap_all_track_ids);
         this.calculateUserPopularity(blonded_track_id_map, overlap_all_track_ids);
-        this.setState({itemsLoaded:true},this.props.onChangeParentStyle(true,true,1));
+        this.setState({itemsLoaded:true},this.props.onChangeParentStyle(false,true));
     }
 
-    backgroundColor1 = () => this.setState(this.props.onChangeParentStyle(true,true,1));
-    backgroundColor2 = () => this.setState(this.props.onChangeParentStyle(true,true,2));
-    backgroundColor3 = () => this.setState(this.props.onChangeParentStyle(true,true,3));
-    
 
 
 
@@ -219,26 +212,9 @@ export default class LoggedIn extends Component {
             {dataLoaded ? (
                 <div id="logged-in" className="fadeIn">
                 <Container id="tracks">
-                    <div>
-                    <Waypoint topOffset='100px' bottomOffset='150px' onEnter={this.backgroundColor1} onLeave={this.backgroundColor2} >
-                        <h2 className="section-first" id="first-name"> hey { this.state.firstName },  
-                        <h2>hello</h2>
-                        <h2>hello</h2>
-                        <h2>hello</h2>
-                        <h2>hello</h2>
-                        </h2>
-                    </Waypoint>
-                    </div>
-
-                    <div >
-                    <Waypoint topOffset='100px' bottomOffset='150px' >
-                        <p className="section-first" id="overlap-tracks-msg"> { this.state.overlapTracksMsg } </p>
-                    </Waypoint>
-                    </div>
-
-                    <div>
-                    <Waypoint topOffset='100px' bottomOffset='150px' onEnter={this.backgroundColor3} onLeave={this.backgroundColor2}>
-                        <Row className="section-first">
+                    <h2 ref={firstRef} className="section" id="first-name"> hey { this.state.firstName },  </h2>
+                    <p className="section"id="overlap-tracks-msg"> { this.state.overlapTracksMsg } </p>
+                    <Row ref={secondRef} className="section">
                         <Col id="top-tracks"> 
                         <h3 id="top-tracks-msg"> { this.state.overlapTopTracksMsg }</h3>
                                 {
@@ -251,8 +227,6 @@ export default class LoggedIn extends Component {
                                 })}
                         </Col>
                     </Row>
-                    </Waypoint>
-                    </div>
                 </Container>
             </div>
                 
