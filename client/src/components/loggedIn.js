@@ -81,20 +81,20 @@ export default class LoggedIn extends Component {
 
         if (top_track_overlap.length > 0) {
             if (top_track_overlap.length == 1) {
-                msg = "RARE! " + top_track_overlap.length + " of your top songs is featured on Blonded. ";
+                msg = "RARE! " + top_track_overlap.length + " of your most listened to songs appears on Blonded. ";
             } else {
-                msg = "RARE! " + top_track_overlap.length + " of your top songs are featured on Blonded. ";
+                msg = "RARE! " + top_track_overlap.length + " of your most listened to songs appear on Blonded. ";
             }
             for (i in top_track_overlap) {
                 present_track_info.push(blonded_track_id_map[top_track_overlap[i]]);
             }
             top_track_info = present_track_info;
-            if (present_track_info.length >= 5) {
+            if (present_track_info.length >= 6) {
                 msg = msg + "check out your favorites";
-            } else if (present_track_info.length < 5) {
+            } else if (present_track_info.length < 6) {
                 msg = msg + "check out some more of your favorites";
                 for (i in all_track_overlap) {
-                    if (present_track_info.length == 5) {
+                    if (present_track_info.length == 6) {
                         break;
                     } else {
                         if (!present_track_info.includes(blonded_track_id_map[all_track_overlap[i]])) {
@@ -106,9 +106,9 @@ export default class LoggedIn extends Component {
             this.setState({tracksToPresent: present_track_info, overlapTopTracksMsg: msg, overlapTopTracks: top_track_info});
             return;
         } else {
-            if (all_track_info.length >= 5) {
+            if (all_track_info.length >= 6) {
                 msg = "check out some songs you have in common";
-                while (i < 5) {
+                while (i < 6) {
                     present_track_info.push(blonded_track_id_map[all_track_overlap[i]]);
                     i++;
                 }
@@ -137,7 +137,7 @@ export default class LoggedIn extends Component {
           } else if (num_tracks_overlap >= 100) {
             msg = overlap_tracks_msgs[5];
           }
-          msg = msg + " you have " + num_tracks_overlap + " liked songs in common with Frank Ocean";
+          msg = msg + " you have " + num_tracks_overlap + " liked songs in common with Frank Ocean. check out your favorites below";
           this.setState({overlapTracksMsg: msg});
     }
 
@@ -253,7 +253,6 @@ export default class LoggedIn extends Component {
                     </Row>
                     </Waypoint>
                     </div>
-                    
                 </Container>
             </div>
                 

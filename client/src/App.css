@@ -1,11 +1,10 @@
 .title {
-  color:transparent;
+  color:#ff7e30;
   font-family: 'Archivo Black', sans-serif;
   font-size: 65px;
   font-stretch: extra-expanded;
   font-weight: 100;
   text-align: center;
-  color:transparent;
   -webkit-text-stroke-width: 1.95px; 
   -webkit-text-stroke-color: #ff7e30;
   -webkit-text-size-adjust: 100%;
@@ -20,16 +19,20 @@
   color:#ff7e30;
 }
 #title2:hover {
-  color:#ff7e30;
+  color: transparent;
+
 }
 
 #subtitle{
   word-wrap: break-word;
   color:#ff7e30;
-  font-family: var(--bs-font-sans-serif);
+  font-family: 'Archivio' sans-serif;
   font-size: 22px;
   font-style: bold;
   text-align: center;
+  -webkit-text-stroke-width: 1.3px; 
+  -webkit-text-stroke-color: #ff7e30;
+  -webkit-text-size-adjust: 100%;
 }
 
 .row{
@@ -52,7 +55,6 @@
 
 
 
-
 .row .col{
   margin-top: 1.5em;
   margin-bottom: 1.5em;
@@ -62,7 +64,7 @@
   border-radius: 20px;
   background-color: #1DB954;
   color:white;
-  font-family: var(--bs-font-sans-serif);
+  font-family: 'Archivio' sans-serif;
   font-size: 15px;
   padding-right: 25px;
 }
@@ -99,8 +101,14 @@
   to{height: 472px;}
 }
 
+/* .App {
+  height: 100vh;
+  background-color: #fcceb1;
+} */
+
 .section{
   height: 100vh;
+  /* background-color: #fcceb1; */
 }
 .section-first{
   height: 90vh;
