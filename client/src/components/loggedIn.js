@@ -81,7 +81,7 @@ export default class LoggedIn extends Component {
         var msg = "";
 
         if (all_track_overlap.length > 0) {
-            msg =  all_track_overlap.length + " liked songs. we found " + all_track_overlap.length + " saved songs that appeared on Frank Ocean’s playlists.";
+            msg =  all_track_overlap.length + " shared songs. we found " + all_track_overlap.length + " saved songs that appeared on Frank Ocean’s playlists.";
             for (i in all_track_overlap) {
                 if (!top_track_overlap.includes(all_track_overlap[i])) {
                     all_track_info.push(blonded_track_id_map[all_track_overlap[i]]);

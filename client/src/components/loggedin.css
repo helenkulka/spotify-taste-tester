@@ -6,8 +6,8 @@
 } */
 
 #intro {
-    height: 100%;
-    max-width: 100%;
+    /* height: 100%; */
+    max-width: 85%;
     background-color:#F3FF9A;
     overflow-y: scroll;
     overflow-x: hidden;
@@ -18,11 +18,13 @@
     -webkit-text-stroke-width: 1.6px; 
     -webkit-text-stroke-color: #312E50;
     font-family: 'Archivo', sans-serif;
-    font-size: 50px;
+    font-size: 60px;
     font-style: bold;
     text-align: left;
-    margin-left: 40px;
-    margin-top: 60px;
+    font-weight: 600;
+    padding-bottom: 10%;
+    /* margin-left: 40px;
+    margin-top: 60px; */
 }
 
 #overlap-intro-msg {
@@ -30,12 +32,12 @@
     -webkit-text-stroke-width: 1.4px; 
     -webkit-text-stroke-color: #312E50;
     font-family: 'Archivo', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     font-style: bold;
     text-align: left;
-    margin-top: 60px;
+    /* margin-top: 60px;
     margin-left: 40px;
-    margin-right: 40px;
+    margin-right: 40px; */
 }
 
 * {
@@ -43,7 +45,7 @@
     padding: 0;
 }
   #pagepiling {
-    text-align: center;
+    text-align: left;
   }
 
   #pp-nav li .active span,

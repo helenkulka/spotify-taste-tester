@@ -1,8 +1,12 @@
 #top-tracks {
     background-color: #D0FFD4;
-    height: 800px;
-    width: 100%;
+    /* height: 800px; */
+    /* width: 100%;
+    overflow-y: scroll; */
+
+    max-width: 100%;
     overflow-y: scroll;
+    text-align: center;
 }
 
 #top-tracks-msg {
