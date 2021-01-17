@@ -13,7 +13,6 @@ import { getTopType, getSavedPlaylists, getTracksFromPlaylist, getLikedTracks, b
 import { Waypoint } from 'react-waypoint';
 import Tracks from './tracks';
 import TopTracks from './topTracks';
-import { disableBodyScroll } from 'body-scroll-lock';
 
 const blonded_track_ids = Object.keys(blonded_track_id_map);
 
@@ -82,14 +81,13 @@ export default class LoggedIn extends Component {
         var msg = "";
 
         if (all_track_overlap.length > 0) {
-            msg =  all_track_overlap.length + " liked songs. we found " + all_track_overlap.length + " songs saved in your library that appeared on Frank ocean’s playlists.";
+            msg =  all_track_overlap.length + " liked songs. we found " + all_track_overlap.length + " saved songs that appeared on Frank Ocean’s playlists.";
             for (i in all_track_overlap) {
                 if (!top_track_overlap.includes(all_track_overlap[i])) {
                     all_track_info.push(blonded_track_id_map[all_track_overlap[i]]);
                 }
             }
             if (all_track_info.length > 3) {
-                msg = msg + " check out your favorites";
                 all_track_info = all_track_info.slice(0,3);
             }
         }
@@ -110,11 +108,6 @@ export default class LoggedIn extends Component {
             msg = overlap_tracks_msgs[4];
           } else if (num_tracks_overlap >= 100) {
             msg = overlap_tracks_msgs[5];
-          }
-          if (num_tracks_overlap === 0) {
-            msg = msg + " check out our recommendations below."
-          } else {
-            msg = msg + " check out your results below."
           }
           this.setState({overlapIntroMsg: msg, numTracksOverlap: num_tracks_overlap});
     }
@@ -174,7 +167,6 @@ export default class LoggedIn extends Component {
 
 
     async componentDidMount() {
-        disableBodyScroll(this.state.ref1.current);
         this.setState({firstName: this.props.userData.display_name.split(" ")[0].toLowerCase()});
         var overlap_top_track_ids = await this.getUserTopTracks();
         var overlap_playlist_track_ids = await this.getUserPlaylistTracks();
@@ -223,7 +215,11 @@ export default class LoggedIn extends Component {
                             </Container>
                         </div>
                         <div class="section sec2">
-                            <Tracks {...this.state}> </Tracks>
+                        {/* <Container id="intro">
+                                <h2 id="first-name"> hey { this.state.firstName },  </h2>
+                                <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
+                            </Container> */}
+                            <Tracks {...this.state}> </Tracks> 
                         </div>
                         <div class="section sec3">
                             <TopTracks {...this.state}></TopTracks>

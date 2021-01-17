@@ -7,9 +7,10 @@
 
 #intro {
     height: 100%;
-    width: 100%;
+    max-width: 100%;
     background-color:#F3FF9A;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 #first-name {
@@ -17,11 +18,11 @@
     -webkit-text-stroke-width: 1.6px; 
     -webkit-text-stroke-color: #312E50;
     font-family: 'Archivo', sans-serif;
-    font-size: 60px;
+    font-size: 50px;
     font-style: bold;
     text-align: left;
     margin-left: 40px;
-    margin-top: 100px;
+    margin-top: 60px;
 }
 
 #overlap-intro-msg {
@@ -32,7 +33,7 @@
     font-size: 40px;
     font-style: bold;
     text-align: left;
-    margin-top: 70px;
+    margin-top: 60px;
     margin-left: 40px;
     margin-right: 40px;
 }
@@ -40,7 +41,7 @@
 * {
     margin: 0;
     padding: 0;
-  }
+}
   #pagepiling {
     text-align: center;
   }
@@ -52,20 +53,21 @@
   .sec1 {
     background-color:#F3FF9A;
     height: 100%;
-    width: 100%;
-    overflow-y: scroll;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
   }
   .sec2 {
     background-color: #C7CAFF;
-    height: 800px;
-    width: 100%;
-    overflow-y: scroll;
+    height: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+    position: relative;
   }
   .sec3 {
     background-color: #D0FFD4;
-    height: 800px;
+    height: 100%;
     width: 100%;
-    overflow-y: scroll;
   }
   .sec4 {
     background: url("https://images.pexels.com/photos/822474/pexels-photo-822474.jpeg?cs=srgb&dl=pexels-bianca-marolla-822474.jpg&fm=jpg");

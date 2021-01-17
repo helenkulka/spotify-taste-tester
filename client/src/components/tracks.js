@@ -13,7 +13,7 @@ export default class Tracks extends Component {
         return (
         <Container id="tracks" ref={this.props.ref1}>
             <p id="overlap-tracks-msg"> { this.props.overlapTracksMsg } </p>
-                <Container className="scrolling-wrapper">
+                 {/* <Container className="scrolling-wrapper">
                     {this.props.overlapTracks.map(p => (
                         <div className="one-track">
                             <img id="track-artwork" key={p.id} src={p.artwork} alt="can't show image" />
@@ -21,7 +21,7 @@ export default class Tracks extends Component {
                             <p id="track-artist" key={p.id}> {p.artist} </p>
                         </div>
                 ))}
-                 </Container>
+                 </Container>  */}
         </Container>
         )
     }
