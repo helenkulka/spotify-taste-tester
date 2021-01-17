@@ -205,3 +205,8 @@ ul.social-network li {
 .footer-titles p:hover{
   color:blue
 }
+
+#mode-button{
+  -webkit-appearance: none;
+
+}
