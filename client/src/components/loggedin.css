@@ -25,7 +25,9 @@
     padding-bottom: 10%;
     /* margin-left: 40px;
     margin-top: 60px; */
+    /* blink-caret .75s step-end infinite; */ 
 }
+
 
 #overlap-intro-msg {
     color:#312E50;

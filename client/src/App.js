@@ -21,7 +21,7 @@ class App extends Component {
       loggedIn: access_token ? true : false,
       accessToken: access_token ? access_token : "",
       userData: {},
-      backgroundColor:"black",
+      backgroundColor:"linear-gradient(0deg,black,#112130)",
       color:"white",
       enteredSite: false,
       itemsLoaded: false

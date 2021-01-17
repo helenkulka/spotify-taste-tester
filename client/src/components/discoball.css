@@ -15,7 +15,7 @@
 
 
 .globe:hover .stur{
-  stroke:pink
+  stroke:#b0d6d1;
 }
 
 @media screen and (min-width: 480px) {
