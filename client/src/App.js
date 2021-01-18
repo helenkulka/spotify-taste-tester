@@ -62,10 +62,6 @@ class App extends Component {
         enteredSite: enterSiteStatus
       })  
     }
-
-
-
-
     else if (darkModeStatus == false && this.state.loggedIn == true){
       this.setState({
         backgroundColor: "green",

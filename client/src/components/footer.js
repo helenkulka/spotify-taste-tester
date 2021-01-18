@@ -40,7 +40,6 @@ export default class Footer extends Component {
                 <li><a href="https://www.instagram.com/" target="_blank" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
                 <li><a href="https://github.com/helenkulka" target="_blank" class="icoGithub" title="Github"><i class="fa fa-github"></i></a></li>
             </ul>
-              {/* <p style={{fontSize: '12px',marginTop:"1rem"}}>Montreal, QC</p> */}
             </div>
             <div className="col" style={{textAlign: 'left'}}>
               <p style={{fontSize: '16px', fontWeight: 600}}>Spotify</p>

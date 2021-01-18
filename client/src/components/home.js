@@ -59,9 +59,7 @@ export default class Home extends Component {
         <span style={{marginTop: 10}} type="button" id="mode-button" onClick={this.darkMode}>☾</span>
       )}
 
-  <div className="d-flex justify-content-center">
-  {/* style={{display:this.state.splashscreenDisplay}} */}
-    
+  <div className="d-flex justify-content-center">    
     <div className="section" style={{display:this.state.splashscreenDisplay}}>
     <div className={this.state.visiblesplash?'fadeIn':'fadeOut'} id="splashscreen" >
       <div className="row">
@@ -69,11 +67,6 @@ export default class Home extends Component {
         <h1  className="title" id='title1'>THE FRANK OCEAN METRIC</h1>
         </div>
       </div>
-      {/* <div className="row">
-        <button id="welcome">
-          Enter Site
-        </button>
-      </div> */}
       <div className="row">
       {darkModeOn ? (
         <button id="discobutton" onClick={this.enterSiteInstructions} style={{color:"black"}}>
@@ -85,11 +78,7 @@ export default class Home extends Component {
       </div>
     </div>
     </div>
-    
-    {/* <button onClick={this.executeScroll} onMouseDown={this.executeScroll}>&#8595;
-    </button> */}
   </div>
-  {/*  */}
   <div ref={this.homepage} className={this.state.visiblehome?'fadeIn':'fadeOut'} style={{display:this.state.homepageDisplay}}>
   <div id="homepage"  >
   <h1  className="title" id="title2">THE FRANK OCEAN METRIC</h1>
@@ -152,7 +141,6 @@ export default class Home extends Component {
   </div> {/* section end */}
 </div>
 </div>
-
 
     )
   }

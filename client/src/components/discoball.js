@@ -5,15 +5,6 @@ import { TweenMax, Power0, SteppedEase } from 'gsap';
 
 
 const DiscoBall = () => {
-    // const clipPathRef = React.createRef() 
-    // const stursRef = React.createRef()
-    // const clipPathPathRef = React.createRef()
-    // const globeGRef = React.createRef()
-    // const lngsRef = React.createRef()
-    // const latsRef = React.createRef()
-    // const globeEllipseRef = React.createRef()
-    // const stursAllRef = React.createRef()
-
 
     useEffect(() => {
 
@@ -40,23 +31,6 @@ const DiscoBall = () => {
             yoyo: true,
              ease: Power0.easeNone
         })
-
-        // TweenMax.set(
-        //     [ globeGRef.current, globeEllipseRef.current, stursRef.current, clipPathRef.current, clipPathPathRef.current], {
-        //     transformOrigin: 'center'
-        //   })
-
-        // TweenMax.to(
-        //     [clipPathRef.current, stursAllRef.current],
-        //     6.9, 
-        //     {rotation: 360,repeat: -1, ease: Power0.easeNone}
-        //     );
-        
-        //     TweenMax.to(
-        //         [clipPathRef.current, stursAllRef.current],
-        //         3.45, 
-        //         {scale: 1.2,repeat: -1, yoyo:true, ease: Power0.easeNone}
-        //         );
             
       }, []);
       return (
