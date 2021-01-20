@@ -23,7 +23,8 @@ export default class Popularity extends Component {
         this.state = {
             popularity: 0,
             popularTracks: [],
-            popularityMsg: ""
+            popularityMsg: "",
+            popularity_percentage: 0
         };
     }
 
@@ -50,8 +51,9 @@ async calculateUserPopularity(blonded_track_id_map, track_overlap) {
            minimum_popularity_tracks.push(blonded_track_id_map[track_overlap[i]]);
        }
     }
-    this.setState({popularity: user_stat,
-        popularTracks: minimum_popularity_tracks});
+    var percentage = (user_stat * 100).toFixed(2);
+    this.setState({popularity: user_stat, popularity_percentage: percentage,
+        popularTracks:minimum_popularity_tracks});
     console.log("USER NICHENESS:", user_stat);
     console.log("MINIMUM POP LIST:", minimum_popularity_tracks);
 
@@ -65,12 +67,24 @@ componentDidMount() {
 render() {
     return(
         <div>
-            <Container id="tracks">
-                <Row>
-                    <Col fluid id="niche-tracks"> 
-                    </Col>
-                </Row>
-            </Container>
+
+<Container id="tracks-niche" ref={this.props.ref1}>
+            <div id="tracks-div">
+            <p id="overlap-tracks-msg" style={{display:"inline"}} >
+            <strong id="num-overlap" style={{fontSize:60,fontStyle:"bold",fontWeight:700,display:"inline", marginRight:10}} > { this.state.popularity_percentage }%</strong>
+              niche. Here are some of your most niche songs in common:</p>
+            </div>
+                 <Container className="scrolling-wrapper">
+                    {this.state.popularTracks.map(p => (
+                        <div className="one-track">
+                            <img id="track-artwork" key={p.id} src={p.artwork} alt="can't show image" />
+                            <h2 id="track-name" key={p.id}> {p.name} </h2>
+                            <p id="track-artist" key={p.id}> {p.artist} </p>
+                            {/* <audio><source key={p.id} src={p.preview_url}></source></audio> */}
+                        </div>
+                ))}
+                 </Container> 
+        </Container>
         </div>
     )
 }

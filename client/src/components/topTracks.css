@@ -27,6 +27,7 @@
 }
 #track-name {
     font-size: 20px;
+    max-width: 180px;
 }
 
 #track-artist {

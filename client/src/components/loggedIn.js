@@ -5,7 +5,7 @@ import $ from 'jquery';
 import './jquery.pagepiling.js';
 import './jquery.pagepiling.css';
 import Loading from './loading.js'
-import Popularity from './popularity.js'
+import NicheTracks from './popularity.js'
 import { Container, Row, Col, Fragment } from 'react-bootstrap';
 import blonded_artist_id_map from './artist_id_name_map.json';
 import blonded_track_id_map from './track_id_name_map.json';
@@ -13,6 +13,7 @@ import { getTopType, getSavedPlaylists, getTracksFromPlaylist, getLikedTracks, b
 import { Waypoint } from 'react-waypoint';
 import Tracks from './tracks';
 import TopTracks from './topTracks';
+import ThankYouPage from './thanks';
 
 const blonded_track_ids = Object.keys(blonded_track_id_map);
 
@@ -187,7 +188,7 @@ export default class LoggedIn extends Component {
                     'textColor': '#fff',
                     'bulletsColor': '#fff',
                     'position': 'right',
-                    'tooltips': ['sec1', 'sec2','sec3', 'sec4']
+                    'tooltips': ['sec1', 'sec2','sec3', 'sec4','sec5']
                 }
             })
         });
@@ -224,6 +225,12 @@ export default class LoggedIn extends Component {
                         <div class="section sec3">
                             <TopTracks {...this.state}></TopTracks>
                         </div>
+                        <div class="section sec4">
+                            <NicheTracks {...this.state}></NicheTracks>
+                        </div>
+                        <div class="section sec5">
+                            <ThankYouPage {...this.state}></ThankYouPage>
+                        </div>
                         {/*
 
                         <div class="section sec4">
@@ -254,7 +261,7 @@ export default class LoggedIn extends Component {
                 </Container>
 
                 <Tracks {...this.state}> </Tracks>
-                <Popularity {...this.state}> </Popularity>
+                <NicheTracks {...this.state}> </NicheTracks>
                 </div>
                 )
             }

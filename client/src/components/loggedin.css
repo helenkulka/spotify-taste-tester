@@ -28,6 +28,33 @@
     /* blink-caret .75s step-end infinite; */ 
 }
 
+#tracks-niche{
+  background-color: #f5a476;
+  -webkit-text-stroke-width: 1.4px; 
+    -webkit-text-stroke-color: #312E50;
+    font-family: 'Archivo', sans-serif;
+    font-size: 30px;
+    font-style: bold;
+    text-align: left;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-width: 85%;
+}
+
+#thanks{
+  background-color: #96c8d9;
+  -webkit-text-stroke-width: 1.4px; 
+    -webkit-text-stroke-color: #312E50;
+    font-family: 'Archivo', sans-serif;
+    font-size: 30px;
+    font-style: bold;
+    text-align: left;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-width: 85%;
+}
+
+
 
 #overlap-intro-msg {
     color:#312E50;
@@ -72,8 +99,21 @@
     background-color: #D0FFD4;
     height: 100%;
     width: 100%;
+    overflow-x: hidden;
+    position: relative;
   }
   .sec4 {
-    background: url("https://images.pexels.com/photos/822474/pexels-photo-822474.jpeg?cs=srgb&dl=pexels-bianca-marolla-822474.jpg&fm=jpg");
-    background-size: cover;
+    background-color: #f5a476;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .sec5 {
+    background-color:#96c8d9;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
   }
