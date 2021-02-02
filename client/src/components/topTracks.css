@@ -14,17 +14,22 @@
     text-align: center;
 }
 
+#num-overlap {
+    font-size:8vh;
+    font-style:bold;
+    font-weight:700;
+    display:inline; 
+    margin-right:1vh;
+}
+
 #overlap-tracks-msg {
     color:#312E50;
     -webkit-text-stroke-width: 1.4px; 
     -webkit-text-stroke-color: #312E50;
     font-family: 'Archivo', sans-serif;
-    font-size: 30px;
+    font-size: 3.5vh;
     font-style: bold;
     text-align: left;
-    margin-top: 30px;
-    /* margin-left: 30px;
-    margin-right: 80px; */
     margin: 1vw;
 }
 

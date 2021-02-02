@@ -21,7 +21,7 @@ export default class Tracks extends Component {
         <Container id="tracks" ref={this.props.ref1}>
             <div id="tracks-div">
             <p id="overlap-tracks-msg" style={{display:"inline"}} >
-            <strong id="num-overlap" style={{fontSize:60,fontStyle:"bold",fontWeight:700,display:"inline", marginRight:10}} > { this.props.numTracksOverlap }</strong>
+            <strong id="num-overlap" > { this.props.numTracksOverlap }</strong>
               shared songs. We found {this.props.numTracksOverlap} saved songs from Frank Ocean's playlist. Here's your favorites:</p>
             </div>
                 <Container className="scrolling-wrapper">

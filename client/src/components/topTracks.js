@@ -12,7 +12,7 @@ export default class TopTracks extends Component {
         <Container id="top-tracks" ref={this.props.ref1}>
             <div id="tracks-div">
             <p id="overlap-tracks-msg" style={{display:"inline"}} >
-            <strong id="num-overlap" style={{fontSize:60,fontStyle:"bold",fontWeight:700,display:"inline", marginRight:10}} > { this.props.overlapTopTracks.length }</strong>
+            <strong id="num-overlap" > { this.props.overlapTopTracks.length }</strong>
             top songs. WOW! { this.props.overlapTopTracks.length } of your most listened to songs of all time overlap with Frank Ocean's favorites.
             </p>
             </div>
