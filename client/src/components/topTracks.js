@@ -1,5 +1,6 @@
 import React, { useRef, Component} from 'react';
 import { Container, Row, Col, Fragment } from 'react-bootstrap';
+import './topTracks.css';
 
 export default class TopTracks extends Component {
     constructor(props) {

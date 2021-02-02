@@ -51,7 +51,7 @@ async calculateUserPopularity(blonded_track_id_map, track_overlap) {
            minimum_popularity_tracks.push(blonded_track_id_map[track_overlap[i]]);
        }
     }
-    var percentage = (user_stat * 100).toFixed(2);
+    var percentage = (user_stat * 100).toFixed(0);
     this.setState({popularity: user_stat, popularity_percentage: percentage,
         popularTracks:minimum_popularity_tracks});
     console.log("USER NICHENESS:", user_stat);
@@ -72,7 +72,7 @@ render() {
             <div id="tracks-div">
             <p id="overlap-tracks-msg" style={{display:"inline"}} >
             <strong id="num-overlap" style={{fontSize:60,fontStyle:"bold",fontWeight:700,display:"inline", marginRight:10}} > { this.state.popularity_percentage }%</strong>
-              niche. Here are some of your most niche songs in common:</p>
+              niche. Your shared songs are more niche than { this.state.popularity_percentage }% of Frank's favorites. Here's your best finds:</p>
             </div>
                  <Container className="scrolling-wrapper">
                     {this.state.popularTracks.map(p => (

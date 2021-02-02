@@ -1,3 +1,8 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
 #top-tracks {
     background-color: #D0FFD4;
     /* height: 800px; */
@@ -9,17 +14,18 @@
     text-align: center;
 }
 
-#top-tracks-msg {
+#overlap-tracks-msg {
     color:#312E50;
     -webkit-text-stroke-width: 1.4px; 
     -webkit-text-stroke-color: #312E50;
     font-family: 'Archivo', sans-serif;
-    font-size: 40px;
+    font-size: 30px;
     font-style: bold;
     text-align: left;
-    margin-top: 70px;
-    margin-left: 40px;
-    margin-right: 40px;
+    margin-top: 30px;
+    /* margin-left: 30px;
+    margin-right: 80px; */
+    margin: 1vw;
 }
 
 #track-artwork {
