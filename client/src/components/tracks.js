@@ -19,18 +19,18 @@ export default class Tracks extends Component {
     render() {
         return (
         <Container id="tracks" ref={this.props.ref1}>
-            <div id="tracks-div">
-            <p id="overlap-tracks-msg" style={{display:"inline"}} >
-            <strong id="num-overlap" style={{fontSize:60,fontStyle:"bold",fontWeight:700,display:"inline", marginRight:10}} > { this.props.numTracksOverlap }</strong>
-              shared songs. We found {this.props.numTracksOverlap} saved songs from Frank Ocean's playlist. Here's your favorites:</p>
-            </div>
+            <p id="overlap-tracks-msg">
+            <strong id="num-overlap" > { this.props.numTracksOverlap }</strong> shared songs. <br></br> We found {this.props.numTracksOverlap} of your saved songs on Frank Ocean's playlists. Check out your favorites:
+            </p>
                 <Container className="scrolling-wrapper">
                         {this.props.overlapTracks.map(p => (
-                            <div className="one-track" onMouseEnter={this.playAudio(p)}>
-                                <img id="track-artwork" key={p.id} src={p.artwork} alt="can't show image" />
-                                <h2 id="track-name" key={p.id}> {p.name} </h2>
-                                <p id="track-artist" key={p.id}> {p.artist} </p>
-                                {/* <audio><source key={p.id} src={p.preview_url}></source></audio> */}
+                            <div className="one-track">
+                            <img id="track-artwork" key={p.id} src={p.artwork} alt="can't show image" />
+                            <div className="text-wrapper">
+                                <span id="track-name" key={p.id}> {p.name} <br></br>
+                                    <span id="track-artist" key={p.id}> {p.artist} </span>
+                                </span>
+                            </div>
                             </div>
                         ))}
                 </Container> 

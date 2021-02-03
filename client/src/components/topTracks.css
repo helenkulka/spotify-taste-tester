@@ -5,42 +5,26 @@
 
 #top-tracks {
     background-color: #D0FFD4;
-    /* height: 800px; */
-    /* width: 100%;
-    overflow-y: scroll; */
-
     max-width: 100%;
-    overflow-y: scroll;
-    text-align: center;
+    overflow: hidden;
+    text-align: left;
+    margin-top: -8vh;
 }
+
+
 
 #overlap-tracks-msg {
     color:#312E50;
     -webkit-text-stroke-width: 1.4px; 
     -webkit-text-stroke-color: #312E50;
     font-family: 'Archivo', sans-serif;
-    font-size: 30px;
+    font-size: 3.5vh;
     font-style: bold;
     text-align: left;
-    margin-top: 30px;
-    /* margin-left: 30px;
-    margin-right: 80px; */
-    margin: 1vw;
+    margin-left: 3vh;
 }
 
-#track-artwork {
-    width: 150px;
-}
-#track-name {
-    font-size: 20px;
-    max-width: 180px;
-}
-
-#track-artist {
-    font-size: 15px;
-}
-
-#one-track {
-    /* display: inline-flex; */
-    flex-direction: row;
+.scrolling-wrapper {
+    max-width:100%;
+    margin-top: 5vh;
 }
