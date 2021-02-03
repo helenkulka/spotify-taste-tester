@@ -22,11 +22,11 @@ var user_artist_ids = new Set();
 var i,j,z = 0;
 
 var overlap_tracks_msgs = [
-    "we didn't find any shared songs :(",
-    "u made the cut ur OK. we found some similarities between your music tastes.",
-    "not bad kid. you and Frank Ocean might have a bit in common.",
-    "WOW! cool man, you like a lot of music! it looks like you and Frank Ocean have a lot in common.",
-    "wait what? Frank - is that you? we found a lot in common between you and Frank Ocean's music taste.",
+    "we didn't find any shared songs :( but that's OK, we can still recommend you some. check out our recs below!",
+    "well... we found a little something.",
+    "not bad. you and Frank Ocean might have a bit in common.",
+    "we're impressed, you like a lot of music! it looks like you and Frank Ocean have a lot in common.",
+    "wait what? Frank - is that you? we found a lot in common between your music taste and Frank Ocean's.",
     "you and frank were switched at birth, probably. or you should just get outside more. we found ...too much in common between your music tastes."
 ]
 export default class LoggedIn extends Component {
@@ -206,6 +206,16 @@ export default class LoggedIn extends Component {
         if (!dataLoaded) {
             return  (<Loading></Loading>)
         } else if (this.state.numTracksOverlap > 0) {
+            if (this.state.numTracksOverlap == 0) {
+                <div id="pagepiling">
+                        <div class="section sec1">
+                            <Container id="intro">
+                                <h2 id="first-name"> hey { this.state.firstName },  </h2>
+                                <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
+                            </Container>
+                        </div>
+                    </div>
+            }
             if (this.state.overlapTopTracks.length > 0) {
                 return (
                     <div id="pagepiling">
@@ -231,26 +241,7 @@ export default class LoggedIn extends Component {
                         <div class="section sec5">
                             <ThankYouPage {...this.state}></ThankYouPage>
                         </div>
-                        {/*
-
-                        <div class="section sec4">
-                            <Popularity {...this.state}></Popularity>
-                        </div> */}
                     </div>
-                    
-                // <div id="logged-in" className="fadeIn">
-                // <Container id="intro">
-                //     <h2 id="first-name"> hey { this.state.firstName },  </h2>
-                //     <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
-                //     <button onClick={() => this.handleNavigate()}>
-                //         {"beep"}
-                // </button>
-                // </Container>
-
-                // <Tracks {...this.state}> </Tracks>
-                // <TopTracks {...this.state}></TopTracks>
-                // <Popularity {...this.state}> </Popularity>
-                // </div>
                 )
             } else {
                 return (                

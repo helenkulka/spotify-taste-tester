@@ -7,76 +7,59 @@
     -webkit-text-stroke-width: 1.4px; 
     -webkit-text-stroke-color: #312E50;
     font-family: 'Archivo', sans-serif;
-    font-size: 3.5pvh;
+    font-size: 3.5vh;
     font-style: bold;
     text-align: left;
-    margin-top: 30px;
-    /* margin-left: 30px;
-    margin-right: 80px; */
-    margin: 2vw;
+    margin-left: 3vh;
 }
 
 #num-overlap {
-    font-size:8vh;
+    font-size:10vh;
     font-style:bold;
     font-weight:700;
     display:inline; 
-    margin-right:1vh;
+    margin-right:1.3vh;
 }
 
-#stat{
-    color:#312E50;
-    font-size: 60px;
-    font-style: bold;
-}
-
-#tracks-div{
-    padding:3vh;
-    max-width: 85vw;
-    display: flex;
-    margin: auto;
-}
 
 #tracks {
     background-color: #C7CAFF;
-    /* height: 100%; */
-    /* height: 800px; */
     max-width: 100%;
-    overflow-y: scroll;
-    text-align: center;
-    /* overflow-x: hidden; */
+    overflow: hidden;
+    text-align: left;
 }
 
 #track-artwork {
-    width: 150px;
-    box-shadow: 0px 0px 8px rgba(49, 46, 80,0.25), -20px -20px 0 rgba(49, 46, 80, 0.35);
+    width: 12vh;
+    box-shadow: 0px 0px 8px rgba(49, 46, 80,0.25), -2vh -2vh rgba(49, 46, 80, 0.35);
 }
 #track-name {
-    font-size: 20px;
+    color:#312E50;
+    font-size: 2.7vh;
+    font-weight: bold;
+    margin-left: 1.5vh;
+    margin-right: 3vh;
+    margin-top: -6vh;
 }
 
 #track-artist {
-    font-size: 15px;
-}
-
-#one-track {
-    display: inline-flex;
-    flex-direction: row;
-    margin:50px;
-}
-
-
-.scrolling-wrapper {
-        max-width:100%;
-        /* margin-left: -20px;  */
-        width: 75vw;
-        overflow-x: scroll;
-        /* height: 800px; */
-        white-space: nowrap;
-        text-align: center;
+    font-size: 2.3vh;
+    text-align: left;
+    font-weight: normal;
 }
 
 .one-track {
-      display: inline-block;
-      margin:50px;
+    display: inline-flex;
+    margin: 2vh;
+    max-width: 100%;
 }
+
+.scrolling-wrapper {
+    max-width:100%;
+    margin-top: 3vh;
+}
+
+.text-wrapper {
+    display: flex;
+    align-self: center;
+  }

@@ -1,19 +1,11 @@
 import React, { useRef, Component } from 'react';
-import './popularity.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'react-bootstrap';
 import { blondedPopularity } from './getUserData';
 import blonded_track_id_map from './track_id_name_map.json';
+import './popularity.css'
 
 var i,j=0;
-var popularity_msgs = [
-    "we didn't find any shared songs :(",
-    "u made the cut ur OK",
-    "not bad kid.",
-    "WOW! cool man, you like a lot of music!",
-    "wait what? Frank - is that you?",
-    "you and frank were switched at birth, probably. or you should just get outside more."
-]
 
 export default class Popularity extends Component {
 
@@ -53,9 +45,7 @@ async calculateUserPopularity(blonded_track_id_map, track_overlap) {
     }
     var percentage = (user_stat * 100).toFixed(0);
     this.setState({popularity: user_stat, popularity_percentage: percentage,
-        popularTracks:minimum_popularity_tracks});
-    console.log("USER NICHENESS:", user_stat);
-    console.log("MINIMUM POP LIST:", minimum_popularity_tracks);
+        popularTracks:minimum_popularity_tracks.slice(0, 3)});
 
 }
 
@@ -69,21 +59,21 @@ render() {
         <div>
 
 <Container id="tracks-niche" ref={this.props.ref1}>
-            <div id="tracks-div">
-            <p id="overlap-tracks-msg" style={{display:"inline"}} >
-            <strong id="num-overlap" style={{fontSize:60,fontStyle:"bold",fontWeight:700,display:"inline", marginRight:10}} > { this.state.popularity_percentage }%</strong>
-              niche. Your shared songs are more niche than { this.state.popularity_percentage }% of Frank's favorites. Here's your best finds:</p>
-            </div>
-                 <Container className="scrolling-wrapper">
-                    {this.state.popularTracks.map(p => (
-                        <div className="one-track">
+            <p id="overlap-tracks-msg" >
+            <strong id="num-overlap" > { this.state.popularity_percentage }%</strong>
+              niche. <br></br> Your shared songs are more niche than { this.state.popularity_percentage }% of Frank's favorites. Here's your best finds:</p>
+            <Container className="scrolling-wrapper">
+                        {this.state.popularTracks.map(p => (
+                            <div className="one-track">
                             <img id="track-artwork" key={p.id} src={p.artwork} alt="can't show image" />
-                            <h2 id="track-name" key={p.id}> {p.name} </h2>
-                            <p id="track-artist" key={p.id}> {p.artist} </p>
-                            {/* <audio><source key={p.id} src={p.preview_url}></source></audio> */}
-                        </div>
-                ))}
-                 </Container> 
+                            <div className="text-wrapper">
+                                <span id="track-name" key={p.id}> {p.name} <br></br>
+                                    <span id="track-artist" key={p.id}> {p.artist} </span>
+                                </span>
+                            </div>
+                            </div>
+                        ))}
+                </Container> 
         </Container>
         </div>
     )

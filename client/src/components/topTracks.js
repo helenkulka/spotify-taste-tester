@@ -1,6 +1,6 @@
 import React, { useRef, Component} from 'react';
 import { Container, Row, Col, Fragment } from 'react-bootstrap';
-import './topTracks.css';
+import './topTracks.css'
 
 export default class TopTracks extends Component {
     constructor(props) {
@@ -10,19 +10,20 @@ export default class TopTracks extends Component {
     render() {
         return (
         <Container id="top-tracks" ref={this.props.ref1}>
-            <div id="tracks-div">
-            <p id="overlap-tracks-msg" style={{display:"inline"}} >
+            <p id="overlap-tracks-msg">
             <strong id="num-overlap" > { this.props.overlapTopTracks.length }</strong>
-            top songs. WOW! { this.props.overlapTopTracks.length } of your most listened to songs of all time overlap with Frank Ocean's favorites.
+            top songs. <br></br> Wow! { this.props.overlapTopTracks.length } of your most listened to songs of all time overlap with Frank Ocean's favorites.
             </p>
-            </div>
 
         <Container className="scrolling-wrapper">
                     {this.props.overlapTopTracks.map(p => (
                         <div className="one-track">
                             <img id="track-artwork" key={p.id} src={p.artwork} alt="can't show image" />
-                            <h2 id="track-name" key={p.id}> {p.name} </h2>
-                            <p id="track-artist" key={p.id}> {p.artist} </p>
+                            <div className="text-wrapper">
+                                <span id="track-name" key={p.id}> {p.name} <br></br>
+                                    <span id="track-artist" key={p.id}> {p.artist} </span>
+                                </span>
+                            </div>
                             {/* <audio><source key={p.id} src={p.preview_url}></source></audio> */}
                         </div>
                 ))}
