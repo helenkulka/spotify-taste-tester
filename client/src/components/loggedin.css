@@ -41,12 +41,6 @@
 
 #thanks{
   background-color: #96c8d9;
-  -webkit-text-stroke-width: 1.4px; 
-    -webkit-text-stroke-color: #312E50;
-    font-family: 'Archivo', sans-serif;
-    font-size: 30px;
-    font-style: bold;
-    text-align: left;
     overflow-y: scroll;
     overflow-x: hidden;
     max-width: 85%;

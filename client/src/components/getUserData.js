@@ -37,7 +37,7 @@ export async function getPlaylist(access_token) {
 }
 export async function getLikedTracks(access_token, blonded_ids) {
   spotifyApi.setAccessToken(access_token);
-  var contains = [];
+  var contains = new Set();
   for (i =0; i < 385; i+=50) {
     var ids = blonded_ids.slice(i,i+50);
     var index = ids.indexOf("null");
@@ -47,7 +47,7 @@ export async function getLikedTracks(access_token, blonded_ids) {
     var res = await spotifyApi.containsMySavedTracks(ids);
     var l = res.length;
     for (j =0; j < l; j++) {
-      contains.push(res[j]);
+      contains.add(res[j]);
     }
   }
   return contains;
@@ -135,10 +135,11 @@ export async function blondedPopularity(blonded_track_id_map) {
   return popularities.sort(); 
 }
 
-function getSavedAlbums() {
 
-}
-
-function createRecommendedPlaylist() {
+export async function createRecommendedPlaylist(user_id, uris) {
+  var playlist_obj = await spotifyApi.createPlaylist(user_id, {name: "❤ for u from blonded ❤"});
+  uris = uris.map(i => 'spotify:track:' + i);
+  spotifyApi.addTracksToPlaylist(user_id, playlist_obj.id, uris);
+  return playlist_obj.id;
 
 }

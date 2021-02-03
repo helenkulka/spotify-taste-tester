@@ -22,7 +22,7 @@ var user_artist_ids = new Set();
 var i,j,z = 0;
 
 var overlap_tracks_msgs = [
-    "we didn't find any shared songs :( but that's OK, we can still recommend you some. check out our recs below!",
+    "we didn't find any shared songs :( but that's OK, we can still recommend you some.",
     "well... we found a little something.",
     "not bad. you and Frank Ocean might have a bit in common.",
     "we're impressed, you like a lot of music! it looks like you and Frank Ocean have a lot in common.",
@@ -37,12 +37,16 @@ export default class LoggedIn extends Component {
 
         this.state = {
             firstName : "",
+            userId: "",
             overlapIntroMsg: "",
             overlapTracksMsg: "",
             overlapTopTracksMsg: "",
             overlapTopTracks: [],
             overlapTracks: [],
+            topTrackUris: [],
+            overlapTrackUris: [],
             overlapTracksIds: [],
+            recommendedTracksByArtist: [],
             numTracksOverlap: 0,
             itemsLoaded: false,
             ref1: React.createRef()
@@ -55,7 +59,6 @@ export default class LoggedIn extends Component {
 
     handleNavigate() {
         let el = this.state.ref1;
-        console.log(el);
 
         el.current.scrollIntoView({ behavior: 'smooth' })
     }
@@ -73,18 +76,18 @@ export default class LoggedIn extends Component {
                 msg = msg + " check out your top 3";
                 top_track_info = top_track_info.slice(0,3);
             }
-        } 
-        this.setState({overlapTopTracksMsg: msg, overlapTopTracks: top_track_info});
+        }
+        this.setState({overlapTopTracksMsg: msg, overlapTopTracks: top_track_info, topTrackUris: top_track_overlap});
     }
 
     setOverlapTracks(all_track_overlap, top_track_overlap) {
         var all_track_info = [];
-        var msg = "";
+        var all_track_uris = []
 
         if (all_track_overlap.length > 0) {
-            msg =  all_track_overlap.length + " shared songs. we found " + all_track_overlap.length + " saved songs that appeared on Frank Ocean’s playlists.";
             for (i in all_track_overlap) {
                 if (!top_track_overlap.includes(all_track_overlap[i])) {
+                    all_track_uris.push(all_track_overlap[i]);
                     all_track_info.push(blonded_track_id_map[all_track_overlap[i]]);
                 }
             }
@@ -92,7 +95,7 @@ export default class LoggedIn extends Component {
                 all_track_info = all_track_info.slice(0,3);
             }
         }
-        this.setState({overlapTracks: all_track_info, overlapTracksMsg: msg})
+        this.setState({overlapTracks: all_track_info, numTracksOverlap: all_track_info.length, overlapTrackUris: all_track_uris})
     }
 
     setOverlapIntroMsg(num_tracks_overlap) {
@@ -110,7 +113,7 @@ export default class LoggedIn extends Component {
           } else if (num_tracks_overlap >= 100) {
             msg = overlap_tracks_msgs[5];
           }
-          this.setState({overlapIntroMsg: msg, numTracksOverlap: num_tracks_overlap});
+          this.setState({overlapIntroMsg: msg});
     }
 
     async getUserSavedTracks(track_overlap) {
@@ -164,11 +167,40 @@ export default class LoggedIn extends Component {
         return top_songs_overlap;
     }
 
+    getTrackByArtist(value) {
+        var recs = []
+        //console.log(value);
+        for (var key in blonded_track_id_map) {
+            if (blonded_track_id_map[key]["artist"] === value) {
+                recs.push(key)
+            }
+        }
+        return recs;
+    }
+
+    async getArtistRecommendations() {
+        var recs_by_artist = []
+        var top_artists = await getTopType('artists', this.props.accessToken);
+        //console.log(top_artists);
+        for (var artist_id in blonded_artist_id_map){
+            if (top_artists.includes(artist_id)) {
+                var artist_name = blonded_artist_id_map[artist_id]["name"];
+                var recommended_track = this.getTrackByArtist(artist_name);
+                recommended_track = recommended_track.filter(val => !this.state.overlapTrackUris.includes(val) && !this.state.topTrackUris.includes(val));
+                recs_by_artist.push(...recommended_track);
+            }
+        }
+
+        return recs_by_artist;
+    }
+
 
 
 
     async componentDidMount() {
-        this.setState({firstName: this.props.userData.display_name.split(" ")[0].toLowerCase()});
+        this.setState(
+            {firstName: await this.props.userData.display_name.split(" ")[0].toLowerCase(), 
+            userId: await this.props.userData.id});
         var overlap_top_track_ids = await this.getUserTopTracks();
         var overlap_playlist_track_ids = await this.getUserPlaylistTracks();
         var overlap_all_track_ids = await this.getUserSavedTracks(overlap_playlist_track_ids);
@@ -178,17 +210,28 @@ export default class LoggedIn extends Component {
         //setting overlap track messages for all tracks and top tracks
         //will be rendered in respective components
         this.setOverlapTracks(overlap_all_track_ids, overlap_top_track_ids);
+        
         this.setOverlapTopTracks(overlap_top_track_ids);
+        this.setState({recommendedTracksByArtist: this.getArtistRecommendations()});
         // this.calculateUserPopularity(blonded_track_id_map, overlap_all_track_ids);
         this.setState({itemsLoaded:true},this.props.onChangeParentStyle(true,true,1));
-
+        var toolTips = []
+        if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks.length == 0) {
+            toolTips = ['sec1','sec5'];
+        } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks == 0) {
+            toolTips = ['sec1', 'sec2', 'sec4', 'sec5'];
+        } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks > 0) {
+            toolTips = ['sec1', 'sec3', 'sec4', 'sec5'];
+        } else {
+            toolTips = ['sec1', 'sec2', 'sec3', 'sec4', 'sec5'];
+        }
         $(document).ready(function() {
             $('#pagepiling').pagepiling({
                 navigation: {
                     'textColor': '#fff',
                     'bulletsColor': '#fff',
                     'position': 'right',
-                    'tooltips': ['sec1', 'sec2','sec3', 'sec4','sec5']
+                    'tooltips': toolTips
                 }
             })
         });
@@ -205,8 +248,8 @@ export default class LoggedIn extends Component {
         const dataLoaded = this.state.itemsLoaded;
         if (!dataLoaded) {
             return  (<Loading></Loading>)
-        } else if (this.state.numTracksOverlap > 0) {
-            if (this.state.numTracksOverlap == 0) {
+        } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks.length == 0) {
+            return (
                 <div id="pagepiling">
                         <div class="section sec1">
                             <Container id="intro">
@@ -214,11 +257,54 @@ export default class LoggedIn extends Component {
                                 <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
                             </Container>
                         </div>
+                        <div class="section sec5">
+                            <ThankYouPage {...this.state}></ThankYouPage>
+                        </div>
                     </div>
-            }
-            if (this.state.overlapTopTracks.length > 0) {
-                return (
-                    <div id="pagepiling">
+            )
+        } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks == 0) {
+            return (
+                <div id="pagepiling">
+                    <div class="section sec1">
+                        <Container id="intro">
+                            <h2 id="first-name"> hey { this.state.firstName },  </h2>
+                            <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
+                        </Container>
+                    </div>
+                    <div class="section sec2">
+                        <Tracks {...this.state}> </Tracks> 
+                    </div>
+                    <div class="section sec4">
+                        <NicheTracks {...this.state}></NicheTracks>
+                    </div>
+                    <div class="section sec5">
+                        <ThankYouPage {...this.state}></ThankYouPage>
+                    </div>
+                </div>
+                )
+        } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks > 0) {
+            return (
+                <div id="pagepiling">
+                    <div class="section sec1">
+                        <Container id="intro">
+                            <h2 id="first-name"> hey { this.state.firstName },  </h2>
+                            <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
+                        </Container>
+                    </div>
+                    <div class="section sec3">
+                        <TopTracks {...this.state}></TopTracks>
+                    </div>
+                    <div class="section sec4">
+                        <NicheTracks {...this.state}></NicheTracks>
+                    </div>
+                    <div class="section sec5">
+                        <ThankYouPage {...this.state}></ThankYouPage>
+                    </div>
+                </div>
+                )
+        } else {
+            return (
+                <div id="pagepiling">
                         <div class="section sec1">
                             <Container id="intro">
                                 <h2 id="first-name"> hey { this.state.firstName },  </h2>
@@ -226,10 +312,6 @@ export default class LoggedIn extends Component {
                             </Container>
                         </div>
                         <div class="section sec2">
-                        {/* <Container id="intro">
-                                <h2 id="first-name"> hey { this.state.firstName },  </h2>
-                                <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
-                            </Container> */}
                             <Tracks {...this.state}> </Tracks> 
                         </div>
                         <div class="section sec3">
@@ -241,21 +323,8 @@ export default class LoggedIn extends Component {
                         <div class="section sec5">
                             <ThankYouPage {...this.state}></ThankYouPage>
                         </div>
-                    </div>
-                )
-            } else {
-                return (                
-                <div id="logged-in" className="fadeIn">
-                <Container id="intro">
-                    <h2 id="first-name"> hey { this.state.firstName },  </h2>
-                    <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
-                </Container>
-
-                <Tracks {...this.state}> </Tracks>
-                <NicheTracks {...this.state}> </NicheTracks>
                 </div>
                 )
             }
-        }
     }
 }

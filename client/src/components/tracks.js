@@ -20,7 +20,10 @@ export default class Tracks extends Component {
         return (
         <Container id="tracks" ref={this.props.ref1}>
             <p id="overlap-tracks-msg">
-            <strong id="num-overlap" > { this.props.numTracksOverlap }</strong> shared songs. <br></br> We found {this.props.numTracksOverlap} of your saved songs on Frank Ocean's playlists. Check out your favorites:
+                <strong id="num-overlap" > { this.props.numTracksOverlap }  </strong>
+                { this.props.numTracksOverlap == 1 ? <p style={{display: 'inline'}}> shared song </p> : <p style={{display: 'inline'}}> shared songs </p>
+                }
+            <br></br> We found {this.props.numTracksOverlap} of your saved songs on Frank Ocean's playlists.
             </p>
                 <Container className="scrolling-wrapper">
                         {this.props.overlapTracks.map(p => (

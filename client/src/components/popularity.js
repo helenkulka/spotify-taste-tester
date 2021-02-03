@@ -22,6 +22,7 @@ export default class Popularity extends Component {
 
 async calculateUserPopularity(blonded_track_id_map, track_overlap) {
     var popularity_set = await blondedPopularity(blonded_track_id_map);
+    console.log(popularity_set);
     var minimum_popularity_tracks = [];
     var user_avg = 0;
     var user_min = 999;
@@ -37,20 +38,21 @@ async calculateUserPopularity(blonded_track_id_map, track_overlap) {
     popularity_set.push(user_avg);
     popularity_set.sort();
     var length_prior = popularity_set.length;
-    var user_stat = 1 - popularity_set.slice(popularity_set.indexOf(user_avg) + 1, popularity_set.length + 1).length/length_prior;
+    var user_stat = popularity_set.slice(popularity_set.indexOf(user_avg) + 1, popularity_set.length + 1).length/length_prior;
     for (i in track_overlap) {
        if (blonded_track_id_map[track_overlap[i]].popularity === user_min) {
            minimum_popularity_tracks.push(blonded_track_id_map[track_overlap[i]]);
        }
     }
+
     var percentage = (user_stat * 100).toFixed(0);
     this.setState({popularity: user_stat, popularity_percentage: percentage,
-        popularTracks:minimum_popularity_tracks.slice(0, 3)});
+        popularTracks:minimum_popularity_tracks.slice(Math.max(minimum_popularity_tracks.length - 3, 0))});
 
 }
 
 componentDidMount() {
-    this.calculateUserPopularity(blonded_track_id_map, this.props.overlapTracksIds);
+    this.calculateUserPopularity(blonded_track_id_map, [...this.props.topTrackUris, ...this.props.overlapTrackUris]);
 
 }
 
@@ -61,7 +63,7 @@ render() {
 <Container id="tracks-niche" ref={this.props.ref1}>
             <p id="overlap-tracks-msg" >
             <strong id="num-overlap" > { this.state.popularity_percentage }%</strong>
-              niche. <br></br> Your shared songs are more niche than { this.state.popularity_percentage }% of Frank's favorites. Here's your best finds:</p>
+              niche. <br></br> Your shared songs are more niche than { this.state.popularity_percentage }% of Frank's favorites </p>
             <Container className="scrolling-wrapper">
                         {this.state.popularTracks.map(p => (
                             <div className="one-track">
