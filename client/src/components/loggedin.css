@@ -46,6 +46,12 @@
     max-width: 85%;
 }
 
+#artists{
+  background-color: #EFB9C5;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    max-width: 85%;
+}
 
 
 #overlap-intro-msg {
@@ -103,6 +109,14 @@
   }
 
   .sec5 {
+    background-color: #EFB9C5;
+    height: 100%;
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  .sec6 {
     background-color:#96c8d9;
     height: 100%;
     width: 100%;
