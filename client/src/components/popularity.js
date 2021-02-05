@@ -63,7 +63,13 @@ render() {
 <Container id="tracks-niche" ref={this.props.ref1}>
             <p id="overlap-tracks-msg" >
             <strong id="num-overlap" > { this.state.popularity_percentage }%</strong>
-              niche. <br></br> Your shared songs are more niche than { this.state.popularity_percentage }% of Frank's favorites </p>
+              niche. <br></br> Your shared songs are more niche than { this.state.popularity_percentage }% of Frank's favorites. 
+              {
+                  this.state.popularTracks.length > 1 ? <p style={{display:"inline"}}> Here's your best finds </p> 
+                  : this.state.popularTracks.length === 1 ? <p style={{display:"inline"}}> Here's your best find </p> 
+                  : <p> </p> 
+              }
+              </p>
             <Container className="scrolling-wrapper">
                         {this.state.popularTracks.map(p => (
                             <div className="one-track">

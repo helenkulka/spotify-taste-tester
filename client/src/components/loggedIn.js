@@ -149,9 +149,10 @@ export default class LoggedIn extends Component {
                     user_artist_ids.add(tracks[j].track.artists[z].id);
                 }
             }
-
-            if(tracks.length < 100){
-                break
+            if (tracks) {
+                if(tracks.length < 100){
+                    break
+                }
             }
             offset = offset + 100;
           }
