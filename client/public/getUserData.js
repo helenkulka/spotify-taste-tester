@@ -34,7 +34,7 @@ async function getPlaylist(access_token) {
 }
 async function getLikedTracks(access_token, blonded_ids) {
   spotifyApi.setAccessToken(access_token);
-  var contains = [];
+  var contains = new Set();
   for (i =0; i < 385; i+=50) {
     var ids = blonded_ids.slice(i,i+50);
     var index = ids.indexOf("null");
@@ -44,7 +44,7 @@ async function getLikedTracks(access_token, blonded_ids) {
     var res = await spotifyApi.containsMySavedTracks(ids);
     var l = res.length;
     for (j =0; j < l; j++) {
-      contains.push(res[j]);
+      contains.add(res[j]);
     }
   }
   return contains;

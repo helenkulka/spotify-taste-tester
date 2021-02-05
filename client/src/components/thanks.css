@@ -1,0 +1,19 @@
+#save-play-btn {
+    border-radius: 20px;
+    background-color: #312E50;
+    color:rgb(206, 236, 250);
+    font-size: 15px;
+    font-family: 'Archivo';
+}
+
+#success-save,
+#thanks-msg {
+    color:#312E50;
+    -webkit-text-stroke-width: 1px; 
+    -webkit-text-stroke-color: #312E50;
+    font-family: 'Archivo', sans-serif;
+    font-size: 3.5vh;
+    font-style: bold;
+    text-align: left;
+    margin-left: 3vh;
+}
