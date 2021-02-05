@@ -22,7 +22,6 @@ export default class Popularity extends Component {
 
 async calculateUserPopularity(blonded_track_id_map, track_overlap) {
     var popularity_set = await blondedPopularity(blonded_track_id_map);
-    console.log(popularity_set);
     var minimum_popularity_tracks = [];
     var user_avg = 0;
     var user_min = 999;
@@ -47,7 +46,7 @@ async calculateUserPopularity(blonded_track_id_map, track_overlap) {
 
     var percentage = (user_stat * 100).toFixed(0);
     this.setState({popularity: user_stat, popularity_percentage: percentage,
-        popularTracks:minimum_popularity_tracks.slice(Math.max(minimum_popularity_tracks.length - 3, 0))});
+        popularTracks:minimum_popularity_tracks.slice(0, 3)});
 
 }
 

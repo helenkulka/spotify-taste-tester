@@ -1,19 +1,53 @@
 #save-play-btn {
-    border-radius: 20px;
-    background-color: #312E50;
-    color:rgb(206, 236, 250);
-    font-size: 15px;
+    background-color: transparent;
+    border-color: transparent;
+    color:#312E50;
+    font-size: 3.5vh;
     font-family: 'Archivo';
+    outline:none;
+    
+}
+
+#button-wrapper {
+    width: 20%;
+    display: inline;
+    align-self: center;
+}
+
+#save-play-btn:hover {
+    text-decoration:underline;
+}
+
+#slash {
+    display: inline;
 }
 
 #success-save,
-#thanks-msg {
+#slash,
+#thanks-msg,
+#save-play-btn {
     color:#312E50;
-    -webkit-text-stroke-width: 1px; 
+    -webkit-text-stroke-width: 1.2px; 
     -webkit-text-stroke-color: #312E50;
     font-family: 'Archivo', sans-serif;
-    font-size: 3.5vh;
+    font-size: 4vh;
     font-style: bold;
     text-align: left;
-    margin-left: 3vh;
+}
+
+/* #share-social {
+    margin: 3vh;
+} */
+
+#playlist-wrapper {
+    display:block;
+    width: 30%;
+    margin: 5vh auto;
+}
+
+#share-social,
+#success-save {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
 }

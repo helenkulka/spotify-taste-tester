@@ -14,12 +14,14 @@ import { Waypoint } from 'react-waypoint';
 import Tracks from './tracks';
 import TopTracks from './topTracks';
 import ThankYouPage from './thanks';
+import Artists from './artists';
 
 const blonded_track_ids = Object.keys(blonded_track_id_map);
 
 var user_track_ids = new Set();
 var user_artist_ids = new Set(); 
 var i,j,z = 0;
+
 
 var overlap_tracks_msgs = [
     "we didn't find any shared songs :( but that's OK, we can still recommend you some.",
@@ -46,9 +48,13 @@ export default class LoggedIn extends Component {
             topTrackUris: [],
             overlapTrackUris: [],
             overlapTracksIds: [],
+            numArtistsOverlap: 0,
+            recommendedTracksByArtistUris: [],
+            uniqueRecommendedTracksByArtistUris: [],
             recommendedTracksByArtist: [],
             numTracksOverlap: 0,
             itemsLoaded: false,
+            sections: [],
             ref1: React.createRef()
         };
  
@@ -82,7 +88,7 @@ export default class LoggedIn extends Component {
 
     setOverlapTracks(all_track_overlap, top_track_overlap) {
         var all_track_info = [];
-        var all_track_uris = []
+        var all_track_uris = [];
 
         if (all_track_overlap.length > 0) {
             for (i in all_track_overlap) {
@@ -95,7 +101,7 @@ export default class LoggedIn extends Component {
                 all_track_info = all_track_info.slice(0,3);
             }
         }
-        this.setState({overlapTracks: all_track_info, numTracksOverlap: all_track_info.length, overlapTrackUris: all_track_uris})
+        this.setState({overlapTracks: all_track_info, numTracksOverlap: all_track_overlap.length, overlapTrackUris: all_track_uris})
     }
 
     setOverlapIntroMsg(num_tracks_overlap) {
@@ -180,19 +186,84 @@ export default class LoggedIn extends Component {
     }
 
     async getArtistRecommendations() {
-        var recs_by_artist = []
+        var recs_by_artist = [];
         var top_artists = await getTopType('artists', this.props.accessToken);
+        var num_overlap = 0;
+        var recommended_uris = [];
+        var unique_recommended = [];
         //console.log(top_artists);
         for (var artist_id in blonded_artist_id_map){
             if (top_artists.includes(artist_id)) {
+                num_overlap += 1;
                 var artist_name = blonded_artist_id_map[artist_id]["name"];
                 var recommended_track = this.getTrackByArtist(artist_name);
                 recommended_track = recommended_track.filter(val => !this.state.overlapTrackUris.includes(val) && !this.state.topTrackUris.includes(val));
-                recs_by_artist.push(...recommended_track);
+                if (recommended_track.length > 0) {
+                    recs_by_artist.push(...recommended_track);
+                    num_overlap += 1;
+                    unique_recommended.push(blonded_track_id_map[recommended_track[0]]);
+                    for (i in recommended_track) {
+                        recommended_uris.push(blonded_track_id_map[recommended_track[i]]);
+                    }
+                }
             }
         }
-
+        if (unique_recommended.length > 3) {
+            unique_recommended = unique_recommended.slice(0,3);
+        }
+        this.setState({numArtistsOverlap: num_overlap, recommendedTracksByArtistUris: recommended_uris, uniqueRecommendedTracksByArtistUris: unique_recommended});
         return recs_by_artist;
+    }
+
+    intro() {
+        return(
+            <div class="section sec1">
+                <Container id="intro">
+                    <h2 id="first-name"> hey { this.state.firstName },  </h2>
+                    <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
+                </Container>
+            </div>
+        );
+    }
+
+    thankYou() {
+        return(
+            <div class="section sec6">
+                <ThankYouPage {...this.state}></ThankYouPage>
+            </div>
+        );
+    }
+
+    tracks() {
+        return (
+            <div class="section sec2">
+                <Tracks {...this.state}> </Tracks> 
+            </div>  
+        );
+    }
+
+    topTracks() {
+        return(
+            <div class="section sec3">
+                <TopTracks {...this.state}></TopTracks>
+            </div>
+        );
+    }
+
+    popularity() {
+        return(
+            <div class="section sec4">
+                <NicheTracks {...this.state}></NicheTracks>
+            </div>
+        );
+    }
+
+    artists() {
+        return(
+            <div class="section sec5">
+                <Artists {...this.state}></Artists>
+            </div>
+        );
     }
 
 
@@ -213,19 +284,26 @@ export default class LoggedIn extends Component {
         this.setOverlapTracks(overlap_all_track_ids, overlap_top_track_ids);
         
         this.setOverlapTopTracks(overlap_top_track_ids);
-        this.setState({recommendedTracksByArtist: this.getArtistRecommendations()});
+        this.setState({recommendedTracksByArtist: await this.getArtistRecommendations()});
         // this.calculateUserPopularity(blonded_track_id_map, overlap_all_track_ids);
         this.setState({itemsLoaded:true},this.props.onChangeParentStyle(true,true,1));
         var toolTips = []
-        if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks.length == 0) {
-            toolTips = ['sec1','sec5'];
-        } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks == 0) {
-            toolTips = ['sec1', 'sec2', 'sec4', 'sec5'];
-        } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks > 0) {
-            toolTips = ['sec1', 'sec3', 'sec4', 'sec5'];
+        if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks.length == 0 && this.state.numArtistsOverlap == 0) {
+            toolTips = ['sec1','sec6'];
+        } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks == 0 && this.state.numArtistsOverlap == 0) {
+            toolTips = ['sec1', 'sec2', 'sec4', 'sec6'];
+        } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks == 0 && this.state.numArtistsOverlap > 0) {
+            toolTips = ['sec1', 'sec2', 'sec4', 'sec5' ,'sec6'];
+        } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks > 0 && this.state.numArtistsOverlap == 0) {
+            toolTips = ['sec1', 'sec3', 'sec4', 'sec6'];
+        } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks > 0 && this.state.numArtistsOverlap > 0) {
+            toolTips = ['sec1', 'sec3', 'sec4', 'sec5', 'sec6'];
         } else {
-            toolTips = ['sec1', 'sec2', 'sec3', 'sec4', 'sec5'];
+            toolTips = ['sec1', 'sec2', 'sec3', 'sec4', 'sec5', 'sec6'];
         }
+
+        this.setState({sections: toolTips});
+
         $(document).ready(function() {
             $('#pagepiling').pagepiling({
                 navigation: {
@@ -249,83 +327,66 @@ export default class LoggedIn extends Component {
         const dataLoaded = this.state.itemsLoaded;
         if (!dataLoaded) {
             return  (<Loading></Loading>)
-        } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks.length == 0) {
-            return (
+        } else if (this.state.sections.length == 1) {
+            return(
                 <div id="pagepiling">
-                        <div class="section sec1">
-                            <Container id="intro">
-                                <h2 id="first-name"> hey { this.state.firstName },  </h2>
-                                <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
-                            </Container>
-                        </div>
-                        <div class="section sec5">
-                            <ThankYouPage {...this.state}></ThankYouPage>
-                        </div>
-                    </div>
-            )
-        } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks == 0) {
-            return (
-                <div id="pagepiling">
-                    <div class="section sec1">
-                        <Container id="intro">
-                            <h2 id="first-name"> hey { this.state.firstName },  </h2>
-                            <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
-                        </Container>
-                    </div>
-                    <div class="section sec2">
-                        <Tracks {...this.state}> </Tracks> 
-                    </div>
-                    <div class="section sec4">
-                        <NicheTracks {...this.state}></NicheTracks>
-                    </div>
-                    <div class="section sec5">
-                        <ThankYouPage {...this.state}></ThankYouPage>
-                    </div>
+                    { this.intro() }
+                    { this.thankYou() } 
                 </div>
-                )
-        } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks > 0) {
-            return (
+            );
+        } else if(this.state.sections.length == 4 && this.state.sections.includes('sec2')) {
+           // 1246
+           return (                
                 <div id="pagepiling">
-                    <div class="section sec1">
-                        <Container id="intro">
-                            <h2 id="first-name"> hey { this.state.firstName },  </h2>
-                            <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
-                        </Container>
-                    </div>
-                    <div class="section sec3">
-                        <TopTracks {...this.state}></TopTracks>
-                    </div>
-                    <div class="section sec4">
-                        <NicheTracks {...this.state}></NicheTracks>
-                    </div>
-                    <div class="section sec5">
-                        <ThankYouPage {...this.state}></ThankYouPage>
-                    </div>
+                    {  this.intro() }
+                    { this.tracks() }
+                    {  this.popularity() }
+                    { this.thankYou() }
                 </div>
-                )
+            );
+        } else if(this.state.sections.length == 5 && this.state.sections.includes('sec2')) {
+            //12456
+            return (                
+                <div id="pagepiling">
+                    {  this.intro() }
+                    { this.tracks() }
+                    {  this.popularity() }
+                    { this.artists() }
+                    { this.thankYou() }
+                </div>
+            );
+        } else if (this.state.sections.length == 4) {
+                //1346
+                return (                
+                    <div id="pagepiling">
+                        {  this.intro() }
+                        { this.topTracks() }
+                        {  this.popularity() }
+                        { this.thankYou() }
+                    </div>
+                );
+        } else if (this.state.sections.length == 5) {
+            //13456
+            return (                
+                <div id="pagepiling">
+                    {  this.intro() }
+                    { this.topTracks() }
+                    {  this.popularity() }
+                    {  this.artists() }
+                    { this.thankYou() }
+                </div>
+            );
         } else {
-            return (
+            return (                
                 <div id="pagepiling">
-                        <div class="section sec1">
-                            <Container id="intro">
-                                <h2 id="first-name"> hey { this.state.firstName },  </h2>
-                                <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
-                            </Container>
-                        </div>
-                        <div class="section sec2">
-                            <Tracks {...this.state}> </Tracks> 
-                        </div>
-                        <div class="section sec3">
-                            <TopTracks {...this.state}></TopTracks>
-                        </div>
-                        <div class="section sec4">
-                            <NicheTracks {...this.state}></NicheTracks>
-                        </div>
-                        <div class="section sec5">
-                            <ThankYouPage {...this.state}></ThankYouPage>
-                        </div>
+                    {  this.intro() }
+                    { this.tracks() }
+                    { this.topTracks() }
+                    {  this.popularity() }
+                    {  this.artists() }
+                    { this.thankYou() }
                 </div>
-                )
-            }
+            );
+        }
     }
 }

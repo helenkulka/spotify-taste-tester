@@ -11,7 +11,8 @@ export default class ThankYouPage extends Component {
         this.state={
             isEdit:false,
             playlistId:"",
-            playlistLoaded: false
+            playlistLoaded: false,
+            saidYes: false
            }
     }
 
@@ -27,14 +28,17 @@ export default class ThankYouPage extends Component {
         });
     };
 
-    async handleClick () { 
+    async handleClickYes () { 
         var playlist_id = await createRecommendedPlaylist(this.props.userId, recs);
-        this.setState({isEdit:true, playlistId: playlist_id})
+        this.setState({isEdit:true, playlistId: playlist_id, saidYes: true})
+    }
+
+    async handleClickNo () { 
+        this.setState({isEdit:true, saidYes: false})
     }
 
     async componentDidMount() {
-        console.log(this.props.recommendedTracksByArtist)
-        recs = [...this.props.overlapTrackUris, ...await this.props.recommendedTracksByArtist, ...this.props.topTrackUris];
+        recs = [...this.props.overlapTrackUris, ...this.props.recommendedTracksByArtist, ...this.props.topTrackUris];
     }
 
 
@@ -45,18 +49,35 @@ export default class ThankYouPage extends Component {
         <Container id="thanks" ref={this.props.ref1}>
         { !this.state.isEdit ? 
             <div>
-                    <p id="thanks-msg"> we found some songs you might like, do u wanna save a playlist? </p>
-                    <Button id="save-play-btn"
-            onClick={() => this.handleClick()}>
-                save recommendations
-            </Button> 
+                    <p id="thanks-msg"> Would you like to save our recommendations for you? </p>
+                    <div id="button-wrapper">
+                        <Button id="save-play-btn"
+                        onClick={() => this.handleClickYes()}>
+                            yes
+                        </Button> 
+                        <p id="slash"> / </p>
+                        <Button id="save-play-btn"
+                        onClick={() => this.handleClickNo()}>
+                            no
+                        </Button> 
+                    </div>
             </div> : 
+                this.state.saidYes ?
             <Container id="playlist-wrapper">
                 <iframe id="playlist-embed"src={`https://open.spotify.com/embed/playlist/${this.state.playlistId}`} width="300" height="350" onLoad={this.hideSpinner} frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                 {this.state.playlistLoaded ?  
-                <p id="success-save"> we successfully saved your playlist, enjoy! </p> : <p></p>
+                <div id="success-save">
+                    <p id="success-save-msg"> We successfully saved your playlist, enjoy! </p> 
+                    <div id="share-social">
+                        <p id="share-msg"> share with your friends </p>
+                    </div>
+                </div>
+                : <p> </p>
+
                 }
-            </Container>
+            </Container> :
+                <p id="success-save"> Ok, we didn't save your playlist! </p> 
+            
         }
 
         </Container>
