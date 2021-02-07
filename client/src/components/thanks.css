@@ -41,7 +41,7 @@
 
 #playlist-wrapper {
     display:block;
-    width: 30%;
+    text-align: center;
     margin: 5vh auto;
 }
 
@@ -50,6 +50,18 @@
     width: 100%;
     text-align: center;
     margin: 0 auto;
+}
+
+.social_share {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    margin-top: 10%;
+    color: white;
+    -webkit-text-stroke-color: white;
+    font-family: 'Archivo';
+    font-size: 20px;
+    font-style:normal;
 }
 
 .thumbnail:hover {
