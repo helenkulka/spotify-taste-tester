@@ -18,6 +18,11 @@ import {
 import './thanks.css'
 var recs = []
 export default class SocialShare extends Component {
+    constructor(props) {
+        super(props);
+        // this.props = props;
+        console.log(this.props);
+    }
     render() {
         return (
             <div className="c-network" ref={this.props.ref1}>

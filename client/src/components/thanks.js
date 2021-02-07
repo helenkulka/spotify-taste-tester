@@ -87,7 +87,53 @@ export default class ThankYouPage extends Component {
                     <p id="success-save-msg"> We successfully saved your playlist, enjoy! </p> 
                     <div id="share-social c-network">
                         <p className="social_share">Share your results with friends:</p>
-                        <SocialShare></SocialShare>
+                        <div className="c-network" ref={this.props.ref1}>
+                {/* <p >Share your results!</p> */}
+                <FacebookShareButton
+                    className="network"
+                    url="https://www.backdrophome.com/"
+                    quote={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
+                    hashtag="#frankocean">
+                    <FacebookIcon logoFillColor="white" size={"2rem"} round/>
+                </FacebookShareButton>
+                <TwitterShareButton
+                    className="network"
+                    url="https://www.backdrophome.com/"
+                    title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
+                    >
+                    <TwitterIcon logoFillColor="white" size={"2rem"} round/>
+                </TwitterShareButton>
+                <WhatsappShareButton
+                    className="network"
+                    url="https://www.backdrophome.com/"
+                    title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
+                    >
+                    <WhatsappIcon logoFillColor="white" size={"2rem"} round/>
+                </WhatsappShareButton>
+                <TumblrShareButton
+                    className="network"
+                    url="https://www.backdrophome.com/"
+                    title="The Frank Ocean Metrix"
+                    caption={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
+                    >
+                    <TumblrIcon logoFillColor="white" size={"2rem"} round/>
+                </TumblrShareButton>
+                <RedditShareButton
+                    className="network"
+                    url="https://www.backdrophome.com/"
+                    title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
+                    >
+                    <RedditIcon logoFillColor="white" size={"2rem"} round/>
+                </RedditShareButton>
+                <FacebookMessengerShareButton
+                    className="network"
+                    url="https://www.backdrophome.com/"
+                    title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
+                    appId="715761142463541"
+                    >
+                    <FacebookMessengerIcon logoFillColor="white" size={"2rem"} round/>
+                </FacebookMessengerShareButton>
+        </div>
                     </div>
                 </div>
                 : <p> </p>
@@ -97,7 +143,53 @@ export default class ThankYouPage extends Component {
             <div>
                 <p id="success-save"> Ok, we didn't save your playlist: </p> 
                 <p className="social_share">Share your results with friends!</p>
-                <SocialShare></SocialShare>
+                <div className="c-network" ref={this.props.ref1}>
+                {/* <p >Share your results!</p> */}
+                <FacebookShareButton
+                    className="network"
+                    url="https://www.backdrophome.com/"
+                    quote={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
+                    hashtag="#frankocean">
+                    <FacebookIcon logoFillColor="white" size={"2rem"} round/>
+                </FacebookShareButton>
+                <TwitterShareButton
+                    className="network"
+                    url="https://www.backdrophome.com/"
+                    title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
+                    >
+                    <TwitterIcon logoFillColor="white" size={"2rem"} round/>
+                </TwitterShareButton>
+                <WhatsappShareButton
+                    className="network"
+                    url="https://www.backdrophome.com/"
+                    title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
+                    >
+                    <WhatsappIcon logoFillColor="white" size={"2rem"} round/>
+                </WhatsappShareButton>
+                <TumblrShareButton
+                    className="network"
+                    url="https://www.backdrophome.com/"
+                    title="The Frank Ocean Metrix"
+                    caption={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
+                    >
+                    <TumblrIcon logoFillColor="white" size={"2rem"} round/>
+                </TumblrShareButton>
+                <RedditShareButton
+                    className="network"
+                    url="https://www.backdrophome.com/"
+                    title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
+                    >
+                    <RedditIcon logoFillColor="white" size={"2rem"} round/>
+                </RedditShareButton>
+                <FacebookMessengerShareButton
+                    className="network"
+                    url="https://www.backdrophome.com/"
+                    title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
+                    appId="715761142463541"
+                    >
+                    <FacebookMessengerIcon logoFillColor="white" size={"2rem"} round/>
+                </FacebookMessengerShareButton>
+        </div>
             </div>
         }
 
