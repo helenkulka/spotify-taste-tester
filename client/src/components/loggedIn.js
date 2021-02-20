@@ -2,6 +2,7 @@ import React, { useRef, Component} from 'react';
 import './loggedin.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery';
+import App from '../App';
 import './jquery.pagepiling.js';
 import './jquery.pagepiling.css';
 import Loading from './loading.js'
@@ -15,6 +16,7 @@ import Tracks from './tracks';
 import TopTracks from './topTracks';
 import ThankYouPage from './thanks';
 import Artists from './artists';
+import Home from './home';
 
 const blonded_track_ids = Object.keys(blonded_track_id_map);
 
@@ -55,6 +57,7 @@ export default class LoggedIn extends Component {
             numTracksOverlap: 0,
             itemsLoaded: false,
             sections: [],
+            recievedError: false,
             ref1: React.createRef()
         };
  
@@ -270,23 +273,28 @@ export default class LoggedIn extends Component {
 
 
     async componentDidMount() {
-        this.setState(
-            {firstName: await this.props.userData.display_name.split(" ")[0].toLowerCase(), 
-            userId: await this.props.userData.id});
-        var overlap_top_track_ids = await this.getUserTopTracks();
-        var overlap_playlist_track_ids = await this.getUserPlaylistTracks();
-        var overlap_all_track_ids = await this.getUserSavedTracks(overlap_playlist_track_ids);
-        //setting intro message for first page
-        this.setOverlapIntroMsg(Array.from(overlap_all_track_ids).length);
-
-        //setting overlap track messages for all tracks and top tracks
-        //will be rendered in respective components
-        this.setOverlapTracks(overlap_all_track_ids, overlap_top_track_ids);
-        
-        this.setOverlapTopTracks(overlap_top_track_ids);
-        this.setState({recommendedTracksByArtist: await this.getArtistRecommendations()});
-        // this.calculateUserPopularity(blonded_track_id_map, overlap_all_track_ids);
-        this.setState({itemsLoaded:true},this.props.onChangeParentStyle(true,true,1));
+        try {
+            this.setState(
+                {firstName: await this.props.userData.display_name.split(" ")[0].toLowerCase(), 
+                userId: await this.props.userData.id});
+            var overlap_top_track_ids = await this.getUserTopTracks();
+            var overlap_playlist_track_ids = await this.getUserPlaylistTracks();
+            var overlap_all_track_ids = await this.getUserSavedTracks(overlap_playlist_track_ids);
+            //setting intro message for first page
+            this.setOverlapIntroMsg(Array.from(overlap_all_track_ids).length);
+    
+            //setting overlap track messages for all tracks and top tracks
+            //will be rendered in respective components
+            this.setOverlapTracks(overlap_all_track_ids, overlap_top_track_ids);
+            
+            this.setOverlapTopTracks(overlap_top_track_ids);
+            this.setState({recommendedTracksByArtist: await this.getArtistRecommendations()});
+            // this.calculateUserPopularity(blonded_track_id_map, overlap_all_track_ids);
+            this.setState({itemsLoaded:true},this.props.onChangeParentStyle(true,true,1));
+        } catch(e) {
+            this.setState({recievedError: true});
+            return;
+        }
         var toolTips = []
         if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks.length == 0 && this.state.numArtistsOverlap == 0) {
             toolTips = ['sec1','sec6'];
@@ -325,7 +333,10 @@ export default class LoggedIn extends Component {
 
     render() {
         const dataLoaded = this.state.itemsLoaded;
-        if (!dataLoaded) {
+        if (this.state.recievedError) {
+            return(<App></App>);
+        }
+        else if (!dataLoaded) {
             return  (<Loading></Loading>)
         } else if (this.state.sections.length == 1) {
             return(
