@@ -1,6 +1,7 @@
 import React, { useRef, Component} from 'react';
 import { Container, Row, Col, Fragment, Button } from 'react-bootstrap';
 import {createRecommendedPlaylist} from './getUserData';
+import blonded_track_id_map from './track_id_name_map.json';
 import {
     FacebookShareButton,
     FacebookIcon,
@@ -55,7 +56,15 @@ export default class ThankYouPage extends Component {
     }
 
     async componentDidMount() {
-        recs = [...this.props.overlapTrackUris, ...this.props.recommendedTracksByArtist, ...this.props.topTrackUris];
+        var keys = Object.keys(blonded_track_id_map);
+        var new_recs = []
+        var i;
+        for (i = 0; i<20; i++) {
+            new_recs.push(keys[ keys.length * Math.random() << 0]);
+        }
+        new_recs = [...this.props.overlapTrackUris, ...this.props.recommendedTracksByArtist, ...this.props.topTrackUris,...new_recs];
+        var unique_recs = new Set(new_recs);
+        recs = Array.from(unique_recs);
     }
 
 
