@@ -86,7 +86,7 @@ export default class ThankYouPage extends Component {
                 <div id="success-save">
                     <p id="success-save-msg"> We successfully saved your playlist, enjoy! </p> 
                     <div id="share-social c-network">
-                        <p className="social_share">Share your results with friends:</p>
+                        <p className="social_share">share your results:</p>
                         <div className="c-network" ref={this.props.ref1}>
                 {/* <p >Share your results!</p> */}
                 <FacebookShareButton
@@ -113,7 +113,7 @@ export default class ThankYouPage extends Component {
                 <TumblrShareButton
                     className="network"
                     url="https://www.backdrophome.com/"
-                    title="The Frank Ocean Metrix"
+                    title="Frank Ocean Metric"
                     caption={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
                     <TumblrIcon logoFillColor="white" size={"2rem"} round/>
@@ -141,8 +141,8 @@ export default class ThankYouPage extends Component {
                 }
             </Container> :
             <div>
-                <p id="success-save"> Ok, we didn't save your playlist: </p> 
-                <p className="social_share">Share your results with friends!</p>
+                <p id="success-save"> ok, we didn't save your playlist </p> 
+                <p className="social_share">share your results:</p>
                 <div className="c-network" ref={this.props.ref1}>
                 {/* <p >Share your results!</p> */}
                 <FacebookShareButton
@@ -169,7 +169,7 @@ export default class ThankYouPage extends Component {
                 <TumblrShareButton
                     className="network"
                     url="https://www.backdrophome.com/"
-                    title="The Frank Ocean Metrix"
+                    title="Frank Ocean Metric"
                     caption={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
                     <TumblrIcon logoFillColor="white" size={"2rem"} round/>

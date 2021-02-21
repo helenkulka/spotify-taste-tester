@@ -24,7 +24,8 @@ export default class Artists extends Component {
                 { this.props.numArtistsOverlap == 1 ? <p style={{display: 'inline'}}> shared artist </p> : <p style={{display: 'inline'}}> top artists </p>
                 }
             <br></br> We found {this.props.numArtistsOverlap} of your top artists on Blonded with { this.props.recommendedTracksByArtistUris.length }
-             {this.props.recommendedTracksByArtistUris == 1 ? <p style={{display: 'inline'}}> song </p> : <p style={{display: 'inline'}}> songs </p> } featured that you don't have saved.
+             {this.props.recommendedTracksByArtistUris == 1 ? <p style={{display: 'inline'}}> song </p> : <p style={{display: 'inline'}}> songs </p> } featured that you don't have saved. 
+             {this.props.recommendedTracksByArtistUris == 0 ? <p style={{display: 'inline'}}> You know your favorite artists pretty well. </p> : <p style={{display: 'inline'}}></p> }
             </p>
                 <Container className="scrolling-wrapper">
                         {this.props.uniqueRecommendedTracksByArtistUris.map(p => (

@@ -22,7 +22,7 @@ class App extends Component {
       loggedIn: access_token ? true : false,
       accessToken: access_token ? access_token : "",
       userData: {},
-      backgroundColor:"black",
+      backgroundColor:"#FFFAF0",
       color:"white",
       enteredSite: false,
       itemsLoaded: false
@@ -79,7 +79,7 @@ class App extends Component {
     }
     else if (darkModeStatus === false && this.state.loggedIn === false){
       this.setState({
-        backgroundColor: "linear-gradient(0deg,#d4a68e,#ffcdb3,#ffedd6)",
+        backgroundColor: "#FFFAF0",
         color: "black",
         enteredSite: enterSiteStatus
       })  
