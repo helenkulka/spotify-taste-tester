@@ -1,6 +1,7 @@
 import React, { useRef, Component} from 'react';
 import { Container, Row, Col, Fragment, Button } from 'react-bootstrap';
 import {createRecommendedPlaylist} from './getUserData';
+import blonded_track_id_map from './track_id_name_map.json';
 import {
     FacebookShareButton,
     FacebookIcon,
@@ -33,6 +34,7 @@ export default class ThankYouPage extends Component {
            }
     }
 
+
     playAudio(track){
         var audio = new Audio(track.preview_url)
         audio.play()
@@ -47,16 +49,34 @@ export default class ThankYouPage extends Component {
 
     async handleClickYes () { 
         var playlist_id = await createRecommendedPlaylist(this.props.userId, recs);
-        this.setState({isEdit:true, playlistId: playlist_id, saidYes: true})
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        this.setState({isEdit:true, playlistId: playlist_id, saidYes: true, playlistLoaded: true})
     }
 
     async handleClickNo () { 
         this.setState({isEdit:true, saidYes: false})
     }
 
-    async componentDidMount() {
-        recs = [...this.props.overlapTrackUris, ...this.props.recommendedTracksByArtist, ...this.props.topTrackUris];
-    }
+async componentDidMount() {
+        var keys = Object.keys(blonded_track_id_map);
+        var new_recs = [];
+        var partial_top = [];
+        var i;
+        //taking only top 10 in common
+        if (this.props.overlapTrackUris.length > 10) {
+            partial_top = this.props.overlapTrackUris.splice(0, 10);
+        } else {
+            partial_top = this.props.overlapTrackUris;
+        }
+        //getting random 20
+        for (i = 0; i<20; i++) {
+            new_recs.push(keys[ keys.length * Math.random() << 0]);
+        }
+        //concatenating random, top 10 in common, and tracks by artist
+        new_recs = [...partial_top, ...this.props.recommendedTracksByArtist, ...this.props.topTrackUris,...new_recs];
+        var unique_recs = new Set(new_recs);
+        recs = Array.from(unique_recs);
+    }
 
 
 
@@ -81,12 +101,13 @@ export default class ThankYouPage extends Component {
             </div> : 
                 this.state.saidYes ?
             <Container id="playlist-wrapper">
-                <iframe id="playlist-embed"src={`https://open.spotify.com/embed/playlist/${this.state.playlistId}`} width="300" height="350" onLoad={this.hideSpinner} frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
-                {this.state.playlistLoaded ?  
+                {this.state.playlistLoaded ? 
+                <div>
+                <iframe id="playlist-embed" src={`https://open.spotify.com/embed/playlist/${this.state.playlistId}`} width="300" height="350" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                 <div id="success-save">
                     <p id="success-save-msg"> We successfully saved your playlist, enjoy! </p> 
                     <div id="share-social c-network">
-                        <p className="social_share">Share your results with friends:</p>
+                        <p className="social_share">share your results:</p>
                         <div className="c-network" ref={this.props.ref1}>
                 {/* <p >Share your results!</p> */}
                 <FacebookShareButton
@@ -113,7 +134,7 @@ export default class ThankYouPage extends Component {
                 <TumblrShareButton
                     className="network"
                     url="https://www.backdrophome.com/"
-                    title="The Frank Ocean Metrix"
+                    title="Frank Ocean Metric"
                     caption={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
                     <TumblrIcon logoFillColor="white" size={"2rem"} round/>
@@ -136,13 +157,16 @@ export default class ThankYouPage extends Component {
         </div>
                     </div>
                 </div>
-                : <p> </p>
+                </div>
 
+                : <p> 
+                    {this.state.playlistId}
+                </p>
                 }
             </Container> :
             <div>
-                <p id="success-save"> Ok, we didn't save your playlist: </p> 
-                <p className="social_share">Share your results with friends!</p>
+                <p id="success-save"> ok, we didn't save your playlist </p> 
+                <p className="social_share">share your results:</p>
                 <div className="c-network" ref={this.props.ref1}>
                 {/* <p >Share your results!</p> */}
                 <FacebookShareButton
@@ -169,7 +193,7 @@ export default class ThankYouPage extends Component {
                 <TumblrShareButton
                     className="network"
                     url="https://www.backdrophome.com/"
-                    title="The Frank Ocean Metrix"
+                    title="Frank Ocean Metric"
                     caption={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
                     <TumblrIcon logoFillColor="white" size={"2rem"} round/>
