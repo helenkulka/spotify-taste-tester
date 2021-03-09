@@ -80,7 +80,6 @@ async componentDidMount() {
 
 
 
-
     render() {
         return (
         <Container id="thanks" ref={this.props.ref1}>

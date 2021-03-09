@@ -13,40 +13,39 @@ export default class Footer extends Component {
 
 
   render() {
+    const footerText = {
+      fontFamily: "Archivo",
+      fontSize: "1.8vh",
+      margin: "1vh",
+      display: "inline",
+      color: "inherit"
+    };
+
+    const playlistWrapper = {
+      marginLeft: "20vh"
+    }
     return (
         <footer id="footer" className="footer" style={{paddingBottom: '30px', paddingTop: '30px'}}>
         <div id="footer-container" className="container" style={{textAlign: 'center'}}>
-          <div className="row" style={{marginLeft: '10%'}}>
-            <div className="col footer-titles" style={{textAlign: 'left'}}>
-              <h4 style={{fontSize: '16px', fontWeight: 600}}>Explore</h4>
-              <p style={{fontSize: '12px'}} onClick={this.scrollToTop}>Compare Spotify Music</p>
-              <p style={{fontSize: '12px'}}>Compare Movies</p>
+          <div className="row">
+            <div className="col">
+              <iframe src="https://open.spotify.com/embed/playlist/6HEegfWHhUcytwQFAm1QbK" width={300} height={200} frameBorder={0} style={{border: 'none', overflow: 'hidden'}} />
             </div>
-            <div className="col" style={{textAlign: 'left'}}>
-              <p style={{fontSize: '16px', fontWeight: 600}}>Contact</p>
-              <p style={{fontSize: '12px',marginBottom:0}}>anahita.mohapatra@mail.mcgill.ca</p> 
+            <div className="col" style={{textAlign: 'center', display: 'inline', marginTop: "14vh"}}>
+              <p style={footerText}>anahita.mohapatra@mail.mcgill.ca</p> 
               <ul class="social-network social-circle">
-                <li><a href="https://www.facebook.com/" target="_blank" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="https://www.linkedin.com/" target="_blank"class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
                 <li><a href="https://twitter.com/" target="_blank" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
-                <li><a href="https://www.instagram.com/" target="_blank" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                <li><a href="https://github.com/anahita-m" target="_blank" class="icoGithub" title="Github"><i class="fa fa-github"></i></a></li>
+                <br></br>
             </ul>
-              <p style={{fontSize: '12px',marginTop:"1rem",marginBottom:0}}>helen.kulka@mail.mcgill.ca</p>
+              <p style={footerText}>helen.kulka@mail.mcgill.ca</p>
               <ul class="social-network social-circle" style={{marginBottom:1}}>
-                <li><a href="https://www.facebook.com/ " target="_blank" class="icoFacebook" title="Facebook"><i class="fa fa-facebook"></i></a></li>
                 <li><a href="https://www.linkedin.com/" target="_blank"class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="https://twitter.com/" target="_blank" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
                 <li><a href="https://www.instagram.com/" target="_blank" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                <li><a href="https://github.com/helenkulka" target="_blank" class="icoGithub" title="Github"><i class="fa fa-github"></i></a></li>
             </ul>
-            </div>
-            <div className="col" style={{textAlign: 'left'}}>
-              <p style={{fontSize: '16px', fontWeight: 600}}>Spotify</p>
-              <iframe src="https://open.spotify.com/follow/1/?uri=spotify:artist:2h93pZq0e7k5yf4dywlkpM&size=detail&theme=light&quot;" width={300} height={56} scrolling="no" frameBorder={0} style={{border: 'none', overflow: 'hidden'}} />
             </div>
           </div>
-          <p style={{fontSize: '12px', fontFamily: 'var(--bs-font-sans-serif)'}}>Made By Anahita Mohapatra and Helen Kulka in Montreal, QC</p>
+          <a href="https://github.com/helenkulka/spotify-taste-tester"style={footerText}>✿ github ✿ </a>
         </div>
       </footer>
     )

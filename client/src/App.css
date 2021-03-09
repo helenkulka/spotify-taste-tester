@@ -1,11 +1,9 @@
 .title {
-  color:transparent;
-  font-family: 'Archivo Black', sans-serif;
+  color:#ff7e30;
+  font-family: 'Archivo', sans-serif;
   font-size: 65px;
-  font-stretch: extra-expanded;
   font-weight: 100;
-  text-align: center;
-  color:transparent;
+  text-align: left;
   -webkit-text-stroke-width: 1.95px; 
   -webkit-text-stroke-color: #ff7e30;
   -webkit-text-size-adjust: 100%;
@@ -19,16 +17,15 @@
 #title1{
   color:#ff7e30;
 }
-#title2:hover {
-  color:#ff7e30;
-}
 
 #subtitle{
-  word-wrap: break-word;
   color:#ff7e30;
   font-family: var(--bs-font-sans-serif);
-  font-size: 22px;
+  -webkit-text-stroke-width: 1px; 
+  -webkit-text-stroke-color: #ff7e30;
+  font-size: 4vh;
   font-style: bold;
+  position: relative;
   text-align: center;
 }
 
@@ -56,13 +53,43 @@
   margin-bottom: 1.5em;
 }
 
+.one-track {
+  display: inline-flex;
+  margin: 2vh;
+  max-width: 100%;
+}
+
+#homepage {
+  overflow: hidden;
+  max-width: 100%;
+}
+
+
+.photo-wrapper {
+  overflow: hidden;
+  width:100%;
+  position: relative;
+  top: 50%;
+  margin-bottom: 8vh;
+}
+
+#home-photo {
+  width: 35vw;
+  margin: 2vh;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 #login-btn{
   border-radius: 20px;
   background-color: #1DB954;
   color:white;
   font-family: var(--bs-font-sans-serif);
-  font-size: 15px;
-  padding-right: 25px;
+  -webkit-text-stroke-color: white;
+  -webkit-text-stroke-width: 0.2px; 
+  /* font-size: 15px;
+  padding-right: 25px; */
 }
 
 #discobutton{
@@ -71,25 +98,6 @@
      white-space: nowrap;
      overflow: hidden;
      width:0px;
-}
-
-#japanese-vertical{
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    font-size: 200%;
-    font-weight: 150%;
-    margin-top: 75px;
-    font-style: italic;
-    white-space: nowrap;
-    overflow: hidden; 
-    animation: animated-text 4s steps(29,end) 1s 1 normal both;
-    -webkit-text-stroke: 1px #b1ed58;
-  -webkit-text-fill-color: black;
-}
-
-#japanese-vertical:hover{
-  -webkit-text-stroke: 1px #b1ed58;
-  -webkit-text-fill-color: #b1ed58;
 }
 
 @keyframes animated-text{
@@ -152,6 +160,8 @@ ul.social-network li {
   color: #fff;
 }
 
+
+
 .social-network a.socialIcon:hover,
 .socialHoverClass {
   color: #44BCDD;
@@ -165,14 +175,14 @@ ul.social-network li {
   -webkit-border-radius: 50%;
   border-radius: 50%;
   text-align: center;
-  width: 30px;
-  height: 30px;
-  font-size: 15px;
+  width: 2.5vh;
+  height: 2.5vh;
+  font-size: 1.5vh;
 }
 
 .social-circle li i {
   margin: 0;
-  line-height: 30px;
+  line-height: 2.5vh;
   text-align: center;
 }
 
@@ -208,5 +218,5 @@ ul.social-network li {
 
 #mode-button{
   -webkit-appearance: none;
-
+  color: #ff7e30;
 }

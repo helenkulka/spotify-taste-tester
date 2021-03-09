@@ -51,7 +51,7 @@ export default class SocialShare extends Component {
                 <TumblrShareButton
                     className="network"
                     url="https://www.backdrophome.com/"
-                    title="The Frank Ocean Metrix"
+                    title="Frank Ocean Metric"
                     caption={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
                     <TumblrIcon logoFillColor="white" size={"2rem"} round/>

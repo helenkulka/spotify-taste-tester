@@ -208,6 +208,12 @@ export default class LoggedIn extends Component {
                     for (i in recommended_track) {
                         recommended_uris.push(blonded_track_id_map[recommended_track[i]]);
                     }
+                    if (recommended_track.length > 3) {
+                        recommended_track = recommended_track.splice(0,3);
+                    }
+                    for (i in recommended_track) {
+                        recs_by_artist.push(recommended_track[i]);
+                    }
                 }
             }
         }
