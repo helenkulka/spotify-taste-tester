@@ -104,17 +104,22 @@ export default class Home extends Component {
   <div ref={this.homepage} className={this.state.visiblehome?'fadeIn':'fadeOut'} style={{display:this.state.homepageDisplay}}>
   <div id="homepage"  >
   <h1  className="title" id="title2">FRANK OCEAN METRIC</h1>
-  <Container className="photo-wrapper">
-
-                            <div className="one-track">
-                                <img id='home-photo' src={this.state.img1} onMouseEnter={() => this.changeImage(true, 'https://imgur.com/EeHRnx7.png')} onMouseLeave={() => this.changeImage(true, 'https://imgur.com/MDIeLFM.png')} alt="can't show image" />
+  <Container >
+<div className="row">
+  <div className="col col-6 col-sm-6">
+                            <div>
+                                <img className='home-photo' src={this.state.img1} onMouseEnter={() => this.changeImage(true, 'https://imgur.com/EeHRnx7.png')} onMouseLeave={() => this.changeImage(true, 'https://imgur.com/MDIeLFM.png')} alt="can't show image" />
                             </div>
+  </div>
+  <div className="col col-6 col-sm-6">
 
-                            <div className="one-track">
-                            <img id='home-photo' src={this.state.img2} onMouseEnter={() => this.changeImage(false, 'https://imgur.com/oZ3TTPy.png')} onMouseLeave={() => this.changeImage(false, 'https://imgur.com/GFBYR2Y.png')}  alt="can't show image" />
+                            <div>
+                            <img className='home-photo' src={this.state.img2} onMouseEnter={() => this.changeImage(false, 'https://imgur.com/oZ3TTPy.png')} onMouseLeave={() => this.changeImage(false, 'https://imgur.com/GFBYR2Y.png')}  alt="can't show image" />
                             </div>
+    </div>
+</div>
 
-                            <div className="row">
+  <div className="row">                         
     <div className="col-md text-center">
       <p id="subtitle"> a website to compare your music taste to <br></br>Frank Ocean's playlists Blonded</p>
       <a href="http://localhost:8888/login" className="btn" id="login-btn">

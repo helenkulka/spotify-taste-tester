@@ -3,7 +3,7 @@
   font-family: 'Archivo', sans-serif;
   font-size: 65px;
   font-weight: 100;
-  text-align: left;
+  text-align: center;
   -webkit-text-stroke-width: 1.95px; 
   -webkit-text-stroke-color: #ff7e30;
   -webkit-text-size-adjust: 100%;
@@ -73,12 +73,14 @@
   margin-bottom: 8vh;
 }
 
-#home-photo {
+.home-photo {
   width: 35vw;
   margin: 2vh;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  max-width: 100%;
+
 }
 
 #login-btn{
