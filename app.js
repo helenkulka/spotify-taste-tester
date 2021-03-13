@@ -25,4 +25,3 @@ console.log('Listening on 8888');
 
 var port_number = server.listen(process.env.PORT || 8888);
 app.listen(port_number);
-app.listen(8888);
