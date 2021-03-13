@@ -4,8 +4,8 @@ var express = require("express");
 var querystring = require('querystring');
 var router = express.Router();
 
-var client_id = '7c4ba681e3034fa0b7e28dfb7d5b353f';// Your client id
-var redirect_uri = 'http://localhost:8888/callback';
+var client_id = process.env.CLIENT_ID;// Your client id
+var redirect_uri = 'https://spotify-taste-tester.herokuapp.com/callback';
 
 var generateRandomString = function(length) {
   var text = '';

@@ -13,8 +13,8 @@ var generateRandomString = function(length) {
     return text;
   };
 
-  var client_id = '7c4ba681e3034fa0b7e28dfb7d5b353f';// Your client id
-  var client_secret = '817ce4d9ac23463db285f6b80a0767a9';// Your secret
+  var client_id = process.env.CLIENT_ID;// Your client id
+  var client_secret = process.env.CLIENT_SECRET;// Your secret
   var redirect_uri = 'https://spotify-taste-tester.herokuapp.com/callback';
 
 router.get('/', function(req, res) {
