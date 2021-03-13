@@ -15,7 +15,7 @@ var generateRandomString = function(length) {
 
   var client_id = '7c4ba681e3034fa0b7e28dfb7d5b353f';// Your client id
   var client_secret = '817ce4d9ac23463db285f6b80a0767a9';// Your secret
-  var redirect_uri = 'http://localhost:8888/callback';
+  var redirect_uri = 'https://spotify-taste-tester.herokuapp.com/callback';
 
 router.get('/', function(req, res) {
 
@@ -68,7 +68,7 @@ router.get('/', function(req, res) {
           });
   
           // we can also pass the token to the browser to make requests from there
-          res.redirect('http://localhost:3000/#' +
+          res.redirect('https://spotify-taste-tester.herokuapp.com/#' +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token

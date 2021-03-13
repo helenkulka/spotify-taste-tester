@@ -18,11 +18,6 @@ app.use("/testAPI", testAPIRouter);
 app.use("/login", loginRouter);
 app.use("/callback", callbackRouter);
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname+'/client/build/index.html'));
-  });
-
-console.log('Listening on 8888');
 var port = process.env.PORT || '8888';
 app.set('port', port);
 
@@ -30,4 +25,4 @@ var server = http.createServer(app);
 var port_number = server.listen(process.env.PORT || 8888);
 app.listen(port_number);
 
-console.log('Listening on 8888');
+console.log(`Listening on ${port}`);

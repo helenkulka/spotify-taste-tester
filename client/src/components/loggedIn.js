@@ -27,7 +27,7 @@ var i,j,z = 0;
 
 var overlap_tracks_msgs = [
     "we didn't find any shared songs :( but that's OK, we can still recommend you some.",
-    "well... it's not much, but we did find a bit in common.",
+    "if you run into Frank Ocean, we might not recommend talking about music, we only found a bit in common.",
     "not bad. you and Frank Ocean might have a bit in common.",
     "we're impressed, you like a lot of music! it looks like you and Frank Ocean have a lot in common.",
     "wait what? Frank - is that you? we found a lot in common between your music taste and Frank Ocean's.",
