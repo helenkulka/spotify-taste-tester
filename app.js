@@ -10,6 +10,7 @@ var cors = require("cors");
 
 var app = express();
 
+
 app.use(cors())
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/build')));
@@ -18,11 +19,11 @@ app.use("/testAPI", testAPIRouter);
 app.use("/login", loginRouter);
 app.use("/callback", callbackRouter);
 
-var port = process.env.PORT || '8888';
+var port = process.env.SERVER_PORT || '8888';
 app.set('port', port);
 
 var server = http.createServer(app);
-var port_number = server.listen(process.env.PORT || 8888);
+var port_number = server.listen(process.env.SERVER_PORT || 8888);
 app.listen(port_number);
 
 console.log(`Listening on ${port}`);
