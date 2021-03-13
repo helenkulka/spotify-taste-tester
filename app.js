@@ -14,11 +14,10 @@ app.use(express.static(path.join(__dirname, 'client/build')));
 app.use("/testAPI", testAPIRouter);
 app.use("/login", loginRouter);
 app.use("/callback", callbackRouter);
-app.use('/', indexRouter);
 
 app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
   });
-  
+
 console.log('Listening on 8888');
 app.listen(8888);
