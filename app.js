@@ -4,6 +4,7 @@ var cookieParser = require('cookie-parser');
 var testAPIRouter = require("./routes/testAPI");
 var loginRouter = require("./routes/login");
 var callbackRouter = require("./routes/callback");
+var indexRouter = require('./routes/index');
 var cors = require("cors");
 
 var app = express();
@@ -11,6 +12,7 @@ var app = express();
 app.use(cors())
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/build')));
+app.use('/', indexRouter);
 app.use("/testAPI", testAPIRouter);
 app.use("/login", loginRouter);
 app.use("/callback", callbackRouter);
