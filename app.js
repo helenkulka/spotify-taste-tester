@@ -9,8 +9,8 @@ var cors = require("cors");
 var app = express();
 
 app.use(cors())
-app.use(express.static(__dirname + '/public'));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'client/build')));
 app.use("/testAPI", testAPIRouter);
 app.use("/login", loginRouter);
 app.use("/callback", callbackRouter);
