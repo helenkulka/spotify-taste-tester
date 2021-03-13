@@ -25,7 +25,7 @@ export default class Footer extends Component {
       marginLeft: "20vh"
     }
     return (
-        <footer id="footer" className="footer" style={{paddingBottom: '30px', paddingTop: '30px'}}>
+        <footer id="footer" className="footer" style={{paddingBottom: '30px', paddingTop: '40px'}}>
         <div id="footer-container" className="container" style={{textAlign: 'center'}}>
           <div className="row">
             <div className="col">
@@ -43,15 +43,15 @@ export default class Footer extends Component {
 
               <p style={footerText}>anahita.mohapatra@mail.mcgill.ca</p> 
               <ul class="social-network social-circle">
-                <li><a href="https://www.linkedin.com/" target="_blank"class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="https://www.instagram.com/" target="_blank" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
-                <li><a href="https://twitter.com/" target="_blank" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/anahitamohapatra/" target="_blank"class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://www.instagram.com/anahitamohapatra/" target="_blank" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="https://twitter.com/anahita_moh" target="_blank" class="icoTwitter" title="Twitter"><i class="fa fa-twitter"></i></a></li>
                 <br></br>
               </ul>
               <p style={footerText}>helen.kulka@mail.mcgill.ca</p>
               <ul class="social-network social-circle" style={{marginBottom:1}}>
-                <li><a href="https://www.linkedin.com/" target="_blank"class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
-                <li><a href="https://www.instagram.com/" target="_blank" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/helenkulka/" target="_blank"class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://www.instagram.com/helenenenenenen/" target="_blank" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
             </ul>
 
             </div>

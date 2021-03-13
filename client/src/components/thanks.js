@@ -102,7 +102,7 @@ async componentDidMount() {
             <Container id="playlist-wrapper">
                 {this.state.playlistLoaded ? 
                 <div>
-                <iframe id="playlist-embed" src={`https://open.spotify.com/embed/playlist/${this.state.playlistId}`} width="300" height="350" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+                <iframe id="playlist-embed" src={`https://open.spotify.com/embed/playlist/${this.state.playlistId}`} width="250" height="300" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
                 <div id="success-save">
                     <p id="success-save-msg"> We successfully saved your playlist, enjoy! </p> 
                     <div id="share-social c-network">
@@ -114,21 +114,21 @@ async componentDidMount() {
                     url="https://www.backdrophome.com/"
                     quote={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     hashtag="#frankocean">
-                    <FacebookIcon logoFillColor="white" size={"2rem"} round/>
+                    <FacebookIcon logoFillColor="white" size={"1.5rem"} round/>
                 </FacebookShareButton>
                 <TwitterShareButton
                     className="network"
                     url="https://www.backdrophome.com/"
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
-                    <TwitterIcon logoFillColor="white" size={"2rem"} round/>
+                    <TwitterIcon logoFillColor="white" size={"1.5rem"} round/>
                 </TwitterShareButton>
                 <WhatsappShareButton
                     className="network"
                     url="https://www.backdrophome.com/"
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
-                    <WhatsappIcon logoFillColor="white" size={"2rem"} round/>
+                    <WhatsappIcon logoFillColor="white" size={"1.5rem"} round/>
                 </WhatsappShareButton>
                 <TumblrShareButton
                     className="network"
@@ -136,14 +136,14 @@ async componentDidMount() {
                     title="Frank Ocean Metric"
                     caption={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
-                    <TumblrIcon logoFillColor="white" size={"2rem"} round/>
+                    <TumblrIcon logoFillColor="white" size={"1.5rem"} round/>
                 </TumblrShareButton>
                 <RedditShareButton
                     className="network"
                     url="https://www.backdrophome.com/"
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
-                    <RedditIcon logoFillColor="white" size={"2rem"} round/>
+                    <RedditIcon logoFillColor="white" size={"1.5rem"} round/>
                 </RedditShareButton>
                 <FacebookMessengerShareButton
                     className="network"
@@ -151,7 +151,7 @@ async componentDidMount() {
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     appId="715761142463541"
                     >
-                    <FacebookMessengerIcon logoFillColor="white" size={"2rem"} round/>
+                    <FacebookMessengerIcon logoFillColor="white" size={"1.5rem"} round/>
                 </FacebookMessengerShareButton>
         </div>
                     </div>
@@ -173,21 +173,21 @@ async componentDidMount() {
                     url="https://www.backdrophome.com/"
                     quote={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     hashtag="#frankocean">
-                    <FacebookIcon logoFillColor="white" size={"2rem"} round/>
+                    <FacebookIcon logoFillColor="white" size={"1.5rem"} round/>
                 </FacebookShareButton>
                 <TwitterShareButton
                     className="network"
                     url="https://www.backdrophome.com/"
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
-                    <TwitterIcon logoFillColor="white" size={"2rem"} round/>
+                    <TwitterIcon logoFillColor="white" size={"1.5rem"} round/>
                 </TwitterShareButton>
                 <WhatsappShareButton
                     className="network"
                     url="https://www.backdrophome.com/"
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
-                    <WhatsappIcon logoFillColor="white" size={"2rem"} round/>
+                    <WhatsappIcon logoFillColor="white" size={"1.5rem"} round/>
                 </WhatsappShareButton>
                 <TumblrShareButton
                     className="network"
@@ -195,14 +195,14 @@ async componentDidMount() {
                     title="Frank Ocean Metric"
                     caption={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
-                    <TumblrIcon logoFillColor="white" size={"2rem"} round/>
+                    <TumblrIcon logoFillColor="white" size={"1.5rem"} round/>
                 </TumblrShareButton>
                 <RedditShareButton
                     className="network"
                     url="https://www.backdrophome.com/"
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
-                    <RedditIcon logoFillColor="white" size={"2rem"} round/>
+                    <RedditIcon logoFillColor="white" size={"1.5rem"} round/>
                 </RedditShareButton>
                 <FacebookMessengerShareButton
                     className="network"
@@ -210,7 +210,7 @@ async componentDidMount() {
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     appId="715761142463541"
                     >
-                    <FacebookMessengerIcon logoFillColor="white" size={"2rem"} round/>
+                    <FacebookMessengerIcon logoFillColor="white" size={"1.5rem"} round/>
                 </FacebookMessengerShareButton>
         </div>
             </div>
