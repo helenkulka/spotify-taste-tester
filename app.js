@@ -1,4 +1,5 @@
 const path = require('path');
+var http = require('http');
 var express = require('express'); // Express web server framework
 var cookieParser = require('cookie-parser');
 var testAPIRouter = require("./routes/testAPI");
@@ -22,6 +23,11 @@ app.get('*', (req, res) => {
   });
 
 console.log('Listening on 8888');
+var port = process.env.PORT || '8888';
+app.set('port', port);
 
+var server = http.createServer(app);
 var port_number = server.listen(process.env.PORT || 8888);
 app.listen(port_number);
+
+console.log('Listening on 8888');
