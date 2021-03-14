@@ -15,7 +15,7 @@ var generateRandomString = function(length) {
 
   var client_id = process.env.REACT_APP_CLIENT_ID;// Your client id
   var client_secret = process.env.REACT_APP_CLIENT_SECRET;// Your secret
-  var redirect_uri = 'https://spotify-taste-tester.herokuapp.com/callback';
+  var redirect_uri = 'http://spotify-taste-tester.herokuapp.com/callback';
 
 router.get('/', function(req, res) {
 

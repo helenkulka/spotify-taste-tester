@@ -3,7 +3,7 @@ var querystring = require('querystring');
 var router = express.Router();
 
 var client_id = process.env.REACT_APP_CLIENT_ID; // Your client id
-var redirect_uri = 'https://spotify-taste-tester.herokuapp.com/callback';
+var redirect_uri = 'http://spotify-taste-tester.herokuapp.com/callback';
 
 var generateRandomString = function(length) {
   var text = '';
