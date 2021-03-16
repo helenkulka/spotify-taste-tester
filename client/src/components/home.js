@@ -122,7 +122,7 @@ export default class Home extends Component {
   <div className="row">                         
     <div className="col-md text-center">
       <p id="subtitle"> a website to compare your music taste to <br></br>Frank Ocean's playlists Blonded</p>
-      <a href="http://frankoceanmetric.com/login" className="btn" id="login-btn">
+      <a href="https://frankoceanmetric.com/login" className="btn" id="login-btn">
         <span className="iconify" style={{margin:5}} data-icon="entypo-social:spotify-with-circle" data-inline="false" />
         Log in with Spotify
       </a>

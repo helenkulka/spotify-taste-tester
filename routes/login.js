@@ -3,7 +3,7 @@ var querystring = require('querystring');
 var router = express.Router();
 
 var client_id = process.env.REACT_APP_CLIENT_ID; // Your client id
-var redirect_uri = 'http://frankoceanmetric.com/callback';
+var redirect_uri = 'https://frankoceanmetric.com/callback';
 
 var generateRandomString = function(length) {
   var text = '';
