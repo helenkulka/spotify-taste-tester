@@ -122,77 +122,13 @@ export default class Home extends Component {
   <div className="row">                         
     <div className="col-md text-center">
       <p id="subtitle"> a website to compare your music taste to <br></br>Frank Ocean's playlists Blonded</p>
-      <a href="https://frankoceanmetric.com/login" className="btn" id="login-btn">
+      <a href="https://spotify-taste-tester.herokuapp.com/login" className="btn" id="login-btn">
         <span className="iconify" style={{margin:5}} data-icon="entypo-social:spotify-with-circle" data-inline="false" />
         Log in with Spotify
       </a>
     </div>
     </div>
     </Container> 
-  {/* <div className="row">
-      <div id="home-photo">
-            <img className='beep' src={this.state.img1} onMouseEnter={() => this.changeImage(true, 'https://imgur.com/EeHRnx7.png')} onMouseLeave={() => this.changeImage(true, 'https://imgur.com/MDIeLFM.png')}/>
-            <img className='beep' src={this.state.img2} onMouseEnter={() => this.changeImage(false, 'https://imgur.com/oZ3TTPy.png')} onMouseLeave={() => this.changeImage(false, 'https://imgur.com/GFBYR2Y.png')}/>
-      </div>
-  </div> */}
-    {/* <div className="col col-6 col-sm-6 col-md-4" id="row-1-col-1" 
-    onMouseEnter={() => this.someHandler}
-    onMouseLeave={() => this.someOtherHandler}>
-      <Carousel  fade="true" interval="15000">
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://imgur.com/MDIeLFM.png"
-            alt="First slide"
-          />
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            className="d-block w-100"
-            src="https://imgur.com/EeHRnx7.png"
-            alt="First slide"
-          />
-        </Carousel.Item>
-      </Carousel>
-    </div>
-    <div className="col col-6 col-sm-6 col-md-4" id="row-1-col-2">
-      <Carousel fade="true" interval="15000">
-        <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://imgur.com/GFBYR2Y.png"
-              alt="First slide"
-            />
-          </Carousel.Item>
-          <Carousel.Item>
-            <img
-              className="d-block w-100"
-              src="https://imgur.com/oZ3TTPy.png"
-              alt="First slide"
-            />
-          </Carousel.Item>
-      </Carousel>  
-    </div>
-  </div> end of row 1 */}
-  {/* <div className="row">
-    <div className="col-md text-center">
-      <p id="subtitle"> a website to compare your music taste to Frank Ocean's playlists Blonded</p>
-      <a href="http://localhost:8888/login" className="btn" id="login-btn">
-        <span className="iconify" style={{margin:5}} data-icon="entypo-social:spotify-with-circle" data-inline="false" />
-        Log in with Spotify
-      </a>
-    </div> */}
-    {/* <div className="col">
-    </div>
-    <div className="col col-12 col-sm-12 col-md-4 text-center" id="row-1-col-2">
-      <p id="subtitle"> A website to compare your music taste to Frank Ocean's playlists Blonded</p>
-    </div> */}
-      {/* <iframe src="https://open.spotify.com/embed/playlist/4ZRBmBrAFTAfwxtkBApvzv" width="100%" height="400px" frameBorder={0} allow="encrypted-media" />
-      <a href="http://localhost:8888/login" className="btn" id="login-btn">
-        <span className="iconify" style={{margin:5}} data-icon="entypo-social:spotify-with-circle" data-inline="false" />
-        Log in with Spotify
-      </a> 
-    </div>*/}
   </div> {/* end of row 2 */}
   </div> {/* section end */}
 </div>

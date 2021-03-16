@@ -18,5 +18,5 @@
     "querystring": "~0.2.0",
     "request": "~2.34.0"
   },
-  "proxy": "https://frankoceanmetric.com/"
+  "proxy": "https://spotify-taste-tester.herokuapp.com/"
 }

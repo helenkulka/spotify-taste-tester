@@ -3,7 +3,7 @@ var querystring = require('querystring');
 var router = express.Router();
 
 var client_id = process.env.REACT_APP_CLIENT_ID; // Your client id
-var redirect_uri = 'https://frankoceanmetric.com/callback';
+var redirect_uri = 'https://spotify-taste-tester.herokuapp.com/callback';
 
 var generateRandomString = function(length) {
   var text = '';
@@ -23,7 +23,7 @@ router.get('/', function(req, res) {
 
     // your application requests authorization
     var scope = 'user-read-private user-read-email user-top-read user-library-read playlist-read-private playlist-modify-private playlist-modify-public';
-    res.header("Access-Control-Allow-Origin", "https://frankoceanmetric.com/");
+    res.header("Access-Control-Allow-Origin", "https://spotify-taste-tester.herokuapp.com/");
     res.redirect('https://accounts.spotify.com/authorize?' +
       querystring.stringify({
         response_type: 'code',
