@@ -15,7 +15,7 @@ var generateRandomString = function(length) {
 
   var client_id = process.env.REACT_APP_CLIENT_ID;// Your client id
   var client_secret = process.env.REACT_APP_CLIENT_SECRET;// Your secret
-  var redirect_uri = 'http://spotify-taste-tester.herokuapp.com/callback';
+  var redirect_uri = 'http://frankoceanmetric.com/callback';
 
 router.get('/', function(req, res) {
 
@@ -68,7 +68,7 @@ router.get('/', function(req, res) {
           });
   
           // we can also pass the token to the browser to make requests from there
-          res.redirect('https://spotify-taste-tester.herokuapp.com/#' +
+          res.redirect('https://frankoceanmetric.com/#' +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token
