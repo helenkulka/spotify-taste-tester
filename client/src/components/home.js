@@ -8,6 +8,7 @@ import {Carousel} from 'react-bootstrap'
 export default class Home extends Component {
 
   constructor(props) {
+    console.log("REACT_APP", process.env.NODE_ENV)
     super(props);
     this.homepage = React.createRef()
     this.state = {
@@ -122,7 +123,7 @@ export default class Home extends Component {
   <div className="row">                         
     <div className="col-md text-center">
       <p id="subtitle"> a website to compare your music taste to <br></br>Frank Ocean's playlists Blonded</p>
-      <a href="http://spotify-taste-tester.herokuapp.com/login" className="btn" id="login-btn">
+      <a href={process.env.NODE_ENV == "production" ? "http://spotify-taste-tester.herokuapp.com/login" : "http://localhost:8888/login" } className="btn" id="login-btn">
         <span className="iconify" style={{margin:5}} data-icon="entypo-social:spotify-with-circle" data-inline="false" />
         Log in with Spotify
       </a>

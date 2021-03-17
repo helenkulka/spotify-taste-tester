@@ -19,9 +19,7 @@ app.use("/testAPI", testAPIRouter);
 app.use("/login", loginRouter);
 app.use("/callback", callbackRouter);
 
-var port = process.env.PORT || '8888';
-console.log("process env in app", process.env);
-app.set('port', port);
+var port = process.env.NODE_ENV ? process.env.PORT : '8888';
 
 var server = http.createServer(app);
 var port_number = server.listen(process.env.PORT || 8888);

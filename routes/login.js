@@ -3,7 +3,7 @@ var querystring = require('querystring');
 var router = express.Router();
 
 var client_id = process.env.REACT_APP_CLIENT_ID; // Your client id
-var redirect_uri = 'http://spotify-taste-tester.herokuapp.com/callback';
+var redirect_uri = process.env.NODE_ENV ? 'http://spotify-taste-tester.herokuapp.com/callback' : 'http://localhost:8888/callback';
 
 var generateRandomString = function(length) {
   var text = '';
@@ -23,6 +23,7 @@ router.get('/', function(req, res) {
     // your application requests authorization
     var scope = 'user-read-private user-read-email user-top-read user-library-read playlist-read-private playlist-modify-private playlist-modify-public';
     res.header("Access-Control-Allow-Origin", "https://spotify-taste-tester.herokuapp.com/");
+    res.header("Access-Control-Allow-Origin", "https://localhost:8888/");
     res.redirect('https://accounts.spotify.com/authorize?' +
       querystring.stringify({
         response_type: 'code',
