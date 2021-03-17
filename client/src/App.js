@@ -23,7 +23,7 @@ class App extends Component {
       accessToken: access_token ? access_token : "",
       userData: {},
       backgroundColor:"#f5e4d3",
-      color:"white",
+      color:"black",
       enteredSite: false,
       itemsLoaded: false
 
@@ -123,12 +123,10 @@ class App extends Component {
         {dataLoaded ? (
           <div className="HomePage">
             <Home onChangeParentStyle={this.onChangeStyle.bind(this)} ></Home>
-            {enteredSite ? (
               <div>
                 <Wave></Wave>
                 <Footer></Footer>
               </div>
-              ) : ( <div></div>)}
         </div>
           ) : (
             <div>

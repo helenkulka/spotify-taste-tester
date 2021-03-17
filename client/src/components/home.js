@@ -14,8 +14,7 @@ export default class Home extends Component {
       visiblesplash:true, 
       visiblehome:false,
       darkMode:false, 
-      enterSite:false, 
-      homepageDisplay:"none",
+      enterSite:false,
       splashscreenDisplay:"block",
       img1: 'https://imgur.com/MDIeLFM.png',
       img2:'https://imgur.com/GFBYR2Y.png',
@@ -81,27 +80,7 @@ export default class Home extends Component {
         <span style={{marginTop: 10}} type="button" id="mode-button" onClick={this.darkMode}>☾</span>
       )}
 
-  <div className="d-flex justify-content-center">    
-    <div className="section" style={{display:this.state.splashscreenDisplay}}>
-    <div className={this.state.visiblesplash?'fadeIn':'fadeOut'} id="splashscreen" >
-      <div className="row">
-        <div className="col">
-        <h1  className="title" id='title1'>FRANK OCEAN METRIC</h1>
-        </div>
-      </div>
-      <div className="row">
-      {darkModeOn ? (
-        <button id="discobutton" onClick={this.enterSiteInstructions} style={{color:"#FFEADD"}}>
-        <DiscoBall></DiscoBall>
-        </button>      ) : (
-          <button id="discobutton" onClick={this.enterSiteInstructions} style={{color:"rgb(255 233 207)"}}>
-        <DiscoBall></DiscoBall>
-        </button>      )}
-      </div>
-    </div>
-    </div>
-  </div>
-  <div ref={this.homepage} className={this.state.visiblehome?'fadeIn':'fadeOut'} style={{display:this.state.homepageDisplay}}>
+  <div ref={this.homepage}>
   <div id="homepage"  >
   <h1  className="title" id="title2">FRANK OCEAN METRIC</h1>
   <Container >
