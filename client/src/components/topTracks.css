@@ -18,7 +18,7 @@
     -webkit-text-stroke-width: 1.4px; 
     -webkit-text-stroke-color: #312E50;
     font-family: 'Archivo', sans-serif;
-    font-size: 3.5vh;
+    font-size: 3vh;
     font-style: bold;
     text-align: left;
     margin-left: 3vh;
@@ -26,5 +26,5 @@
 
 .scrolling-wrapper {
     max-width:100%;
-    margin-top: 5vh;
+    margin-top: 3vh;
 }
