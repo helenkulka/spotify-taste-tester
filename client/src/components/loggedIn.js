@@ -28,6 +28,7 @@ var i,j,z = 0;
 var overlap_tracks_msgs = [
     "we didn't find anything in common, but we can still recommend you some stuff :)",
     "we didn't find any shared songs, but it looks like you still might have a bit in common with Frank Ocean! check out our recommendations below.",
+    "if you run into Frank Ocean, we might not recommend talking about music. it looks like you don't have much in common",
     "if you run into Frank Ocean, you might have a bit to talk about. it looks like you have a similar taste in music",
     "not bad! you and Frank Ocean would have a lot to talk about, you have really similar music tastes.",
     "we're impressed, you like a lot of music! it looks like you and Frank Ocean have a lot in common.",
@@ -108,22 +109,24 @@ export default class LoggedIn extends Component {
         this.setState({overlapTracks: all_track_info, numTracksOverlap: all_track_overlap.length, overlapTrackUris: all_track_uris})
     }
 
-    setOverlapIntroMsg(num_tracks_overlap, num_artists_overlap) {
+    setOverlapIntroMsg(num_tracks_overlap, num_artists_overlap, num_top_tracks_overlap) {
         var msg = "";
-        if (num_tracks_overlap === 0 && num_artists_overlap == 0) {
+        if (num_tracks_overlap === 0 && num_artists_overlap == 0 && num_top_tracks_overlap == 0) {
             msg = overlap_tracks_msgs[0];
-          } else if (num_tracks_overlap === 0 && num_artists_overlap > 0){
+          } else if (num_tracks_overlap === 0 && num_artists_overlap > 0 && num_top_tracks_overlap == 0){
             msg = overlap_tracks_msgs[1];
           } else if (num_tracks_overlap < 5) {
             msg = overlap_tracks_msgs[2];
-          } else if (num_tracks_overlap >= 5 && num_tracks_overlap < 20) {
+          } else if (num_tracks_overlap >= 5 && num_tracks_overlap < 10) {
             msg = overlap_tracks_msgs[3];
-          } else if (num_tracks_overlap >= 20 && num_tracks_overlap < 50) {
+          } else if (num_tracks_overlap >= 10 && num_tracks_overlap < 20) {
             msg = overlap_tracks_msgs[4];
-          } else if (num_tracks_overlap >= 50 && num_tracks_overlap < 100) {
+          } else if (num_tracks_overlap >= 20 && num_tracks_overlap < 50) {
             msg = overlap_tracks_msgs[5];
-          } else if (num_tracks_overlap >= 100) {
+          } else if (num_tracks_overlap >= 50 && num_tracks_overlap < 100) {
             msg = overlap_tracks_msgs[6];
+          } else if (num_tracks_overlap >= 100) {
+            msg = overlap_tracks_msgs[7];
           }
           this.setState({overlapIntroMsg: msg});
     }
@@ -300,7 +303,7 @@ export default class LoggedIn extends Component {
             this.setState({itemsLoaded:true},this.props.onChangeParentStyle(true,true,1));
 
             //setting intro message for first page
-            this.setOverlapIntroMsg(Array.from(overlap_all_track_ids).length, this.state.numArtistsOverlap);
+            this.setOverlapIntroMsg(Array.from(overlap_all_track_ids).length, this.state.numArtistsOverlap, Array.from(overlap_top_track_ids).length);
         } catch(e) {
             this.setState({recievedError: true});
             return;
@@ -318,6 +321,8 @@ export default class LoggedIn extends Component {
             toolTips = ['sec1', 'sec2', 'sec4', 'sec5' ,'sec6'];
         } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks > 0 && this.state.numArtistsOverlap > 0) {
             toolTips = ['sec1', 'sec3', 'sec4', 'sec5', 'sec6'];
+        } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks > 0 && this.state.numArtistsOverlap == 0) {
+            toolTips = ['sec1', 'sec2', 'sec3', 'sec4', 'sec6'];
         } else {
             toolTips = ['sec1', 'sec2', 'sec3', 'sec4', 'sec5', 'sec6'];
         }
@@ -376,7 +381,7 @@ export default class LoggedIn extends Component {
                     { this.thankYou() }
                 </div>
             );
-        } else if(this.state.sections.length == 5 && this.state.sections.includes('sec2')) {
+        } else if (this.state.sections.length == 5 && this.state.sections.includes('sec2') && this.state.sections.includes('sec5')) {
             //12456
             return (                
                 <div id="pagepiling">
@@ -387,7 +392,31 @@ export default class LoggedIn extends Component {
                     { this.thankYou() }
                 </div>
             );
-        } else if (this.state.sections.length == 4) {
+        } else if (this.state.sections.length == 5 && this.state.sections.includes('sec2') && !this.state.sections.includes('sec5')) {
+            //12456
+            return (                
+                <div id="pagepiling">
+                    {  this.intro() }
+                    { this.tracks() }
+                    { this.topTracks() }
+                    {  this.popularity() }
+                    { this.thankYou() }
+                </div>
+            );
+        }
+        else if(this.state.sections.length == 4 && !this.state.sections.includes('sec5')) {
+            //12456
+            return (                
+                <div id="pagepiling">
+                    {  this.intro() }
+                    { this.tracks() }
+                    {  this.popularity() }
+                    { this.artists() }
+                    { this.thankYou() }
+                </div>
+            );
+        }
+        else if (this.state.sections.length == 4) {
                 //1346
                 return (                
                     <div id="pagepiling">
@@ -422,3 +451,4 @@ export default class LoggedIn extends Component {
         }
     }
 }
+

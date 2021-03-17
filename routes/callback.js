@@ -3,6 +3,8 @@ var express = require("express");
 var querystring = require('querystring');
 var router = express.Router();
 var request = require('request');
+require('dotenv').config()
+
 var generateRandomString = function(length) {
     var text = '';
     var possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -14,6 +16,7 @@ var generateRandomString = function(length) {
   };
 
   var client_id = process.env.REACT_APP_CLIENT_ID;// Your client id
+  console.log("client_id", client_id);
   var client_secret = process.env.REACT_APP_CLIENT_SECRET;// Your secret
   var redirect_uri = process.env.NODE_ENV ? 'http://spotify-taste-tester.herokuapp.com/callback' : 'http://localhost:8888/callback';
 
