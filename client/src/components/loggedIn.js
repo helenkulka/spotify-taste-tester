@@ -26,9 +26,10 @@ var i,j,z = 0;
 
 
 var overlap_tracks_msgs = [
-    "we didn't find any shared songs :( but that's OK, we can still recommend you some.",
-    "if you run into Frank Ocean, we might not recommend talking about music, we only found a bit in common.",
-    "not bad. you and Frank Ocean might have a bit in common.",
+    "we didn't find anything in common, but we can still recommend you some stuff :)",
+    "we didn't find any shared songs, but it looks like you still might have a bit in common with Frank Ocean! check out our recommendations below.",
+    "if you run into Frank Ocean, you might have a bit to talk about. it looks like you have a similar taste in music",
+    "not bad! you and Frank Ocean might have a lot to talk about, we found some similarities in your music tastes!",
     "we're impressed, you like a lot of music! it looks like you and Frank Ocean have a lot in common.",
     "wait what? Frank - is that you? we found a lot in common between your music taste and Frank Ocean's.",
     "you and frank were switched at birth, probably. or you should just get outside more. we found ...too much in common between your music tastes."
@@ -107,20 +108,22 @@ export default class LoggedIn extends Component {
         this.setState({overlapTracks: all_track_info, numTracksOverlap: all_track_overlap.length, overlapTrackUris: all_track_uris})
     }
 
-    setOverlapIntroMsg(num_tracks_overlap) {
+    setOverlapIntroMsg(num_tracks_overlap, num_artists_overlap) {
         var msg = "";
-        if (num_tracks_overlap === 0) {
+        if (num_tracks_overlap === 0 && num_artists_overlap == 0) {
             msg = overlap_tracks_msgs[0];
-          } else if (num_tracks_overlap < 5) {
+          } else if (num_tracks_overlap === 0 && num_artists_overlap > 0){
             msg = overlap_tracks_msgs[1];
-          } else if (num_tracks_overlap >= 5 && num_tracks_overlap < 20) {
+          } else if (num_tracks_overlap < 5) {
             msg = overlap_tracks_msgs[2];
-          } else if (num_tracks_overlap >= 20 && num_tracks_overlap < 50) {
+          } else if (num_tracks_overlap >= 5 && num_tracks_overlap < 20) {
             msg = overlap_tracks_msgs[3];
-          } else if (num_tracks_overlap >= 50 && num_tracks_overlap < 100) {
+          } else if (num_tracks_overlap >= 20 && num_tracks_overlap < 50) {
             msg = overlap_tracks_msgs[4];
-          } else if (num_tracks_overlap >= 100) {
+          } else if (num_tracks_overlap >= 50 && num_tracks_overlap < 100) {
             msg = overlap_tracks_msgs[5];
+          } else if (num_tracks_overlap >= 100) {
+            msg = overlap_tracks_msgs[6];
           }
           this.setState({overlapIntroMsg: msg});
     }
@@ -286,8 +289,6 @@ export default class LoggedIn extends Component {
             var overlap_top_track_ids = await this.getUserTopTracks();
             var overlap_playlist_track_ids = await this.getUserPlaylistTracks();
             var overlap_all_track_ids = await this.getUserSavedTracks(overlap_playlist_track_ids);
-            //setting intro message for first page
-            this.setOverlapIntroMsg(Array.from(overlap_all_track_ids).length);
     
             //setting overlap track messages for all tracks and top tracks
             //will be rendered in respective components
@@ -297,6 +298,9 @@ export default class LoggedIn extends Component {
             this.setState({recommendedTracksByArtist: await this.getArtistRecommendations()});
             // this.calculateUserPopularity(blonded_track_id_map, overlap_all_track_ids);
             this.setState({itemsLoaded:true},this.props.onChangeParentStyle(true,true,1));
+
+            //setting intro message for first page
+            this.setOverlapIntroMsg(Array.from(overlap_all_track_ids).length, this.state.numArtistsOverlap);
         } catch(e) {
             this.setState({recievedError: true});
             return;

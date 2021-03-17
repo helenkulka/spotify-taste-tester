@@ -50,7 +50,7 @@ export default class Footer extends Component {
               </ul>
               <p style={footerText}>helen.kulka@mail.mcgill.ca</p>
               <ul class="social-network social-circle" style={{marginBottom:1}}>
-                <li><a href="https://www.linkedin.com/in/helenkulka/" target="_blank"class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+                <li><a href="https://www.linkedin.com/in/helen-kulka-427b1414a/" target="_blank"class="icoLinkedin" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
                 <li><a href="https://www.instagram.com/helenenenenenen/" target="_blank" class="icoInstagram" title="Instagram"><i class="fa fa-instagram"></i></a></li>
             </ul>
 
