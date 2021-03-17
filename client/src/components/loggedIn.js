@@ -357,7 +357,7 @@ export default class LoggedIn extends Component {
         }
         else if (!dataLoaded) {
             return  (<Loading></Loading>)
-        } else if (this.state.sections.length == 1) {
+        } else if (this.state.sections.length == 2) {
             return(
                 <div id="pagepiling">
                     { this.intro() }
