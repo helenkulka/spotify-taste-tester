@@ -16,7 +16,6 @@ var generateRandomString = function(length) {
   };
 
   var client_id = process.env.REACT_APP_CLIENT_ID;// Your client id
-  console.log("client_id", client_id);
   var client_secret = process.env.REACT_APP_CLIENT_SECRET;// Your secret
   var redirect_uri = process.env.NODE_ENV ? 'http://spotify-taste-tester.herokuapp.com/callback' : 'http://localhost:8888/callback';
 
@@ -69,15 +68,18 @@ router.get('/', function(req, res) {
           request.get(options, function(error, response, body) {
             console.log(body);
           });
+
+          console.log("access_token", access_token);
   
           // we can also pass the token to the browser to make requests from there
-          var url = process.env.NODE_ENV ? 'https://frankoceanmetric.com/#' : 'https://localhost:3000/#';
-          res.redirect(`${url}` +
+          var url = process.env.NODE_ENV ? 'http://frankoceanmetric.com/#' : 'http://localhost:3000/#';
+            res.redirect(`${url}` +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token
             }));
            } else {
+             console.log("invalid_token", error);
           res.redirect('/#' +
             querystring.stringify({
               error: 'invalid_token'

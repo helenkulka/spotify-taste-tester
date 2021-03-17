@@ -61,6 +61,7 @@ export default class LoggedIn extends Component {
             itemsLoaded: false,
             sections: [],
             recievedError: false,
+            errorMsg: "",
             ref1: React.createRef()
         };
  
@@ -306,7 +307,7 @@ export default class LoggedIn extends Component {
             //setting intro message for first page
             this.setOverlapIntroMsg(Array.from(overlap_all_track_ids).length, this.state.numArtistsOverlap, Array.from(overlap_top_track_ids).length);
         } catch(e) {
-            this.setState({recievedError: true});
+            this.setState({recievedError: true, errorMsg: e});
             return;
         }
         var toolTips = []
@@ -352,6 +353,7 @@ export default class LoggedIn extends Component {
     render() {
         const dataLoaded = this.state.itemsLoaded;
         if (this.state.recievedError) {
+            console.log(this.state.errorMsg);
             return(<App></App>);
         }
         else if (!dataLoaded) {

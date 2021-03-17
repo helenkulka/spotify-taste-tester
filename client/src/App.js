@@ -16,6 +16,7 @@ class App extends Component {
     const params = this.getHashParams();
     var access_token = params.access_token;
     if (access_token) {
+      console.log("recieved access token");
       spotifyApi.setAccessToken(access_token);
     }
     this.state = {
