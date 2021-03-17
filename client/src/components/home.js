@@ -8,7 +8,6 @@ import {Carousel} from 'react-bootstrap'
 export default class Home extends Component {
 
   constructor(props) {
-    console.log("REACT_APP", process.env.NODE_ENV)
     super(props);
     this.homepage = React.createRef()
     this.state = {

@@ -304,12 +304,14 @@ export default class LoggedIn extends Component {
         var toolTips = []
         if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks.length == 0 && this.state.numArtistsOverlap == 0) {
             toolTips = ['sec1','sec6'];
+        } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks.length == 0 && this.state.numArtistsOverlap > 0) {
+            toolTips = ['sec1','sec5','sec6'];
+        } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks > 0 && this.state.numArtistsOverlap == 0) {
+            toolTips = ['sec1', 'sec3', 'sec4', 'sec6'];
         } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks == 0 && this.state.numArtistsOverlap == 0) {
             toolTips = ['sec1', 'sec2', 'sec4', 'sec6'];
         } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks == 0 && this.state.numArtistsOverlap > 0) {
             toolTips = ['sec1', 'sec2', 'sec4', 'sec5' ,'sec6'];
-        } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks > 0 && this.state.numArtistsOverlap == 0) {
-            toolTips = ['sec1', 'sec3', 'sec4', 'sec6'];
         } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks > 0 && this.state.numArtistsOverlap > 0) {
             toolTips = ['sec1', 'sec3', 'sec4', 'sec5', 'sec6'];
         } else {
@@ -351,7 +353,16 @@ export default class LoggedIn extends Component {
                     { this.thankYou() } 
                 </div>
             );
-        } else if(this.state.sections.length == 4 && this.state.sections.includes('sec2')) {
+        } else if (this.state.sections.length == 3) {
+            return(
+                <div id="pagepiling">
+                    { this.intro() }
+                    { this.artists() }
+                    { this.thankYou() } 
+                </div>
+            );
+        }
+        else if(this.state.sections.length == 4 && this.state.sections.includes('sec2')) {
            // 1246
            return (                
                 <div id="pagepiling">

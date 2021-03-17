@@ -10,6 +10,8 @@ var cors = require("cors");
 
 var app = express();
 
+require('dotenv').config()
+
 
 app.use(cors())
 app.use(cookieParser());
