@@ -111,28 +111,28 @@ async componentDidMount() {
                 {/* <p >Share your results!</p> */}
                 <FacebookShareButton
                     className="network"
-                    url="https://www.backdrophome.com/"
+                    url="https://www.frankoceanmetric.com/"
                     quote={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     hashtag="#frankocean">
                     <FacebookIcon logoFillColor="white" size={"1.5rem"} round/>
                 </FacebookShareButton>
                 <TwitterShareButton
                     className="network"
-                    url="https://www.backdrophome.com/"
+                    url="https://www.frankoceanmetric.com/"
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
                     <TwitterIcon logoFillColor="white" size={"1.5rem"} round/>
                 </TwitterShareButton>
                 <WhatsappShareButton
                     className="network"
-                    url="https://www.backdrophome.com/"
+                    url="https://www.frankoceanmetric.com/"
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
                     <WhatsappIcon logoFillColor="white" size={"1.5rem"} round/>
                 </WhatsappShareButton>
                 <TumblrShareButton
                     className="network"
-                    url="https://www.backdrophome.com/"
+                    url="https://www.frankoceanmetric.com/"
                     title="Frank Ocean Metric"
                     caption={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
@@ -140,14 +140,14 @@ async componentDidMount() {
                 </TumblrShareButton>
                 <RedditShareButton
                     className="network"
-                    url="https://www.backdrophome.com/"
+                    url="https://www.frankoceanmetric.com/"
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
                     <RedditIcon logoFillColor="white" size={"1.5rem"} round/>
                 </RedditShareButton>
                 <FacebookMessengerShareButton
                     className="network"
-                    url="https://www.backdrophome.com/"
+                    url="https://www.frankoceanmetric.com/"
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     appId="715761142463541"
                     >
@@ -170,28 +170,28 @@ async componentDidMount() {
                 {/* <p >Share your results!</p> */}
                 <FacebookShareButton
                     className="network"
-                    url="https://www.backdrophome.com/"
+                    url="https://www.frankoceanmetric.com/"
                     quote={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     hashtag="#frankocean">
                     <FacebookIcon logoFillColor="white" size={"1.5rem"} round/>
                 </FacebookShareButton>
                 <TwitterShareButton
                     className="network"
-                    url="https://www.backdrophome.com/"
+                    url="https://www.frankoceanmetric.com/"
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
                     <TwitterIcon logoFillColor="white" size={"1.5rem"} round/>
                 </TwitterShareButton>
                 <WhatsappShareButton
                     className="network"
-                    url="https://www.backdrophome.com/"
+                    url="https://www.frankoceanmetric.com/"
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
                     <WhatsappIcon logoFillColor="white" size={"1.5rem"} round/>
                 </WhatsappShareButton>
                 <TumblrShareButton
                     className="network"
-                    url="https://www.backdrophome.com/"
+                    url="https://www.frankoceanmetric.com/"
                     title="Frank Ocean Metric"
                     caption={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
@@ -199,14 +199,14 @@ async componentDidMount() {
                 </TumblrShareButton>
                 <RedditShareButton
                     className="network"
-                    url="https://www.backdrophome.com/"
+                    url="https://www.frankoceanmetric.com/"
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     >
                     <RedditIcon logoFillColor="white" size={"1.5rem"} round/>
                 </RedditShareButton>
                 <FacebookMessengerShareButton
                     className="network"
-                    url="https://www.backdrophome.com/"
+                    url="https://www.frankoceanmetric.com/"
                     title={`I just took a quiz on The Frank Ocean Metric and found out I have ${this.props.numTracksOverlap} songs in common with Frank Ocean!`}
                     appId="715761142463541"
                     >
