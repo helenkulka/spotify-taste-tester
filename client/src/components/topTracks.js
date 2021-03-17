@@ -13,7 +13,7 @@ export default class TopTracks extends Component {
             <p id="overlap-tracks-msg">
             <strong id="num-overlap" > { this.props.overlapTopTracks.length }</strong>
             { this.props.overlapTopTracks.length == 1 ? <p style={{display: 'inline'}}> top song </p> : <p style={{display: 'inline'}}> top songs </p> }
-            top songs. <br></br> Wow! { this.props.overlapTopTracks.length } of your most listened to songs of all time overlap with Frank Ocean's favorites.
+    <br></br> Wow! { this.props.overlapTopTracks.length } of your most listened to songs of all time overlap with Frank Ocean's favorites.
             </p>
 
         <Container className="scrolling-wrapper">
