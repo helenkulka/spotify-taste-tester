@@ -18,7 +18,7 @@
     -webkit-text-stroke-width: 1.6px; 
     -webkit-text-stroke-color: #312E50;
     font-family: 'Archivo', sans-serif;
-    font-size: 60px;
+    font-size: 7vh;
     font-style: bold;
     text-align: left;
     font-weight: 600;
@@ -59,7 +59,7 @@
     -webkit-text-stroke-width: 1.4px; 
     -webkit-text-stroke-color: #312E50;
     font-family: 'Archivo', sans-serif;
-    font-size: 30px;
+    font-size: 5vh;
     font-style: bold;
     text-align: left;
     /* margin-top: 60px;
