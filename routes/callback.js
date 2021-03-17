@@ -68,8 +68,6 @@ router.get('/', function(req, res) {
           request.get(options, function(error, response, body) {
             console.log(body);
           });
-
-          console.log("access_token", access_token);
   
           // we can also pass the token to the browser to make requests from there
           var url = process.env.NODE_ENV ? 'http://frankoceanmetric.com/#' : 'http://localhost:3000/#';

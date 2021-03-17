@@ -16,13 +16,12 @@ class App extends Component {
     const params = this.getHashParams();
     var access_token = params.access_token;
     if (access_token) {
-      console.log("recieved access token");
       spotifyApi.setAccessToken(access_token);
     }
+
     this.state = {
       loggedIn: access_token ? true : false,
       accessToken: access_token ? access_token : "",
-      userData: {},
       backgroundColor:"#f5e4d3",
       color:"black",
       enteredSite: false,
@@ -101,17 +100,13 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    this.setState({itemsLoaded:true})
-    if (this.state.loggedIn) {
-     var userData = await getUserData(this.state.accessToken);
-      this.setState({userData: userData});
-    }
+    this.setState({itemsLoaded:true});
   }
   render() {
     const enteredSite = this.state.enteredSite
     const dataLoaded = this.state.itemsLoaded
 
-    if (!(Object.keys(this.state.userData).length === 0)) {
+    if (this.state.loggedIn) {
       history.push('/');
       return(
         <div className="App" style={{background:this.state.backgroundColor, color:this.state.color}}>

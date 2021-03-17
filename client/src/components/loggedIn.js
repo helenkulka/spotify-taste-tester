@@ -1,4 +1,5 @@
 import React, { useRef, Component} from 'react';
+import { getUserData } from './getUserData';
 import './loggedin.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery';
@@ -43,6 +44,7 @@ export default class LoggedIn extends Component {
 
         this.state = {
             firstName : "",
+            userData: {},
             userId: "",
             overlapIntroMsg: "",
             overlapTracksMsg: "",
@@ -151,7 +153,7 @@ export default class LoggedIn extends Component {
 
         for (i in playlists) {
             //ignore playlists not owned by user
-          if (this.props.userData.display_name !== playlists[i].owner.display_name) {
+          if (this.state.userData.display_name !== playlists[i].owner.display_name) {
               continue;
           }
           var tracks_url = playlists[i].tracks.href;
@@ -287,9 +289,11 @@ export default class LoggedIn extends Component {
 
     async componentDidMount() {
         try {
+            var user_data = await getUserData(this.props.accessToken);
+            this.setState({userData: user_data});
             this.setState(
-                {firstName: await this.props.userData.display_name.split(" ")[0].toLowerCase(), 
-                userId: await this.props.userData.id});
+                {firstName: await this.state.userData.display_name.split(" ")[0].toLowerCase(), 
+                userId: await this.state.userData.id});
             var overlap_top_track_ids = await this.getUserTopTracks();
             var overlap_playlist_track_ids = await this.getUserPlaylistTracks();
             var overlap_all_track_ids = await this.getUserSavedTracks(overlap_playlist_track_ids);
