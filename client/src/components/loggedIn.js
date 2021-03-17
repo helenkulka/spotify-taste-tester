@@ -27,15 +27,14 @@ var i,j,z = 0;
 
 var overlap_tracks_msgs = [
     "we didn't find anything in common, but we can still recommend you some stuff :)",
-    "we didn't find any shared songs, but it looks like you still might have a bit in common with Frank Ocean! check out our recommended playlist below.",
-    "if you run into Frank Ocean at a party, we might recommend talking about something other than music. check out our recommended playlist below.",
-    "if you run into Frank Ocean at a party, you might have a bit to talk about! it looks like you have some music in common.",
+    "we didn't find any shared songs, but it looks like you still might have a bit in common with Frank Ocean! check out our recommendations below.",
+    "if you run into Frank Ocean, we might not recommend talking about music. it looks like you don't have much in common",
+    "if you run into Frank Ocean, you might have a bit to talk about. it looks like you have a similar taste in music",
     "not bad! you and Frank Ocean would have a lot to talk about, you have really similar music tastes.",
-    "we're impressed, you like a lot of music! if you run into Frank Ocean at a party, you could totally hit it off by talking about music.",
+    "we're impressed, you like a lot of music! it looks like you and Frank Ocean have a lot in common.",
     "wait what? Frank - is that you? we found a lot in common between your music taste and Frank Ocean's.",
     "you and frank were switched at birth, probably. or you should just get outside more. we found ...too much in common between your music tastes."
-];
-
+]
 export default class LoggedIn extends Component {
 
 
