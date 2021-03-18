@@ -310,7 +310,7 @@ export default class LoggedIn extends Component {
             //setting intro message for first page
             this.setOverlapIntroMsg(Array.from(overlap_all_track_ids).length, this.state.numArtistsOverlap, Array.from(overlap_top_track_ids).length);
         } catch(e) {
-            var url = process.env.NODE_ENV == "production" ? "http://spotify-taste-tester.herokuapp.com/err" : "http://localhost:8888/err";
+            var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/err" : "http://localhost:8888/err";
             axios
             .post(`${url}`, {error: e})
             .catch(err => {

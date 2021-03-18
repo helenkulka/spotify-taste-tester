@@ -105,7 +105,7 @@ class App extends Component {
 
     if (this.state.loggedIn) {
       history.push('/');
-      var url = process.env.NODE_ENV == "production" ? "http://spotify-taste-tester.herokuapp.com/info" : "http://localhost:8888/info";
+      var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/info" : "http://localhost:8888/info";
       axios
       .post(`${url}`, { log: 'presenting logged in div' })
       .catch(err => {
