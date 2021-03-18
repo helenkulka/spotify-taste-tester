@@ -27,6 +27,12 @@ app.use("/testAPI", testAPIRouter);
 app.use("/login", loginRouter);
 app.use("/callback", callbackRouter);
 
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://frankoceanmetric.com"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+  });
+
 app.post('/err', function(req, res) {
     console.log("ERROR:",req.body.error);
 });
