@@ -28,14 +28,15 @@ var i,j,z = 0;
 
 var overlap_tracks_msgs = [
     "we didn't find anything in common, but we can still recommend you some stuff :)",
-    "we didn't find any shared songs, but it looks like you still might have a bit in common with Frank Ocean! check out our recommendations below.",
-    "if you run into Frank Ocean, we might not recommend talking about music. it looks like you don't have much in common",
-    "if you run into Frank Ocean, you might have a bit to talk about. it looks like you have a similar taste in music",
+    "we didn't find any shared songs, but it looks like you still have a bit in common with Frank Ocean! check out our recommendations below.",
+    "if you run into Frank Ocean at a party, we recommend talking about something other than music. check out our recommended playlist below.",
+    "if you run into Frank Ocean at a party, you might have a bit to talk about! it looks like you have some music in common.",
     "not bad! you and Frank Ocean would have a lot to talk about, you have really similar music tastes.",
-    "we're impressed, you like a lot of music! it looks like you and Frank Ocean have a lot in common.",
+    "we're impressed, you like a lot of music! if you run into Frank Ocean at a party, you could totally hit it off by talking about music.",
     "wait what? Frank - is that you? we found a lot in common between your music taste and Frank Ocean's.",
     "you and frank were switched at birth, probably. or you should just get outside more. we found ...too much in common between your music tastes."
-]
+];
+
 export default class LoggedIn extends Component {
 
 
@@ -114,14 +115,24 @@ export default class LoggedIn extends Component {
 
     setOverlapIntroMsg(num_tracks_overlap, num_artists_overlap, num_top_tracks_overlap) {
         var msg = "";
+        /* if they have 0 results on everything */
         if (num_tracks_overlap === 0 && num_artists_overlap == 0 && num_top_tracks_overlap == 0) {
             msg = overlap_tracks_msgs[0];
-          } else if (num_tracks_overlap === 0 && num_artists_overlap > 0 && num_top_tracks_overlap == 0){
+          } 
+        /* if they have no shared songs but have something else in common */
+        else if (num_tracks_overlap === 0 && num_artists_overlap > 0 || num_tracks_overlap === 0 && num_top_tracks_overlap > 0){
             msg = overlap_tracks_msgs[1];
-          } else if (num_tracks_overlap < 5) {
+          }
+        /* if they have only a few songs in common and nothing else */ 
+        else if (num_tracks_overlap < 5 && num_artists_overlap == 0 && num_top_tracks_overlap == 0) {
             msg = overlap_tracks_msgs[2];
-          } else if (num_tracks_overlap >= 5 && num_tracks_overlap < 10) {
+          } 
+        /* if they have a few songs in common + something else */ 
+          else if (num_tracks_overlap < 5 && (num_artists_overlap > 0 || num_top_tracks_overlap > 0)) {
             msg = overlap_tracks_msgs[3];
+          } 
+          else if (num_tracks_overlap >= 5 && num_tracks_overlap < 10) {
+            msg = overlap_tracks_msgs[4];
           } else if (num_tracks_overlap >= 10 && num_tracks_overlap < 20) {
             msg = overlap_tracks_msgs[4];
           } else if (num_tracks_overlap >= 20 && num_tracks_overlap < 50) {
@@ -133,6 +144,7 @@ export default class LoggedIn extends Component {
           }
           this.setState({overlapIntroMsg: msg});
     }
+
 
     async getUserSavedTracks(track_overlap) {
         var bool_saved = await getLikedTracks(this.props.accessToken, blonded_track_ids);
@@ -237,8 +249,10 @@ export default class LoggedIn extends Component {
         return(
             <div class="section sec1">
                 <Container id="intro">
-                    <h2 id="first-name"> hey { this.state.firstName },  </h2>
-                    <p id="overlap-intro-msg"> { this.state.overlapIntroMsg } </p>
+                    <p id="overlap-tracks-msg">
+                        <strong id="first-name"> hey { this.state.firstName },  </strong>
+                        <p> { this.state.overlapIntroMsg } </p>
+                    </p>
                 </Container>
             </div>
         );
