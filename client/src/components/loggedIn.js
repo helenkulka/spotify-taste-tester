@@ -18,7 +18,7 @@ import TopTracks from './topTracks';
 import ThankYouPage from './thanks';
 import Artists from './artists';
 import Home from './home';
-
+import axios from 'axios';
 const blonded_track_ids = Object.keys(blonded_track_id_map);
 
 var user_track_ids = new Set();
@@ -324,6 +324,12 @@ export default class LoggedIn extends Component {
             //setting intro message for first page
             this.setOverlapIntroMsg(Array.from(overlap_all_track_ids).length, this.state.numArtistsOverlap, Array.from(overlap_top_track_ids).length);
         } catch(e) {
+            var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/err" : "http://localhost:8888/err";
+            axios
+            .post(`${url}`, {error: e})
+            .catch(err => {
+              console.error(err);
+            });
             this.setState({recievedError: true, errorMsg: e});
             return;
         }
