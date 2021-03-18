@@ -14,8 +14,11 @@ var app = express();
 
 require('dotenv').config()
 
-
-app.use(cors())
+var origin_val = process.env.NODE_ENV ? 'https://frankoceanmetric.com' : 'http://localhost:3000';
+app.use(cors({
+    origin: origin_val,
+    credentials: true
+}));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'client/build')));
