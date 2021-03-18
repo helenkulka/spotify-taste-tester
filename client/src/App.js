@@ -8,7 +8,7 @@ import Loading from './components/loading.js';
 import LoggedIn from './components/loggedIn';
 import { getUserData } from './components/getUserData';
 import history from './history';
-const logger = require('heroku-logger')
+import axios from 'axios';
 
 class App extends Component {
   constructor(props,context){
@@ -105,7 +105,12 @@ class App extends Component {
 
     if (this.state.loggedIn) {
       history.push('/');
-      logger.info('presenting logged in div');
+      var url = process.env.NODE_ENV == "production" ? "http://spotify-taste-tester.herokuapp.com/info" : "http://localhost:8888/info";
+      axios
+      .post(`${url}`, { log: 'presenting logged in div' })
+      .catch(err => {
+        console.error(err);
+      });
       return(
         <div className="App" style={{background:this.state.backgroundColor, color:this.state.color}}>
           <LoggedIn onChangeParentStyle={this.onChangeStyle.bind(this)} {...this.state}></LoggedIn>
