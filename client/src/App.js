@@ -8,16 +8,12 @@ import Loading from './components/loading.js';
 import LoggedIn from './components/loggedIn';
 import { getUserData } from './components/getUserData';
 import history from './history';
-const spotifyApi = new SpotifyWebApi();
 
 class App extends Component {
   constructor(props,context){
     super(props,context);
     const params = this.getHashParams();
     var access_token = params.access_token;
-    if (access_token) {
-      spotifyApi.setAccessToken(access_token);
-    }
 
     this.state = {
       loggedIn: access_token ? true : false,
@@ -99,7 +95,7 @@ class App extends Component {
     return hashParams;
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.setState({itemsLoaded:true});
   }
   render() {
@@ -108,6 +104,7 @@ class App extends Component {
 
     if (this.state.loggedIn) {
       history.push('/');
+      console.log("presenting logged in div");
       return(
         <div className="App" style={{background:this.state.backgroundColor, color:this.state.color}}>
           <LoggedIn onChangeParentStyle={this.onChangeStyle.bind(this)} {...this.state}></LoggedIn>
