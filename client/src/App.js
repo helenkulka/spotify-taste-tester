@@ -8,6 +8,7 @@ import Loading from './components/loading.js';
 import LoggedIn from './components/loggedIn';
 import { getUserData } from './components/getUserData';
 import history from './history';
+const logger = require('heroku-logger')
 
 class App extends Component {
   constructor(props,context){
@@ -104,7 +105,7 @@ class App extends Component {
 
     if (this.state.loggedIn) {
       history.push('/');
-      console.log("presenting logged in div");
+      logger.info('presenting logged in div');
       return(
         <div className="App" style={{background:this.state.backgroundColor, color:this.state.color}}>
           <LoggedIn onChangeParentStyle={this.onChangeStyle.bind(this)} {...this.state}></LoggedIn>

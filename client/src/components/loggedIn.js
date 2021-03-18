@@ -18,7 +18,7 @@ import TopTracks from './topTracks';
 import ThankYouPage from './thanks';
 import Artists from './artists';
 import Home from './home';
-
+const logger = require('heroku-logger');
 const blonded_track_ids = Object.keys(blonded_track_id_map);
 
 var user_track_ids = new Set();
@@ -310,6 +310,7 @@ export default class LoggedIn extends Component {
             //setting intro message for first page
             this.setOverlapIntroMsg(Array.from(overlap_all_track_ids).length, this.state.numArtistsOverlap, Array.from(overlap_top_track_ids).length);
         } catch(e) {
+            logger.error(`logged in error: ${e}`);
             this.setState({recievedError: true, errorMsg: e});
             return;
         }
