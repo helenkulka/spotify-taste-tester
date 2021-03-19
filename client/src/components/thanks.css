@@ -30,9 +30,10 @@
     -webkit-text-stroke-width: 1.2px; 
     -webkit-text-stroke-color: #312E50;
     font-family: 'Archivo', sans-serif;
-    font-size: 4vh;
+    font-size: 3.3vh;
     font-style: bold;
     text-align: left;
+    font-weight:700;
 }
 
 /* #share-social {
@@ -61,8 +62,9 @@
     font-family: 'Archivo';
     -webkit-text-stroke-width: 0px; 
     -webkit-text-stroke-color: #312E50;
-    font-size: 4vh;
+    font-size: 3.3vh;
     font-style:normal;
+    font-weight:700;
 }
 
 .thumbnail:hover {

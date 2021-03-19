@@ -7,23 +7,23 @@
 
 #intro {
     /* height: 100%; */
-    /* max-width: 85%; */
     background-color:#F3FF9A;
     /* overflow-y: scroll;
     overflow-x: hidden; */
-    max-width: 85%;
+    max-width: 90%;
     overflow: hidden;
     text-align: left;
     margin-top: -8vh;
 }
 
 #first-name {
-  font-size:8.7vh;
+  font-size:6.7vh;
   font-style:bold;
   font-weight:700;
   display:inline; 
   margin-right:1.3vh;
-  padding-bottom: 1vh;
+  /* padding-bottom: 1vh; */
+  line-height: 1.2;
 }
 
 #tracks-niche{
@@ -34,21 +34,21 @@
     text-align: left;
     overflow-y: scroll;
     overflow-x: hidden;*/
-    max-width: 85%;
+    max-width: 90%;
 }
 
 #thanks{
   background-color: #96c8d9;
     overflow-y: scroll;
     overflow-x: hidden;
-    max-width: 85%;
+    max-width: 90%;
 }
 
 #artists{
   background-color: #EFB9C5;
     overflow-y: scroll;
     overflow-x: hidden;
-    max-width: 85%;
+    max-width: 90%;
 }
 
 
