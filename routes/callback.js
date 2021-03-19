@@ -33,6 +33,7 @@ router.get('/', function(req, res) {
     var storedState = req.cookies ? req.cookies[stateKey] : null;
   
     if (state === null || state !== storedState) {
+      console.log("ERROR: state mismatch", error);
       res.redirect('/#' +
         querystring.stringify({
           error: 'state_mismatch'
@@ -71,13 +72,14 @@ router.get('/', function(req, res) {
   
           // we can also pass the token to the browser to make requests from there
           var url = process.env.NODE_ENV ? 'http://frankoceanmetric.com/#' : 'http://localhost:3000/#';
+          console.log("redirecting with access code");
             res.redirect(`${url}` +
             querystring.stringify({
               access_token: access_token,
               refresh_token: refresh_token
             }));
            } else {
-             console.log("invalid_token", error);
+          console.log("ERROR: invalid_token", error);
           res.redirect('/#' +
             querystring.stringify({
               error: 'invalid_token'
