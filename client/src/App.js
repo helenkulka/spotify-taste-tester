@@ -25,10 +25,14 @@ class App extends Component {
       itemsLoaded: false
     }
 
-    var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/info" : "http://localhost:8888/info";
-    axios
-    .post(`${url}`, { log: `loggedIn in constructor: ${this.state.loggedIn} with access token ${this.state.accessToken}` })
-    .catch(err => {});
+    // var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/info" : "http://localhost:8888/info";
+    // axios
+    // .post(`${url}`, { log: `loggedIn in constructor: ${this.state.loggedIn} with access token ${this.state.accessToken}` })
+    // .then((res) => {
+    //   console.log(res);
+    // }, (error) => {
+    //   console.log(error);
+    // });
   }
 
   onChangeStyle(darkModeStatus,enterSiteStatus,slideNumber) {
@@ -99,8 +103,13 @@ class App extends Component {
     }
     var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/info" : "http://localhost:8888/info";
     axios
-    .post(`${url}`, { log: `access token in hash params ${hashParams}`})
-    .catch(err => {});
+    .post(`${url}`, { log: `window location, ${window.location}`})
+    .then((res) => {
+      console.log(res);
+    }, (error) => {
+      console.log(error);
+    });
+    return hashParams;
   }
 
   componentDidMount() {
@@ -114,7 +123,11 @@ class App extends Component {
       var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/info" : "http://localhost:8888/info";
       axios
       .post(`${url}`, { log: 'presenting logged in div' })
-      .catch(err => {});
+      .then((res) => {
+        console.log(res);
+      }, (error) => {
+        console.log(error);
+      });
       return(
         <div className="App" style={{background:this.state.backgroundColor, color:this.state.color}}>
           <LoggedIn onChangeParentStyle={this.onChangeStyle.bind(this)} {...this.state}></LoggedIn>
