@@ -97,8 +97,10 @@ class App extends Component {
        hashParams[e[1]] = decodeURIComponent(e[2]);
        e = r.exec(q);
     }
-    console.log("access token in hash params", hashParams);
-    return hashParams;
+    var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/info" : "http://localhost:8888/info";
+    axios
+    .post(`${url}`, { log: `access token in hash params ${hashParams}`})
+    .catch(err => {});
   }
 
   componentDidMount() {
