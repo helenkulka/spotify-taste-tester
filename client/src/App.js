@@ -25,14 +25,6 @@ class App extends Component {
       itemsLoaded: false
     }
 
-    // var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/info" : "http://localhost:8888/info";
-    // axios
-    // .post(`${url}`, { log: `loggedIn in constructor: ${this.state.loggedIn} with access token ${this.state.accessToken}` })
-    // .then((res) => {
-    //   console.log(res);
-    // }, (error) => {
-    //   console.log(error);
-    // });
   }
 
   onChangeStyle(darkModeStatus,enterSiteStatus,slideNumber) {
@@ -105,9 +97,7 @@ class App extends Component {
     axios
     .post(`${url}`, { log: `window location, ${window.location}`})
     .then((res) => {
-      console.log(res);
     }, (error) => {
-      console.log(error);
     });
     return hashParams;
   }
@@ -124,9 +114,7 @@ class App extends Component {
       axios
       .post(`${url}`, { log: 'presenting logged in div' })
       .then((res) => {
-        console.log(res);
       }, (error) => {
-        console.log(error);
       });
       return(
         <div className="App" style={{background:this.state.backgroundColor, color:this.state.color}}>

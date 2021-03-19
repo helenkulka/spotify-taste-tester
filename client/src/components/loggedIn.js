@@ -315,7 +315,6 @@ export default class LoggedIn extends Component {
             axios
             .post(`${url}`, {error: 'getting user data'})
             .catch(err => {
-              console.error(err);
             });
             this.setState({recievedError: true, errorMsg: e});
             return;
@@ -341,7 +340,6 @@ export default class LoggedIn extends Component {
             axios
             .post(`${url}`, {error: 'calculating track information'})
             .catch(err => {
-              console.error(err);
             });
             this.setState({recievedError: true, errorMsg: e});
             return;
