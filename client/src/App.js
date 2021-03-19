@@ -27,7 +27,7 @@ class App extends Component {
 
     var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/info" : "http://localhost:8888/info";
     axios
-    .post(`${url}`, { log: `loggedIn in constructor: ${this.state.loggedIn}` })
+    .post(`${url}`, { log: `loggedIn in constructor: ${this.state.loggedIn} with access token ${this.state.accessToken}` })
     .catch(err => {});
   }
 
