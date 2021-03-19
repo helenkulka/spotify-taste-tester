@@ -125,7 +125,7 @@ export default class LoggedIn extends Component {
           }
         /* if they have only a few songs in common and nothing else */ 
         else if (num_tracks_overlap < 5 && num_artists_overlap == 0 && num_top_tracks_overlap == 0) {
-            msg = overlap_tracks_msgs[2];
+            msg = overlap_tracks_msgs[3];
           } 
         /* if they have a few songs in common + something else */ 
           else if (num_tracks_overlap < 5 && (num_artists_overlap > 0 || num_top_tracks_overlap > 0)) {
