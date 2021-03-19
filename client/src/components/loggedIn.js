@@ -252,7 +252,7 @@ export default class LoggedIn extends Component {
                 <Container id="intro">
                     <p id="overlap-tracks-msg">
                         <strong id="first-name"> hey { this.state.firstName },  </strong>
-                        <p> { this.state.overlapIntroMsg } </p>
+                        <p style={{marginTop:'1rem'}}> { this.state.overlapIntroMsg } </p>
                     </p>
                 </Container>
             </div>
