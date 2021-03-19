@@ -309,6 +309,18 @@ export default class LoggedIn extends Component {
             this.setState(
                 {firstName: await this.state.userData.display_name.split(" ")[0].toLowerCase(), 
                 userId: await this.state.userData.id});
+
+        } catch(e) {
+            var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/err" : "http://localhost:8888/err";
+            axios
+            .post(`${url}`, {error: 'getting user data'})
+            .catch(err => {
+              console.error(err);
+            });
+            this.setState({recievedError: true, errorMsg: e});
+            return;
+        }
+        try {
             var overlap_top_track_ids = await this.getUserTopTracks();
             var overlap_playlist_track_ids = await this.getUserPlaylistTracks();
             var overlap_all_track_ids = await this.getUserSavedTracks(overlap_playlist_track_ids);
@@ -327,7 +339,7 @@ export default class LoggedIn extends Component {
         } catch(e) {
             var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/err" : "http://localhost:8888/err";
             axios
-            .post(`${url}`, {error: e})
+            .post(`${url}`, {error: 'calculating track information'})
             .catch(err => {
               console.error(err);
             });
