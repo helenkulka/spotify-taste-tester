@@ -11,8 +11,8 @@ import history from './history';
 import axios from 'axios';
 
 class App extends Component {
-  constructor(props,context){
-    super(props,context);
+  constructor(){
+    super();
     const params = this.getHashParams();
     var access_token = params.access_token;
 
@@ -23,8 +23,12 @@ class App extends Component {
       color:"black",
       enteredSite: false,
       itemsLoaded: false
-
     }
+
+    var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/info" : "http://localhost:8888/info";
+    axios
+    .post(`${url}`, { log: `loggedIn in constructor: ${this.state.loggedIn}` })
+    .catch(err => {});
   }
 
   onChangeStyle(darkModeStatus,enterSiteStatus,slideNumber) {
@@ -104,13 +108,10 @@ class App extends Component {
     const dataLoaded = this.state.itemsLoaded
 
     if (this.state.loggedIn) {
-      history.push('/');
       var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/info" : "http://localhost:8888/info";
       axios
       .post(`${url}`, { log: 'presenting logged in div' })
-      .catch(err => {
-        console.error(err);
-      });
+      .catch(err => {});
       return(
         <div className="App" style={{background:this.state.backgroundColor, color:this.state.color}}>
           <LoggedIn onChangeParentStyle={this.onChangeStyle.bind(this)} {...this.state}></LoggedIn>

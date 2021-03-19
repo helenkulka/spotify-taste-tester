@@ -3,6 +3,7 @@ import { getUserData } from './getUserData';
 import './loggedin.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import $ from 'jquery';
+import history from '../history';
 import App from '../App';
 import './jquery.pagepiling.js';
 import './jquery.pagepiling.css';
@@ -42,7 +43,7 @@ export default class LoggedIn extends Component {
 
     constructor(props) {
         super(props);
-
+        history.push('/');
         this.state = {
             firstName : "",
             userData: {},

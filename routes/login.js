@@ -23,6 +23,7 @@ router.get('/', function(req, res) {
     var scope = 'user-read-private user-read-email user-top-read user-library-read playlist-read-private playlist-modify-private playlist-modify-public';
     res.header("Access-Control-Allow-Origin", "https://spotify-taste-tester.herokuapp.com/");
     res.header("Access-Control-Allow-Origin", "https://localhost:8888/");
+
     res.redirect('https://accounts.spotify.com/authorize?' +
       querystring.stringify({
         response_type: 'code',
