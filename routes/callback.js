@@ -79,7 +79,7 @@ router.get('/', function(req, res) {
               refresh_token: refresh_token
             }));
            } else {
-          console.log("ERROR: invalid_token", error);
+          console.log("ERROR: invalid_token", response.statusCode);
           res.redirect('/#' +
             querystring.stringify({
               error: 'invalid_token'
