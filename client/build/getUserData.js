@@ -105,7 +105,6 @@ async function fetchTop(type, access_token, offset, time_range) {
 }
 
 async function getTopType(type, access_token) {
-  try{
     var offsets = [];
     var total_songs = []
     for (var i = 0; i <= 60; i+=20) {
@@ -122,15 +121,6 @@ async function getTopType(type, access_token) {
     var merged = [].concat.apply([], total_songs);
     uniq = [...new Set(merged)];
     return uniq;
-} catch(e) {
-    var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
-    axios
-    .post(`${url}`, {error: e, errorMsg:'error in getTopType'})
-    .catch(err => {
-    });
-    this.setState({recievedError: true, errorMsg: e});
-    return;
-  }
 }
 
 
