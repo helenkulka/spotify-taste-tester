@@ -81,37 +81,72 @@ export default class LoggedIn extends Component {
 
 
     setOverlapTopTracks(top_track_overlap) {
-        var top_track_info = [];
-        var msg = "";
-        if (top_track_overlap.length > 0) {
-            msg =  top_track_overlap.length + " top songs. WOW! " + top_track_overlap.length +  " of your most listened to songs of all time overlap with Frank Ocean's favorites.";
-            for (i in top_track_overlap) {
-                top_track_info.push(blonded_track_id_map[top_track_overlap[i]]);
+        try{
+            var top_track_info = [];
+            var msg = "";
+            if (top_track_overlap.length > 0) {
+                msg =  top_track_overlap.length + " top songs. WOW! " + top_track_overlap.length +  " of your most listened to songs of all time overlap with Frank Ocean's favorites.";
+                for (i in top_track_overlap) {
+                    top_track_info.push(blonded_track_id_map[top_track_overlap[i]]);
+                }
+                if (top_track_info.length > 3) {
+                    msg = msg + " check out your top 3";
+                    top_track_info = top_track_info.slice(0,3);
+                }
             }
-            if (top_track_info.length > 3) {
-                msg = msg + " check out your top 3";
-                top_track_info = top_track_info.slice(0,3);
-            }
-        }
-        this.setState({overlapTopTracksMsg: msg, overlapTopTracks: top_track_info, topTrackUris: top_track_overlap});
+            this.setState({overlapTopTracksMsg: msg, overlapTopTracks: top_track_info, topTrackUris: top_track_overlap});
+        }catch(e) {
+        var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
+        if (e.response){
+            axios
+            .post(`${url}`, {error: e.response, errorMsg: 'error in setOverlapTopTracks'})
+            .catch(err => {
+            });
+          } else {
+            axios
+            .post(`${url}`, {error: e, errorMsg: 'error in setOverlapTopTracks'})
+            .catch(err => {
+            });
+          }
+        this.setState({recievedError: true, errorMsg: e});
+        return;
+      }
     }
 
     setOverlapTracks(all_track_overlap, top_track_overlap) {
-        var all_track_info = [];
-        var all_track_uris = [];
+        try{
+            var all_track_info = [];
+            var all_track_uris = [];
 
-        if (all_track_overlap.length > 0) {
-            for (i in all_track_overlap) {
-                if (!top_track_overlap.includes(all_track_overlap[i])) {
-                    all_track_uris.push(all_track_overlap[i]);
-                    all_track_info.push(blonded_track_id_map[all_track_overlap[i]]);
+            if (all_track_overlap.length > 0) {
+                for (i in all_track_overlap) {
+                    if (!top_track_overlap.includes(all_track_overlap[i])) {
+                        all_track_uris.push(all_track_overlap[i]);
+                        all_track_info.push(blonded_track_id_map[all_track_overlap[i]]);
+                    }
+                }
+                if (all_track_info.length > 3) {
+                    all_track_info = all_track_info.slice(0,3);
                 }
             }
-            if (all_track_info.length > 3) {
-                all_track_info = all_track_info.slice(0,3);
-            }
+            this.setState({overlapTracks: all_track_info, numTracksOverlap: all_track_overlap.length, overlapTrackUris: all_track_uris})
         }
-        this.setState({overlapTracks: all_track_info, numTracksOverlap: all_track_overlap.length, overlapTrackUris: all_track_uris})
+        catch(e) {
+            var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
+            if (e.response){
+                axios
+                .post(`${url}`, {error: e.response, errorMsg: 'error in setOverlapTracks'})
+                .catch(err => {
+                });
+              } else {
+                axios
+                .post(`${url}`, {error: e, errorMsg: 'error in setOverlapTracks'})
+                .catch(err => {
+                });
+              }
+            this.setState({recievedError: true, errorMsg: e});
+            return;
+        }
     }
 
     setOverlapIntroMsg(num_tracks_overlap, num_artists_overlap, num_top_tracks_overlap) {
@@ -148,6 +183,7 @@ export default class LoggedIn extends Component {
 
 
     async getUserSavedTracks(track_overlap) {
+        try{
         var bool_saved = await getLikedTracks(this.props.accessToken, blonded_track_ids);
         for (i in bool_saved) {
           if (bool_saved[i]) {
@@ -158,9 +194,26 @@ export default class LoggedIn extends Component {
         }
         this.setState({overlapTracksIds: track_overlap});
         return track_overlap;
+    }catch(e) {
+        var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
+        if (e.response){
+            axios
+            .post(`${url}`, {error: e.response, errorMsg: 'error in getUserSavedTracks'})
+            .catch(err => {
+            });
+          } else {
+            axios
+            .post(`${url}`, {error: e, errorMsg: 'error in getUserSavedTracks'})
+            .catch(err => {
+            });
+          }
+        this.setState({recievedError: true, errorMsg: e});
+        return;
+        }
     }
 
     async getUserPlaylistTracks() {
+        try{
         var playlists = await getSavedPlaylists(this.props.accessToken);
         playlists = playlists.items;
 
@@ -191,59 +244,126 @@ export default class LoggedIn extends Component {
 
         var track_overlap = blonded_track_ids.filter(value => Array.from(user_track_ids).includes(value));
         return track_overlap;
+    } catch(e) {
+        var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
+        if (e.response){
+            axios
+            .post(`${url}`, {error: e.response, errorMsg: 'error in getUserPlaylistTracks'})
+            .catch(err => {
+            });
+          } else {
+            axios
+            .post(`${url}`, {error: e, errorMsg: 'error in getUserPlaylistTracks'})
+            .catch(err => {
+            });
+          }
+        this.setState({recievedError: true, errorMsg: e});
+        return;
+        }
     }
 
     async getUserTopTracks() {
-        var top_songs = await getTopType('tracks', this.props.accessToken);
-        var top_songs_overlap = blonded_track_ids.filter(value => top_songs.includes(value));
-        return top_songs_overlap;
+        try{
+            var top_songs = await getTopType('tracks', this.props.accessToken);
+            var top_songs_overlap = blonded_track_ids.filter(value => top_songs.includes(value));
+            return top_songs_overlap;
+        }catch(e) {
+            var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
+            if (e.response){
+                axios
+                .post(`${url}`, {error: e.response, errorMsg: 'error in getUserTopTracks'})
+                .catch(err => {
+                });
+              } else {
+                axios
+                .post(`${url}`, {error: e, errorMsg: 'error in getUserTopTracks'})
+                .catch(err => {
+                });
+              }
+            this.setState({recievedError: true, errorMsg: e});
+            return;
+        }
     }
 
     getTrackByArtist(value) {
-        var recs = []
-        //console.log(value);
-        for (var key in blonded_track_id_map) {
-            if (blonded_track_id_map[key]["artist"] === value) {
-                recs.push(key)
+        try{
+            var recs = []
+            //console.log(value);
+            for (var key in blonded_track_id_map) {
+                if (blonded_track_id_map[key]["artist"] === value) {
+                    recs.push(key)
+                }
             }
+            return recs;
+        }catch(e) {
+            var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
+            if (e.response){
+                axios
+                .post(`${url}`, {error: e.response, errorMsg: 'error in getTrackByArtist'})
+                .catch(err => {
+                });
+              } else {
+                axios
+                .post(`${url}`, {error: e, errorMsg: 'error in getTrackByArtist'})
+                .catch(err => {
+                });
+              }
+            this.setState({recievedError: true, errorMsg: e});
+            return;
         }
-        return recs;
     }
 
     async getArtistRecommendations() {
-        var recs_by_artist = [];
-        var top_artists = await getTopType('artists', this.props.accessToken);
-        var num_overlap = 0;
-        var recommended_uris = [];
-        var unique_recommended = [];
-        //console.log(top_artists);
-        for (var artist_id in blonded_artist_id_map){
-            if (top_artists.includes(artist_id)) {
-                num_overlap += 1;
-                var artist_name = blonded_artist_id_map[artist_id]["name"];
-                var recommended_track = this.getTrackByArtist(artist_name);
-                recommended_track = recommended_track.filter(val => !this.state.overlapTrackUris.includes(val) && !this.state.topTrackUris.includes(val));
-                if (recommended_track.length > 0) {
-                    recs_by_artist.push(...recommended_track);
+        try{
+            var recs_by_artist = [];
+            var top_artists = await getTopType('artists', this.props.accessToken);
+            var num_overlap = 0;
+            var recommended_uris = [];
+            var unique_recommended = [];
+            //console.log(top_artists);
+            for (var artist_id in blonded_artist_id_map){
+                if (top_artists.includes(artist_id)) {
                     num_overlap += 1;
-                    unique_recommended.push(blonded_track_id_map[recommended_track[0]]);
-                    for (i in recommended_track) {
-                        recommended_uris.push(blonded_track_id_map[recommended_track[i]]);
-                    }
-                    if (recommended_track.length > 3) {
-                        recommended_track = recommended_track.splice(0,3);
-                    }
-                    for (i in recommended_track) {
-                        recs_by_artist.push(recommended_track[i]);
+                    var artist_name = blonded_artist_id_map[artist_id]["name"];
+                    var recommended_track = this.getTrackByArtist(artist_name);
+                    recommended_track = recommended_track.filter(val => !this.state.overlapTrackUris.includes(val) && !this.state.topTrackUris.includes(val));
+                    if (recommended_track.length > 0) {
+                        recs_by_artist.push(...recommended_track);
+                        num_overlap += 1;
+                        unique_recommended.push(blonded_track_id_map[recommended_track[0]]);
+                        for (i in recommended_track) {
+                            recommended_uris.push(blonded_track_id_map[recommended_track[i]]);
+                        }
+                        if (recommended_track.length > 3) {
+                            recommended_track = recommended_track.splice(0,3);
+                        }
+                        for (i in recommended_track) {
+                            recs_by_artist.push(recommended_track[i]);
+                        }
                     }
                 }
             }
-        }
-        if (unique_recommended.length > 3) {
-            unique_recommended = unique_recommended.slice(0,3);
-        }
-        this.setState({numArtistsOverlap: num_overlap, recommendedTracksByArtistUris: recommended_uris, uniqueRecommendedTracksByArtistUris: unique_recommended});
-        return recs_by_artist;
+            if (unique_recommended.length > 3) {
+                unique_recommended = unique_recommended.slice(0,3);
+            }
+            this.setState({numArtistsOverlap: num_overlap, recommendedTracksByArtistUris: recommended_uris, uniqueRecommendedTracksByArtistUris: unique_recommended});
+            return recs_by_artist;
+        } catch(e) {
+            var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
+            if (e.response){
+                axios
+                .post(`${url}`, {error: e.response, errorMsg: 'error in getArtistRecommendations'})
+                .catch(err => {
+                });
+              } else {
+                axios
+                .post(`${url}`, {error: e, errorMsg: 'error in getArtistRecommendations'})
+                .catch(err => {
+                });
+              }
+            this.setState({recievedError: true, errorMsg: e});
+            return;
+            }
     }
 
     intro() {
@@ -312,10 +432,17 @@ export default class LoggedIn extends Component {
 
         } catch(e) {
             var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
-            axios
-            .post(`${url}`, {error: 'getting user data'})
-            .catch(err => {
-            });
+            if (e.response){
+                axios
+                .post(`${url}`, {error: e.response, errorMsg: 'error getting user data'})
+                .catch(err => {
+                });
+              } else {
+                axios
+                .post(`${url}`, {error: e, errorMsg: 'error getting user data'})
+                .catch(err => {
+                });
+              }
             this.setState({recievedError: true, errorMsg: e});
             return;
         }
@@ -337,10 +464,17 @@ export default class LoggedIn extends Component {
             this.setOverlapIntroMsg(Array.from(overlap_all_track_ids).length, this.state.numArtistsOverlap, Array.from(overlap_top_track_ids).length);
         } catch(e) {
             var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
-            axios
-            .post(`${url}`, {error: 'calculating track information'})
-            .catch(err => {
-            });
+            if (e.response){
+                axios
+                .post(`${url}`, {error: e.response, errorMsg: 'error calculating track info'})
+                .catch(err => {
+                });
+              } else {
+                axios
+                .post(`${url}`, {error: e, errorMsg: 'error calculating track info'})
+                .catch(err => {
+                });
+              }
             this.setState({recievedError: true, errorMsg: e});
             return;
         }

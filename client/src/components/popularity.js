@@ -4,6 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import { blondedPopularity } from './getUserData';
 import blonded_track_id_map from './track_id_name_map.json';
 import './popularity.css'
+import axios from 'axios';
 
 var i,j=0;
 
@@ -16,37 +17,56 @@ export default class Popularity extends Component {
             popularity: 0,
             popularTracks: [],
             popularityMsg: "",
-            popularity_percentage: 0
+            popularity_percentage: 0,
+            recievedError: false,
+            errorMsg: ""
         };
     }
 
 async calculateUserPopularity(blonded_track_id_map, track_overlap) {
-    var popularity_set = await blondedPopularity(blonded_track_id_map);
-    var minimum_popularity_tracks = [];
-    var user_avg = 0;
-    var user_min = 999;
-    for (i in track_overlap) {
-        var track_popularity = blonded_track_id_map[track_overlap[i]].popularity;
-        user_avg += track_popularity;
-        if (track_popularity < user_min) {
-            user_min = track_popularity;
+    try{
+        var popularity_set = await blondedPopularity(blonded_track_id_map);
+        var minimum_popularity_tracks = [];
+        var user_avg = 0;
+        var user_min = 999;
+        for (i in track_overlap) {
+            var track_popularity = blonded_track_id_map[track_overlap[i]].popularity;
+            user_avg += track_popularity;
+            if (track_popularity < user_min) {
+                user_min = track_popularity;
+            }
         }
-    }
-    user_avg = Math.floor(user_avg/Array.from(track_overlap).length);
-    popularity_set = popularity_set.filter(value => value !== user_avg);
-    popularity_set.push(user_avg);
-    popularity_set.sort();
-    var length_prior = popularity_set.length;
-    var user_stat = popularity_set.slice(popularity_set.indexOf(user_avg) + 1, popularity_set.length + 1).length/length_prior;
-    for (i in track_overlap) {
-       if (blonded_track_id_map[track_overlap[i]].popularity === user_min) {
-           minimum_popularity_tracks.push(blonded_track_id_map[track_overlap[i]]);
-       }
-    }
+        user_avg = Math.floor(user_avg/Array.from(track_overlap).length);
+        popularity_set = popularity_set.filter(value => value !== user_avg);
+        popularity_set.push(user_avg);
+        popularity_set.sort();
+        var length_prior = popularity_set.length;
+        var user_stat = popularity_set.slice(popularity_set.indexOf(user_avg) + 1, popularity_set.length + 1).length/length_prior;
+        for (i in track_overlap) {
+        if (blonded_track_id_map[track_overlap[i]].popularity === user_min) {
+            minimum_popularity_tracks.push(blonded_track_id_map[track_overlap[i]]);
+        }
+        }
 
-    var percentage = (user_stat * 100).toFixed(0);
-    this.setState({popularity: user_stat, popularity_percentage: percentage,
-        popularTracks:minimum_popularity_tracks.slice(0, 3)});
+        var percentage = (user_stat * 100).toFixed(0);
+        this.setState({popularity: user_stat, popularity_percentage: percentage,
+            popularTracks:minimum_popularity_tracks.slice(0, 3)});
+    }catch(e) {
+        var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
+        if (e.response){
+            axios
+            .post(`${url}`, {error: e.response, errorMsg: 'error in calculateUserPopularity'})
+            .catch(err => {
+            });
+          } else {
+            axios
+            .post(`${url}`, {error: e, errorMsg: 'error in calculateUserPopularity'})
+            .catch(err => {
+            });
+          }
+        this.setState({recievedError: true, errorMsg: e});
+        return;
+    }
 
 }
 
