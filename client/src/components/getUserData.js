@@ -16,8 +16,14 @@ export function getUserData(access_token) {
       success: function(data) {
       },
       async: false,
-      error: function (err) {
-          console.log(err);
+      error: function (xhr, status, error) {
+        var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
+        var errorMessage = 'error in getUserData- ' + xhr.status + ': ' + xhr.statusText
+        axios
+        .post(`${url}`, {error: errorMessage, errorMsg: 'error in getUserData'})
+        .catch(err => {
+        });
+        console.log(error);
       }
     }).responseJSON;
     return res;
@@ -81,11 +87,21 @@ export async function getLikedTracks(access_token, blonded_ids) {
       if (index > -1) {
         ids.splice(index, 1);
       }
-      var res = await spotifyApi.containsMySavedTracks(ids);
-      var l = res.length;
-      for (j =0; j < l; j++) {
-        contains.push(res[j]);
-      }
+      spotifyApi.containsMySavedTracks(ids)
+      .then(function (data){
+        var l = data.length;
+        for (j =0; j < l; j++) {
+          contains.push(data[j]);
+        }
+      })
+      .catch(function(error){
+        var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
+        axios
+        .post(`${url}`, {error: error, errorMsg: 'error in getLikedTracks'})
+        .catch(err => {
+        });
+        console.log(error)
+      });
     }
     return contains;
   }catch(e) {
@@ -117,8 +133,14 @@ export async function getSavedPlaylists(access_token) {
       success: function(data) {
       },
       async: false,
-      error: function (err) {
-          console.log(err);
+      error: function (xhr, status, error) {
+        var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
+        var errorMessage = 'error in getSavedPlaylists- ' + xhr.status + ': ' + xhr.statusText
+        axios
+        .post(`${url}`, {error: errorMessage, errorMsg: 'error in getSavedPlaylists'})
+        .catch(err => {
+        });
+        console.log(error);
       }
     }).responseJSON;
     return res;
@@ -150,8 +172,14 @@ export async function getTracksFromPlaylist(access_token, tracks_url, offset) {
       'Authorization': 'Bearer ' + access_token
     },
     async: false,
-    error: function (err) {
-        console.log(err);
+    error: function (xhr, status, error) {
+      var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
+      var errorMessage = 'error in getTracksFromPlaylist- ' + xhr.status + ': ' + xhr.statusText
+      axios
+      .post(`${url}`, {error: errorMessage, errorMsg: 'error in getTracksFromPlaylist'})
+      .catch(err => {
+      });
+      console.log(error);
     }
   }).responseJSON;
   return res;
@@ -182,8 +210,14 @@ export async function fetchTop(type, access_token, offset, time_range) {
         'Authorization': 'Bearer ' + access_token
       },
       async: false,
-      error: function (err) {
-          console.log(err);
+      error: function (xhr, status, error) {
+        var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
+        var errorMessage = 'error in fetchTop - ' + xhr.status + ': ' + xhr.statusText
+        axios
+        .post(`${url}`, {error: errorMessage, errorMsg: 'error in fetchTop'})
+        .catch(err => {
+        });
+        console.log(error);
       }
     }).responseText;
     res = JSON.parse(res);
