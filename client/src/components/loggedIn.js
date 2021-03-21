@@ -215,7 +215,12 @@ export default class LoggedIn extends Component {
     async getUserPlaylistTracks() {
         try{
         var playlists = await getSavedPlaylists(this.props.accessToken);
-        playlists = playlists.items;
+        if (Object.keys(playlists).length === 0) {
+            playlists = []
+            console.log("No playlists retrieved")
+        }else{
+            playlists = playlists.items;
+        }
 
         for (i in playlists) {
             //ignore playlists not owned by user
@@ -226,7 +231,12 @@ export default class LoggedIn extends Component {
           var offset = 0;
           while (offset < 1000) {
             var tracks = await getTracksFromPlaylist(this.props.accessToken, tracks_url, offset);
-            tracks = tracks.items;
+            if (Object.keys(tracks).length === 0) {
+                tracks = []
+                console.log("No tracks retrieved")
+            } else{
+                tracks = tracks.items;
+            }
             for (j in tracks) {
                 user_track_ids.add(tracks[j].track.id);
                 for (z in tracks[j].track.artists) {
@@ -458,10 +468,9 @@ export default class LoggedIn extends Component {
             this.setOverlapTopTracks(overlap_top_track_ids);
             this.setState({recommendedTracksByArtist: await this.getArtistRecommendations()});
             // this.calculateUserPopularity(blonded_track_id_map, overlap_all_track_ids);
-            this.setState({itemsLoaded:true},this.props.onChangeParentStyle(true,true,1));
-
             //setting intro message for first page
             this.setOverlapIntroMsg(Array.from(overlap_all_track_ids).length, this.state.numArtistsOverlap, Array.from(overlap_top_track_ids).length);
+            this.setState({itemsLoaded:true},this.props.onChangeParentStyle(true,true,1));
         } catch(e) {
             var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
             if (e.response){
