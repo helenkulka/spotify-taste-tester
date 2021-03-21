@@ -7,13 +7,20 @@ var i, j = 0;
 
 export function getUserData(access_token) {
   try{
-    var res = $.ajax({
+    var res = {}
+    $.ajax({
       url: 'https://api.spotify.com/v1/me',
       type: 'GET',
       headers: {
         'Authorization': 'Bearer ' + access_token
       },
+      dataType: 'JSON',
       success: function(data) {
+        // var res = data.responseJSON;
+        console.log(data)
+        res = data
+        // res = data.responseJSON
+        // console.log('res',res)
       },
       async: false,
       error: function (xhr, status, error) {
@@ -23,9 +30,11 @@ export function getUserData(access_token) {
         .post(`${url}`, {error: errorMessage, errorMsg: 'error in getUserData'})
         .catch(err => {
         });
+        // console.log(xhr.status);
         console.log(error);
       }
-    }).responseJSON;
+    })
+    console.log(res)
     return res;
   }catch(e) {
     var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
@@ -124,13 +133,16 @@ export async function getLikedTracks(access_token, blonded_ids) {
 
 export async function getSavedPlaylists(access_token) {
   try{
-    var res = $.ajax({
+    var res = {}
+    $.ajax({
       url: 'https://api.spotify.com/v1/me/playlists/',
       type: 'GET',
       headers: {
         'Authorization': 'Bearer ' + access_token
       },
+      dataType: 'JSON',
       success: function(data) {
+        res = data
       },
       async: false,
       error: function (xhr, status, error) {
@@ -142,7 +154,7 @@ export async function getSavedPlaylists(access_token) {
         });
         console.log(error);
       }
-    }).responseJSON;
+    })
     return res;
   }catch(e) {
     var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
@@ -157,21 +169,24 @@ export async function getSavedPlaylists(access_token) {
       .catch(err => {
       });
     }
-    // this.setState({recievedError: true, errorMsg: e});
-    return;
   }
-
+  return;
 }
 
 export async function getTracksFromPlaylist(access_token, tracks_url, offset) {
   try{
-    var res = $.ajax({
+    var res = {}
+    $.ajax({
     url: tracks_url +'?offset='+offset,
     type: 'GET',
     headers: {
       'Authorization': 'Bearer ' + access_token
     },
+    dataType: 'JSON',
     async: false,
+    success: function(data){
+      res = data
+    },
     error: function (xhr, status, error) {
       var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
       var errorMessage = 'error in getTracksFromPlaylist- ' + xhr.status + ': ' + xhr.statusText
@@ -181,7 +196,7 @@ export async function getTracksFromPlaylist(access_token, tracks_url, offset) {
       });
       console.log(error);
     }
-  }).responseJSON;
+  })
   return res;
 }catch(e) {
     var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
@@ -204,10 +219,19 @@ export async function getTracksFromPlaylist(access_token, tracks_url, offset) {
 export async function fetchTop(type, access_token, offset, time_range) {
   try{
     var top_songs =  [];
-    var res = $.ajax({
+    $.ajax({
       url: 'https://api.spotify.com/v1/me/top/' + type + '?limit=50&offset=' + offset + '&time_range=' + time_range,
       headers: {
         'Authorization': 'Bearer ' + access_token
+      },
+      dataType: 'JSON',
+      success: function(data){
+        var res = data
+        console.log(res)
+        for (var y=0; y<res.items.length; y++) {
+          top_songs.push(res.items[y].id)
+          }
+        return top_songs;
       },
       async: false,
       error: function (xhr, status, error) {
@@ -219,11 +243,7 @@ export async function fetchTop(type, access_token, offset, time_range) {
         });
         console.log(error);
       }
-    }).responseText;
-    res = JSON.parse(res);
-    for (var y=0; y<res.items.length; y++) {
-      top_songs.push(res.items[y].id)
-    }
+    })
     return top_songs;
   }catch(e) {
     var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
@@ -247,17 +267,41 @@ export async function getTopType(type, access_token) {
   try{
     var offsets = [];
     var total_songs = []
+    var top_songs = []
+    var top_long = []
+    var top_med = []
+    var top_short = []
+
     for (var i = 0; i <= 100; i+=50) {
       offsets.push(i);
     }
+
     for (var j=0; j<offsets.length; j++) {
-      var top_long = await fetchTop(type, access_token, offsets[j], 'long_term');
-      var top_med = await fetchTop(type, access_token, offsets[j], 'medium_term');
-      var top_short = await fetchTop(type, access_token, offsets[j], 'short_term');
-      var top_songs =  top_long.concat(top_med);
-      top_songs = top_songs.concat(top_short);
-      total_songs.push(top_songs);
+      top_long = await fetchTop(type, access_token, offsets[j], 'long_term');
+      top_songs =  top_songs.concat(top_long);
+      if (top_long.length < 50){
+        break
+      }
     }
+
+    for (var j=0; j<offsets.length; j++) {
+      top_med = await fetchTop(type, access_token, offsets[j], 'medium_term');
+      top_songs =  top_songs.concat(top_med);
+      if (top_med.length < 50){
+        break
+      }
+    }
+
+    for (var j=0; j<offsets.length; j++) {
+      top_short = await fetchTop(type, access_token, offsets[j], 'short_term');
+      top_songs =  top_songs.concat(top_short);
+      if (top_short.length < 50){
+        break
+      }
+    }
+
+    total_songs.push(top_songs);
+
     var merged = [].concat.apply([], total_songs);
     var uniq = [...new Set(merged)];
     return uniq;
