@@ -18,18 +18,6 @@ export function getUserData(access_token) {
       async: false,
       error: function (err) {
           console.log(err);
-          var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
-          if (err.response){
-            axios
-            .post(`${url}`, {error: err.response, errorMsg: 'error in getUserData'})
-            .catch(err => {
-            });
-          } else {
-            axios
-            .post(`${url}`, {error: err, errorMsg: 'error in getUserData'})
-            .catch(err => {
-            });
-          }
       }
     }).responseJSON;
     return res;
@@ -131,18 +119,6 @@ export async function getSavedPlaylists(access_token) {
       async: false,
       error: function (err) {
           console.log(err);
-          var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
-          if (err.response){
-            axios
-            .post(`${url}`, {error: err.response, errorMsg: 'error in getSavedPlaylists'})
-            .catch(err => {
-            });
-          } else {
-            axios
-            .post(`${url}`, {error: err, errorMsg: 'error in getSavedPlaylists'})
-            .catch(err => {
-            });
-          }
       }
     }).responseJSON;
     return res;
@@ -176,18 +152,6 @@ export async function getTracksFromPlaylist(access_token, tracks_url, offset) {
     async: false,
     error: function (err) {
         console.log(err);
-        var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
-        if (err.response){
-          axios
-          .post(`${url}`, {error: err.response, errorMsg: 'error in getTracksFromPlaylist'})
-          .catch(err => {
-          });
-        } else {
-          axios
-          .post(`${url}`, {error: err, errorMsg: 'error in getTracksFromPlaylist'})
-          .catch(err => {
-          });
-        }
     }
   }).responseJSON;
   return res;
@@ -220,18 +184,6 @@ export async function fetchTop(type, access_token, offset, time_range) {
       async: false,
       error: function (err) {
           console.log(err);
-          var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
-          if (err.response){
-            axios
-            .post(`${url}`, {error: err.response, errorMsg: 'error in fetchTop'})
-            .catch(err => {
-            });
-          } else {
-            axios
-            .post(`${url}`, {error: err, errorMsg: 'error in fetchTop'})
-            .catch(err => {
-            });
-          }
       }
     }).responseText;
     res = JSON.parse(res);
