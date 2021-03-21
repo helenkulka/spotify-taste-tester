@@ -522,7 +522,7 @@ export default class LoggedIn extends Component {
         const dataLoaded = this.state.itemsLoaded;
         if (this.state.recievedError) {
             console.log(this.state.errorMsg);
-            alert('Error: We\'re sorry, Spotify is having an issue sending us information about your music selection.')
+            alert('Error: Spotify is having an issue sending us information about your music selection.')
             return(<App></App>);
         }
         else if (!dataLoaded) {
