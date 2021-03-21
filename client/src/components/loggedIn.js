@@ -339,7 +339,6 @@ export default class LoggedIn extends Component {
                     recommended_track = recommended_track.filter(val => !this.state.overlapTrackUris.includes(val) && !this.state.topTrackUris.includes(val));
                     if (recommended_track.length > 0) {
                         recs_by_artist.push(...recommended_track);
-                        num_overlap += 1;
                         unique_recommended.push(blonded_track_id_map[recommended_track[0]]);
                         for (i in recommended_track) {
                             recommended_uris.push(blonded_track_id_map[recommended_track[i]]);
