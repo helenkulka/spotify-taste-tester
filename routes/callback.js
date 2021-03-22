@@ -56,7 +56,8 @@ router.get('/', function(req, res) {
       request.post(authOptions, function(error, response, body) {
         if (!error && response.statusCode === 200) {
   
-          var access_token = 'BQCAW3PZplTnxm0SkoZRrNQGaeHrFVEClukUcvBUJBssq2Lx6zyJleyIlbdUeETEj2oYTUap-DoB9KyWINYh4mOrn8lmX9cPT-R8WXSG2VPMi5fBNIHhv3nkU_408aXO79R1UAf0nl7CQosM4VsgHSGYPZRlnqMjT1ibZP2tVa35GZtP5PWEwz_V-5y6UULzPJpynnWWciFZg0eXYaYyWE7QjAsUQe1vl3yYjuX7k2y-eJIi39y9bhTv&refresh_token=AQClOmaIRA1x-617Mn_bugDVpf5Dj709Mw1RwX1MshNofFQpu42GeBsa9957Ta_XfxbizXdY3UYt6hOUZc_jhYfKueDk7o4FgNUpRZO1QLMMxEWB2C2Z89MiCKCI5w4QSvA'
+          var access_token = body.access_token,
+          // var access_token = 'BQCAW3PZplTnxm0SkoZRrNQGaeHrFVEClukUcvBUJBssq2Lx6zyJleyIlbdUeETEj2oYTUap-DoB9KyWINYh4mOrn8lmX9cPT-R8WXSG2VPMi5fBNIHhv3nkU_408aXO79R1UAf0nl7CQosM4VsgHSGYPZRlnqMjT1ibZP2tVa35GZtP5PWEwz_V-5y6UULzPJpynnWWciFZg0eXYaYyWE7QjAsUQe1vl3yYjuX7k2y-eJIi39y9bhTv&refresh_token=AQClOmaIRA1x-617Mn_bugDVpf5Dj709Mw1RwX1MshNofFQpu42GeBsa9957Ta_XfxbizXdY3UYt6hOUZc_jhYfKueDk7o4FgNUpRZO1QLMMxEWB2C2Z89MiCKCI5w4QSvA'
           // var access_token = ' BQBXX7MBcYTAoJulVNcNjtBfiCpD8zrYkyhHOzD4lyYowvXnIoqnfery-PiabqFyBaKykXz_fKQJXQdGEyTSY_PqtwZ-8MgCcQfClAtlK7q5TLxtZelrONUJwYY_mDLYouNx56ZBPRE9can9nXtyEBglFzFvPwapxdO-JefNL0IK3X0F2VkgstXC4ywjIENyO7_tN-o-jaUqMb3T1fg0xqVHi7Oj6SE-sKB9uXX7IFmGYkqCxm-JErLp1co',
               refresh_token = body.refresh_token;
   
