@@ -20,6 +20,9 @@ import ThankYouPage from './thanks';
 import Artists from './artists';
 import Home from './home';
 import axios from 'axios';
+import {
+    isMobile
+  } from "react-device-detect";
 const blonded_track_ids = Object.keys(blonded_track_id_map);
 
 var user_track_ids = new Set();
@@ -459,13 +462,17 @@ export default class LoggedIn extends Component {
 
 
 
-
     async componentDidMount() {
         try {
             var user_data = await getUserData(this.props.accessToken);
             this.setState({userData: user_data});
+            var firstName = await this.state.userData.display_name.split(" ")[0].toLowerCase()
+            if(isMobile && firstName.length > 9){
+                firstName = "there"
+            }
+
             this.setState(
-                {firstName: await this.state.userData.display_name.split(" ")[0].toLowerCase(), 
+                {firstName: firstName, 
                 userId: await this.state.userData.id});
 
         } catch(e) {
