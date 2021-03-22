@@ -215,41 +215,49 @@ export default class LoggedIn extends Component {
     async getUserPlaylistTracks() {
         try{
         var playlists = await getSavedPlaylists(this.props.accessToken);
-        if (Object.keys(playlists).length === 0) {
+        if (Object.keys(playlists).length === 0 || !playlists.items) {
             playlists = []
             console.log("No playlists retrieved")
         }else{
             playlists = playlists.items;
         }
-
-        for (i in playlists) {
-            //ignore playlists not owned by user
-          if (this.state.userData.display_name !== playlists[i].owner.display_name) {
-              continue;
-          }
-          var tracks_url = playlists[i].tracks.href;
-          var offset = 0;
-          while (offset < 1000) {
-            var tracks = await getTracksFromPlaylist(this.props.accessToken, tracks_url, offset);
-            if (Object.keys(tracks).length === 0) {
-                tracks = []
-                console.log("No tracks retrieved")
-            } else{
-                tracks = tracks.items;
-            }
-            for (j in tracks) {
-                user_track_ids.add(tracks[j].track.id);
-                for (z in tracks[j].track.artists) {
-                    user_artist_ids.add(tracks[j].track.artists[z].id);
+        if(playlists){
+            for (i in playlists) {
+                //ignore playlists not owned by user
+              if (this.state.userData.display_name !== playlists[i].owner.display_name) {
+                  continue;
+              }
+              var tracks_url = playlists[i].tracks.href;
+              var offset = 0;
+              while (offset < 1000) {
+                var tracks = await getTracksFromPlaylist(this.props.accessToken, tracks_url, offset);
+                if (Object.keys(tracks).length === 0 || !tracks.items) {
+                    tracks = []
+                    console.log("No tracks retrieved")
+                } else{
+                    tracks = tracks.items;
                 }
-            }
-            if (tracks) {
-                if(tracks.length < 100){
-                    break
+                if(tracks){
+                    for (j in tracks) {
+                        if (tracks[j].track){
+                            if (tracks[j].track.id){
+                                user_track_ids.add(tracks[j].track.id);
+                                for (z in tracks[j].track.artists) {
+                                    user_artist_ids.add(tracks[j].track.artists[z].id);
+                                }
+                            }
+                        }
+                    }
+    
                 }
+                if (tracks) {
+                    if(tracks.length < 100){
+                        break
+                    }
+                }
+                offset = offset + 100;
+              }
             }
-            offset = offset + 100;
-          }
         }
 
         var track_overlap = blonded_track_ids.filter(value => Array.from(user_track_ids).includes(value));
