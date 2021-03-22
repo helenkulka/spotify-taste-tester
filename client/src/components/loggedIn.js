@@ -117,18 +117,39 @@ export default class LoggedIn extends Component {
         try{
             var all_track_info = [];
             var all_track_uris = [];
+            var overlap_top_all_info = []
+            var overlap_top_all_uris = []
 
-            if (all_track_overlap.length > 0) {
+
                 for (i in all_track_overlap) {
                     if (!top_track_overlap.includes(all_track_overlap[i])) {
                         all_track_uris.push(all_track_overlap[i]);
                         all_track_info.push(blonded_track_id_map[all_track_overlap[i]]);
                     }
+                    else{
+                        overlap_top_all_uris.push(all_track_overlap[i]);
+                        overlap_top_all_info.push(blonded_track_id_map[all_track_overlap[i]]);
+                    }
                 }
+
+                console.log('overlap_top_length',overlap_top_all_info.length)
+
+                if (all_track_info.length < 3){
+                    for(i in overlap_top_all_info){
+                        console.log(i)
+                        all_track_info.push(overlap_top_all_info[i]);
+                        all_track_uris.push(overlap_top_all_uris[i]);
+                        if (all_track_info.length == 3){
+                            break;
+                        }
+                    }
+                }
+
+                
                 if (all_track_info.length > 3) {
                     all_track_info = all_track_info.slice(0,3);
                 }
-            }
+                console.log('overlap',all_track_overlap)
             this.setState({overlapTracks: all_track_info, numTracksOverlap: all_track_overlap.length, overlapTrackUris: all_track_uris})
         }
         catch(e) {
