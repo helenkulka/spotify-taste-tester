@@ -135,7 +135,7 @@ export async function getSavedPlaylists(access_token) {
   try{
     var res = {}
     $.ajax({
-      url: 'https://api.spotify.com/v1/me/playlists/',
+      url: 'https://api.spotify.com/v1/me/playlists/'+'?limit=50',
       type: 'GET',
       headers: {
         'Authorization': 'Bearer ' + access_token
