@@ -522,24 +522,42 @@ export default class LoggedIn extends Component {
             this.setState({recievedError: true, errorMsg: e});
             return;
         }
+
         var toolTips = []
-        if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks.length == 0 && this.state.numArtistsOverlap == 0) {
-            toolTips = ['sec1','sec6'];
-        } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks.length == 0 && this.state.numArtistsOverlap > 0) {
-            toolTips = ['sec1','sec5','sec6'];
-        } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks > 0 && this.state.numArtistsOverlap == 0) {
-            toolTips = ['sec1', 'sec3', 'sec4', 'sec6'];
-        } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks == 0 && this.state.numArtistsOverlap == 0) {
-            toolTips = ['sec1', 'sec2', 'sec4', 'sec6'];
-        } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks == 0 && this.state.numArtistsOverlap > 0) {
-            toolTips = ['sec1', 'sec2', 'sec4', 'sec5' ,'sec6'];
-        } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks > 0 && this.state.numArtistsOverlap > 0) {
-            toolTips = ['sec1', 'sec3', 'sec4', 'sec5', 'sec6'];
-        } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks > 0 && this.state.numArtistsOverlap == 0) {
-            toolTips = ['sec1', 'sec2', 'sec3', 'sec4', 'sec6'];
-        } else {
-            toolTips = ['sec1', 'sec2', 'sec3', 'sec4', 'sec5', 'sec6'];
+
+        toolTips.push('sec1')
+        
+        if(this.state.overlapTracks.length > 0){
+            toolTips.push('sec2')
         }
+        if(this.state.overlapTopTracks.length > 0){
+            toolTips.push('sec3')
+        }
+        if(this.state.overlapTracks > 0 || this.state.overlapTopTracks.length > 0){
+            toolTips.push('sec4')
+        }
+        if(this.state.numArtistsOverlap > 0){
+            toolTips.push('sec5')
+        }
+        toolTips.push('sec6')
+
+        // if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks.length == 0 && this.state.numArtistsOverlap == 0) {
+        //     toolTips = ['sec1','sec6'];
+        // } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks.length == 0 && this.state.numArtistsOverlap > 0) {
+        //     toolTips = ['sec1','sec5','sec6'];
+        // } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks > 0 && this.state.numArtistsOverlap == 0) {
+        //     toolTips = ['sec1', 'sec3', 'sec4', 'sec6'];
+        // } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks == 0 && this.state.numArtistsOverlap == 0) {
+        //     toolTips = ['sec1', 'sec2', 'sec4', 'sec6'];
+        // } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks == 0 && this.state.numArtistsOverlap > 0) {
+        //     toolTips = ['sec1', 'sec2', 'sec4', 'sec5' ,'sec6'];
+        // } else if (this.state.overlapTracks.length == 0 && this.state.overlapTopTracks > 0 && this.state.numArtistsOverlap > 0) {
+        //     toolTips = ['sec1', 'sec3', 'sec4', 'sec5', 'sec6'];
+        // } else if (this.state.overlapTracks.length > 0 && this.state.overlapTopTracks > 0 && this.state.numArtistsOverlap == 0) {
+        //     toolTips = ['sec1', 'sec2', 'sec3', 'sec4', 'sec6'];
+        // } else {
+        //     toolTips = ['sec1', 'sec2', 'sec3', 'sec4', 'sec5', 'sec6'];
+        // }
 
         this.setState({sections: toolTips});
 
@@ -571,97 +589,27 @@ export default class LoggedIn extends Component {
         }
         else if (!dataLoaded) {
             return  (<Loading></Loading>)
-        } else if (this.state.sections.length == 2) {
-            return(
-                <div id="pagepiling">
-                    { this.intro() }
-                    { this.thankYou() } 
-                </div>
-            );
-        } else if (this.state.sections.length == 3) {
-            return(
-                <div id="pagepiling">
-                    { this.intro() }
-                    { this.artists() }
-                    { this.thankYou() } 
-                </div>
-            );
-        }
-        else if(this.state.sections.length == 4 && this.state.sections.includes('sec2')) {
-           // 1246
-           return (                
-                <div id="pagepiling">
-                    {  this.intro() }
-                    { this.tracks() }
-                    {  this.popularity() }
-                    { this.thankYou() }
-                </div>
-            );
-        } else if (this.state.sections.length == 5 && this.state.sections.includes('sec2') && this.state.sections.includes('sec5')) {
-            //12456
-            return (                
-                <div id="pagepiling">
-                    {  this.intro() }
-                    { this.tracks() }
-                    {  this.popularity() }
-                    { this.artists() }
-                    { this.thankYou() }
-                </div>
-            );
-        } else if (this.state.sections.length == 5 && this.state.sections.includes('sec2') && !this.state.sections.includes('sec5')) {
-            //12456
-            return (                
-                <div id="pagepiling">
-                    {  this.intro() }
-                    { this.tracks() }
-                    { this.topTracks() }
-                    {  this.popularity() }
-                    { this.thankYou() }
-                </div>
-            );
-        }
-        else if(this.state.sections.length == 4 && !this.state.sections.includes('sec5')) {
-            //12456
-            return (                
-                <div id="pagepiling">
-                    {  this.intro() }
-                    { this.tracks() }
-                    {  this.popularity() }
-                    { this.artists() }
-                    { this.thankYou() }
-                </div>
-            );
-        }
-        else if (this.state.sections.length == 4) {
-                //1346
-                return (                
-                    <div id="pagepiling">
-                        {  this.intro() }
-                        { this.topTracks() }
-                        {  this.popularity() }
-                        { this.thankYou() }
-                    </div>
-                );
-        } else if (this.state.sections.length == 5) {
-            //13456
-            return (                
-                <div id="pagepiling">
-                    {  this.intro() }
-                    { this.topTracks() }
-                    {  this.popularity() }
-                    {  this.artists() }
-                    { this.thankYou() }
-                </div>
-            );
         } else {
-            return (                
+            return(
                 <div id="pagepiling">
-                    {  this.intro() }
-                    { this.tracks() }
-                    { this.topTracks() }
-                    {  this.popularity() }
-                    {  this.artists() }
-                    { this.thankYou() }
+                    {this.state.sections.includes('sec1') &&
+                        this.intro()
+                    }
+                    {this.state.sections.includes('sec2') &&
+                        this.tracks()
+                    }
+                    {this.state.sections.includes('sec3') &&
+                        this.topTracks()
+                    }
+                    {this.state.sections.includes('sec4') &&
+                        this.popularity()
+                    }
+                    {this.state.sections.includes('sec5') &&
+                         this.artists()
+                    }
+                    {this.state.sections.includes('sec6') &&
+                        this.thankYou()
+                    }
                 </div>
             );
         }
