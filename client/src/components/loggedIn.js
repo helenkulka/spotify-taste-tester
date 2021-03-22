@@ -115,47 +115,21 @@ export default class LoggedIn extends Component {
 
     setOverlapTracks(all_track_overlap, top_track_overlap) {
         try{
-
             var all_track_info = [];
             var all_track_uris = [];
-            var all_track_overlap_total = all_track_overlap
 
-            for(var i in all_track_overlap){
-                all_track_uris.push(all_track_overlap[i]);
-                all_track_info.push(blonded_track_id_map[all_track_overlap[i]]);
-            }
-
-            for (var k in top_track_overlap){
-                if(!all_track_overlap.includes(top_track_overlap[k])){
-                    all_track_overlap_total.push(top_track_overlap[k])
-                    all_track_uris.push(top_track_overlap[k]);
-                    all_track_info.push(blonded_track_id_map[top_track_overlap[k]]);
+            if (all_track_overlap.length > 0) {
+                for (i in all_track_overlap) {
+                    if (!top_track_overlap.includes(all_track_overlap[i])) {
+                        all_track_uris.push(all_track_overlap[i]);
+                        all_track_info.push(blonded_track_id_map[all_track_overlap[i]]);
+                    }
+                }
+                if (all_track_info.length > 3) {
+                    all_track_info = all_track_info.slice(0,3);
                 }
             }
-
-            if (all_track_info.length > 3) {
-                    all_track_info = all_track_info.slice(0,3);
-            }
-            else{
-                all_track_info = all_track_info.slice(0,all_track_info.length)
-            }
-            this.setState({overlapTracks: all_track_info, numTracksOverlap: all_track_overlap_total.length, overlapTrackUris: all_track_uris})
-
-            // var all_track_info = [];
-            // var all_track_uris = [];
-
-            // if (all_track_overlap.length > 0) {
-            //     for (i in all_track_overlap) {
-            //         if (!top_track_overlap.includes(all_track_overlap[i])) {
-            //             all_track_uris.push(all_track_overlap[i]);
-            //             all_track_info.push(blonded_track_id_map[all_track_overlap[i]]);
-            //         }
-            //     }
-            //     if (all_track_info.length > 3) {
-            //         all_track_info = all_track_info.slice(0,3);
-            //     }
-            // }
-            // this.setState({overlapTracks: all_track_info, numTracksOverlap: all_track_overlap.length, overlapTrackUris: all_track_uris})
+            this.setState({overlapTracks: all_track_info, numTracksOverlap: all_track_overlap.length, overlapTrackUris: all_track_uris})
         }
         catch(e) {
             var url = process.env.NODE_ENV == "production" ? "https://spotify-taste-tester.herokuapp.com/error" : "http://localhost:8888/error";
