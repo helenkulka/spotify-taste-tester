@@ -7,7 +7,8 @@
 
 #intro {
     /* height: 100%; */
-    background-color:#F3FF9A;
+    background-color: #a4eeac;
+
     /* overflow-y: scroll;
     overflow-x: hidden; */
     max-width: 90%;
@@ -27,8 +28,8 @@
 }
 
 #tracks-niche{
-  background-color: #f5a476;
-    /* font-family: 'Archivo', sans-serif;
+  background-color: #ffaf81;
+  /* font-family: 'Archivo', sans-serif;
     font-size: 30px;
     font-style: bold;
     text-align: left;
@@ -78,7 +79,7 @@
     background: rgb(255, 255, 255) !important; /*To change the active navigation bullets inner color*/
   }
   .sec1 {
-    background-color:#F3FF9A;
+    background-color: #a4eeac;
     height: 100%;
     max-width: 100%;
     overflow-x: hidden;
@@ -92,14 +93,14 @@
     position: relative;
   }
   .sec3 {
-    background-color: #D0FFD4;
+    background-color:#dbe95e;
     height: 100%;
     width: 100%;
     overflow-x: hidden;
     position: relative;
   }
   .sec4 {
-    background-color: #f5a476;
+    background-color: #ffaf81;
     height: 100%;
     width: 100%;
     overflow-x: hidden;
