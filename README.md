@@ -8,3 +8,19 @@ A website where users can compare their music taste to Frank Ocean's and get Spo
 1. Run `npm start` in the root project directory
 2. Run `npm start` in the client subdirectory
 3. Navigate to localhost:3000
+
+# screens
+Intro Message
+![Intro Message Screen](https://imgur.com/qDs4kIb.png)
+
+Saved Songs in Common
+![Saved Songs in Common Screen](https://imgur.com/igkzs7i.png)
+
+Top Songs in Common
+![Top Songs In Commonn Screen](https://imgur.com/gCW5jnu.png)
+
+Niche Songs
+![Niche Songs Screen](https://imgur.com/X5n6z8T.png)
+
+Top Artists in Common
+![Top Artists in Common Screen](https://imgur.com/iCasZYx.png)
