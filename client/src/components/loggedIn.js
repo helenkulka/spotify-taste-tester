@@ -37,7 +37,7 @@ var overlap_tracks_msgs = [
     "if you run into Frank Ocean at a party, you might have a bit to talk about! it looks like you have some music in common :)",
     "woahhh not bad! if you run into Frank Ocean at a party, you would have a lot to talk about! you have really similar music tastes :)",
     "we're impressed, you like a lot of music! if you run into Frank Ocean at a party, you guys would totally hit it off :)",
-    "holy shit..wait what? Frank - is that you? we found a lot in common between your music taste and Frank Ocean's :)",
+    "wait what? Frank - is that you? we found a lot in common between your music taste and Frank Ocean's :)",
     "you and frank were switched at birth, probably. or you should just get outside more. we found ...too much in common between your music tastes."
 ];
 
